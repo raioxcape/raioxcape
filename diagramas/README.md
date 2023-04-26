@@ -1,5 +1,5 @@
 # Diagramas
 
-## Diagrama de atividades UML
+## UML
 
-O diagrama de atividades UML foi construído com o software [draw.io](https://draw.io). Para editá-lo, basta abrir o arquivo [`diagrama-atividades-uml.drawio`](./diagrama-atividades-uml.drawio) com o software mencionado anteriormente.
+Os diagramas de atividades UML foram construídos com a versão desktop do software [draw.io](https://draw.io). Para modificar ou visualizar algum diagrama, basta abrir o arquivo desejado (e.g., `<nome-do-arquivo>.drawio`) com o software mencionado anteriormente.

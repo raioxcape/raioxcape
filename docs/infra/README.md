@@ -9,7 +9,7 @@ Na tabela abaixo, estão expostas as tecnologias/ferramentas que serão utilizad
 | Back-end                             | [Java][java] <br> [Spring][spring] <br> [Gradle][gradle]                                           | 17 <br> 6.0.8 <br> 7.6.1    |
 | Banco de dados                       | [MongoDB][mongodb]                                                                                 | 6.0                         |
 | Servidor web                         | [NGINX][nginx]                                                                                     | 1.24.0                      |
-| Containerização                      | [Docker][docker]                                                                                   | 4.18.0                      |
+| Containerização                      | [Docker][docker]                                                                                   | 20.10.24                    |
 | Hospedagem de aplicação (temporária) | [Heroku][heroku]                                                                                   | -                           |
 | Hospedagem de código                 | [GitHub][github]                                                                                   | -                           |
 | Geração de dados                     | [ChatGPT][chatgpt]                                                                                 | 3.5                         |

@@ -1,6 +1,6 @@
 # Infraestrutura
 
-Na tabela abaixo, estão expostas as tecnologias/ferramentas que serão utilizadas no projeto.
+Na tabela abaixo, estão expostas as tecnologias e ferramentas que serão utilizadas no projeto.
 
 | Subárea                              | Tecnologia/Ferramenta                                                                                                                            | Versão                        |
 | ------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------: |

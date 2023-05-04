@@ -1,0 +1,17 @@
+services:
+  raioxcape-database:
+    container_name: raioxcape_database
+    image: mongo:5.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./.docker/mongo:/data/db
+    networks:
+      - raioxcape-network
+networks:
+  raioxcape-network:
+    name: raioxcape_network
+    driver: bridge

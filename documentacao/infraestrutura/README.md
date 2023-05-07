@@ -7,7 +7,7 @@ Na tabela abaixo, estão expostas as tecnologias e ferramentas que serão utiliz
 | Design                               | [Canva][canva] <br> [Figma][figma] <br> [Adobe Photoshop][adobe-photoshop] <br> [Craiyon][craiyon] <br> [Bing Image Creator][bing-image-creator] | - <br> - <br> - <br> - <br> - |
 | Front-end                            | [TypeScript][typescript] <br> [Angular][angular] <br> [HTML][html] <br> [CSS][css]                                                               | 5.0 <br> 15 <br> 5 <br> 3     |
 | Back-end                             | [Java][java] <br> [Spring][spring] <br> [Gradle][gradle]                                                                                         | 17.0.6 <br> 6.0.8 <br> 7.6.1  |
-| Banco de dados                       | [MongoDB][mongodb]                                                                                                                               | 5.0                           |
+| Banco de dados                       | [MySQL][mysql]                                                                                                                                   | 8.0.33                        |
 | Servidor web                         | [NGINX][nginx]                                                                                                                                   | 1.24.0                        |
 | Containerização                      | [Docker][docker]                                                                                                                                 | 20.10.24                      |
 | Hospedagem de aplicação (temporária) | [Heroku][heroku]                                                                                                                                 | -                             |
@@ -28,7 +28,7 @@ Na tabela abaixo, estão expostas as tecnologias e ferramentas que serão utiliz
 [java]:               <https://www.java.com>                          "Java"
 [spring]:             <https://spring.io>                             "Spring"
 [gradle]:             <https://gradle.org>                            "Gradle"
-[mongodb]:            <https://www.mongodb.com>                       "MongoDB"
+[mysql]:              <https://www.mysql.com>                         "MySQL"
 [nginx]:              <https://www.nginx.com>                         "NGINX"
 [docker]:             <https://www.docker.com>                        "Docker"
 [heroku]:             <https://www.heroku.com>                        "Heroku"

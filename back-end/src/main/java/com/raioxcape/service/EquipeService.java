@@ -2,26 +2,34 @@ package com.raioxcape.service;
 
 import com.raioxcape.dto.creation.EquipeCreationDTO;
 import com.raioxcape.exception.EntidadeJaExisteException;
-import com.raioxcape.exception.EntidadeNaoEncontradaException;
+import com.raioxcape.exception.EntidadeNaoExisteException;
 import com.raioxcape.model.Equipe;
 import com.raioxcape.repository.EquipeRepository;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class EquipeService {
 
     private final EquipeRepository equipeRepository;
 
+    private final IntegranteService integranteService;
+
     public Equipe findByNome(String nome) {
         return this.equipeRepository
             .findByNomeEqualsIgnoreCase(nome)
-            .orElseThrow(() -> new EntidadeNaoEncontradaException(
+            .orElseThrow(() -> new EntidadeNaoExisteException(
                 String.format("Não foi encontrada nenhuma equipe com o nome \"%s\".", nome))
             );
+    }
+
+    public List<Equipe> findAll() {
+        return this.equipeRepository.findAll();
     }
 
     public void save(EquipeCreationDTO equipeCreationDTO) {
@@ -33,6 +41,22 @@ public class EquipeService {
             );
         }
 
-        this.equipeRepository.save(new Equipe(equipeCreationDTO.getNome(), equipeCreationDTO.getIntegrantes()));
+        Equipe equipe = this.equipeRepository.save(new Equipe(equipeCreationDTO.getNome()));
+
+        for (String integrante : equipeCreationDTO.getIntegrantes()) {
+            this.integranteService.save(integrante, equipe);
+        }
+    }
+
+    public void deleteByNome(String nome) {
+        if (!this.equipeRepository.existsByNomeEqualsIgnoreCase(nome)) {
+            throw new EntidadeNaoExisteException(
+                String.format("Não foi encontrada nenhuma equipe com o nome \"%s\".", nome)
+            );
+        }
+
+        this.integranteService.deleteByNomeEquipe(nome);
+
+        this.equipeRepository.deleteByNomeEqualsIgnoreCase(nome);
     }
 }

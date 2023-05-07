@@ -1,41 +1,69 @@
 package com.raioxcape.model;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.bson.types.ObjectId;
+import jakarta.persistence.*;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
+@Entity(name = "Equipe")
+@Table(name = "equipe", schema = "raioxcape")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@Document(collection = "equipes")
+@ToString(doNotUseGetters = true)
 public class Equipe {
 
     @Id
-    private ObjectId id;
+    @Column(name = "id_equipe", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
+    @Column(name = "nome", unique = true, nullable = false, length = 63)
     private String nome;
 
-    private Set<String> integrantes;
-
-    @CreatedDate
+    @Column(name = "criada_em", insertable = false, updatable = false, nullable = false)
     private LocalDateTime criadaEm;
 
-    @LastModifiedDate
+    @Column(name = "atualizada_em", insertable = false)
     private LocalDateTime atualizadaEm;
 
-    public Equipe(String nome, Set<String> integrantes) {
+    @OneToMany(mappedBy = "equipe", cascade = CascadeType.REFRESH, orphanRemoval = true)
+    @JsonIgnore
+    @ToString.Exclude
+    private Set<Integrante> integrantes;
+
+    public Equipe() {
+        this.integrantes = new HashSet<>();
+    }
+
+    public Equipe(String nome) {
+        this();
         this.nome = nome;
-        this.integrantes = integrantes;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.nome);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == this) return true;
+
+        if (Objects.isNull(object)) return false;
+
+        if (this.getClass() != object.getClass()) return false;
+
+        Equipe equipe = (Equipe) object;
+
+        return Objects.equals(this.nome, equipe.nome);
     }
 }

@@ -1,8 +1,8 @@
 package com.raioxcape.exception;
 
-public class EntidadeNaoEncontradaException extends RuntimeException {
+public class EntidadeNaoExisteException extends RuntimeException {
 
-    public EntidadeNaoEncontradaException(String mensagem) {
+    public EntidadeNaoExisteException(String mensagem) {
         super(mensagem);
     }
 }

@@ -4,9 +4,9 @@ CREATE DATABASE IF NOT EXISTS raioxcape CHARACTER SET = utf8mb4 COLLATE = utf8mb
 
 USE raioxcape;
 
-DROP TABLE IF EXISTS resposta_enigma;
+DROP TABLE IF EXISTS opcao_resposta_enigma_jogo;
 
-DROP TABLE IF EXISTS resposta_enigma_jogo;
+DROP TABLE IF EXISTS opcao_resposta_enigma;
 
 DROP TABLE IF EXISTS enigma_jogo;
 
@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS integrante (
 CREATE TABLE IF NOT EXISTS jogo (
     id_jogo       INT      NOT NULL AUTO_INCREMENT,
     id_equipe     INT      NOT NULL,
+    pontos        INT      NOT NULL DEFAULT 0,
     criado_em     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     atualizado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
@@ -51,30 +52,31 @@ CREATE TABLE IF NOT EXISTS jogo (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS enigma (
-    id_enigma                       INT                                                               NOT NULL AUTO_INCREMENT,
-    pergunta                        VARCHAR(127)                                                      NOT NULL,
+    id_enigma                       INT                                                                 NOT NULL AUTO_INCREMENT,
+    pergunta                        VARCHAR(127)                                                        NOT NULL,
     porta_caminho                   ENUM('CABECA_E_PESCOCO', 'TORAX', 'ABDOMEN', 'MUSCULO_ESQUELETICO') NOT NULL,
-    nivel_dificuldade               ENUM('FACIL', 'MEDIO', 'DIFICIL')                                 NOT NULL,
-    tempo_estimado_solucao_segundos INT                                                               NOT NULL,
-    pontos                          INT                                                               NOT NULL,
-    criado_em                       DATETIME                                                          NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    atualizado_em                   DATETIME                                                          NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    nivel_dificuldade               ENUM('FACIL', 'MEDIO', 'DIFICIL')                                   NOT NULL,
+    tempo_estimado_solucao_segundos INT                                                                 NOT NULL,
+    pontos                          INT                                                                 NOT NULL,
+    criado_em                       DATETIME                                                            NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em                   DATETIME                                                            NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     PRIMARY KEY (id_enigma),
     UNIQUE      (pergunta)
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS resposta_enigma (
-    id_resposta_enigma INT          NOT NULL AUTO_INCREMENT,
-    resposta           VARCHAR(127) NOT NULL,
-    id_enigma          INT          NOT NULL,
-    esta_correta       BIT          NOT NULL,
-    criada_em          DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    atualizada_em      DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+CREATE TABLE IF NOT EXISTS opcao_resposta_enigma (
+    id_opcao_resposta_enigma INT          NOT NULL AUTO_INCREMENT,
+    opcao_resposta           VARCHAR(127) NOT NULL,
+    id_enigma                INT          NOT NULL,
+    esta_correta             BIT          NOT NULL,
+    explicacao               VARCHAR(255)     NULL,
+    criada_em                DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    atualizada_em            DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-    PRIMARY KEY (id_resposta_enigma),
+    PRIMARY KEY (id_opcao_resposta_enigma),
     FOREIGN KEY (id_enigma) REFERENCES enigma (id_enigma),
-    UNIQUE      (resposta, id_enigma)
+    UNIQUE      (opcao_resposta, id_enigma)
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS enigma_jogo (
@@ -82,8 +84,8 @@ CREATE TABLE IF NOT EXISTS enigma_jogo (
     id_enigma                        INT      NOT NULL,
     id_jogo                          INT      NOT NULL,
     foi_solucionado                  BIT      NOT NULL DEFAULT 0,
-    tempo_decorrido_solucao_segundos INT          NULL,
-    pontos                           INT          NULL,
+    tempo_decorrido_solucao_segundos INT      NOT NULL DEFAULT 0,
+    pontos                           INT      NOT NULL DEFAULT 0,
     criado_em                        DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     atualizado_em                    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
@@ -93,15 +95,15 @@ CREATE TABLE IF NOT EXISTS enigma_jogo (
     UNIQUE      (id_enigma, id_jogo)
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS resposta_enigma_jogo (
-    id_resposta_enigma_jogo INT      NOT NULL AUTO_INCREMENT,
-    id_resposta_enigma      INT      NOT NULL,
-    id_enigma_jogo          INT      NOT NULL,
-    criada_em               DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    atualizada_em           DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+CREATE TABLE IF NOT EXISTS opcao_resposta_enigma_jogo (
+    id_opcao_resposta_enigma_jogo INT      NOT NULL AUTO_INCREMENT,
+    id_opcao_resposta_enigma      INT      NOT NULL,
+    id_enigma_jogo                INT      NOT NULL,
+    criada_em                     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    atualizada_em                 DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-    PRIMARY KEY (id_resposta_enigma_jogo),
-    FOREIGN KEY (id_resposta_enigma) REFERENCES resposta_enigma (id_resposta_enigma),
-    FOREIGN KEY (id_enigma_jogo)     REFERENCES enigma_jogo (id_enigma_jogo),
-    UNIQUE      (id_resposta_enigma, id_enigma_jogo)
+    PRIMARY KEY (id_opcao_resposta_enigma_jogo),
+    FOREIGN KEY (id_opcao_resposta_enigma) REFERENCES opcao_resposta_enigma (id_opcao_resposta_enigma),
+    FOREIGN KEY (id_enigma_jogo)           REFERENCES enigma_jogo (id_enigma_jogo),
+    UNIQUE      (id_opcao_resposta_enigma, id_enigma_jogo)
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;

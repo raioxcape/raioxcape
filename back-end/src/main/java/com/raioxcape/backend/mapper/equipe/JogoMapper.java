@@ -1,6 +1,6 @@
 package com.raioxcape.backend.mapper.equipe;
 
-import com.raioxcape.backend.dto.equipe.retrieval.JogoRetrievalDTO;
+import com.raioxcape.backend.dto.equipe.JogoRetrievalDTO;
 import com.raioxcape.backend.mapper.jogo.EnigmaMapper;
 import com.raioxcape.backend.model.Jogo;
 

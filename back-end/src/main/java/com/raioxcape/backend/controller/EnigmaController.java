@@ -1,6 +1,6 @@
 package com.raioxcape.backend.controller;
 
-import com.raioxcape.backend.dto.api.response.ApiResponse;
+import com.raioxcape.backend.dto.api.ApiResponse;
 import com.raioxcape.backend.mapper.enigma.EnigmaMapper;
 import com.raioxcape.backend.service.EnigmaService;
 
@@ -8,7 +8,10 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.stream.Collectors;
 
@@ -22,30 +25,32 @@ public class EnigmaController {
     private final EnigmaMapper enigmaMapper;
 
     @GetMapping(value = "/{id}")
-    @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ApiResponse> findEnigma(@PathVariable("id") int id) {
+        HttpStatus status = HttpStatus.OK;
+
         return new ResponseEntity<>(
             new ApiResponse(
-                HttpStatus.OK,
+                status,
                 this.enigmaMapper.toEnigmaRetrievalDTO(this.enigmaService.findById(id))
             ),
-            HttpStatus.OK
+            status
         );
     }
 
     @GetMapping
-    @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ApiResponse> findEnigmas() {
+        HttpStatus status = HttpStatus.OK;
+
         return new ResponseEntity<>(
             new ApiResponse(
-                HttpStatus.OK,
+                status,
                 this.enigmaService
                     .findAll()
                     .stream()
                     .map(this.enigmaMapper::toEnigmaRetrievalDTO)
                     .collect(Collectors.toList())
             ),
-            HttpStatus.OK
+            status
         );
     }
 }

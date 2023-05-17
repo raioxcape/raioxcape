@@ -1,4 +1,4 @@
-package com.raioxcape.backend.dto.api.response;
+package com.raioxcape.backend.dto.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

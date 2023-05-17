@@ -1,7 +1,7 @@
 package com.raioxcape.backend.controller;
 
-import com.raioxcape.backend.dto.api.response.ApiResponse;
-import com.raioxcape.backend.dto.equipe.creation.EquipeCreationDTO;
+import com.raioxcape.backend.dto.api.ApiResponse;
+import com.raioxcape.backend.dto.equipe.EquipeCreationDTO;
 import com.raioxcape.backend.mapper.equipe.EquipeMapper;
 import com.raioxcape.backend.mapper.equipe.JogoMapper;
 import com.raioxcape.backend.service.EquipeService;
@@ -28,58 +28,62 @@ public class EquipeController {
     private final JogoMapper jogoMapper;
 
     @PostMapping
-    @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<ApiResponse> createEquipe(@Valid @RequestBody EquipeCreationDTO equipeCreationDTO) {
+        HttpStatus status = HttpStatus.CREATED;
+
         return new ResponseEntity<>(
             new ApiResponse(
-                HttpStatus.OK,
+                status,
                 this.equipeMapper.toEquipeRetrievalDTO(this.equipeService.save(equipeCreationDTO))
             ),
-            HttpStatus.OK
+            status
         );
     }
 
     @GetMapping(value = "/{nome}")
-    @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ApiResponse> findEquipe(@PathVariable("nome") String nome) {
+        HttpStatus status = HttpStatus.OK;
+
         return new ResponseEntity<>(
             new ApiResponse(
-                HttpStatus.OK,
+                status,
                 this.equipeMapper.toEquipeRetrievalDTO(this.equipeService.findByNome(nome))
             ),
-            HttpStatus.OK
+            status
         );
     }
 
     @GetMapping
-    @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ApiResponse> findEquipes() {
+        HttpStatus status = HttpStatus.OK;
+
         return new ResponseEntity<>(
             new ApiResponse(
-                HttpStatus.OK,
+                status,
                 this.equipeService
                     .findAll()
                     .stream()
                     .map(this.equipeMapper::toEquipeRetrievalDTO)
                     .collect(Collectors.toList())
             ),
-            HttpStatus.OK
+            status
         );
     }
 
     @GetMapping(value = "/{nome}/jogos")
-    @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ApiResponse> findJogosEquipe(@PathVariable("nome") String nome) {
+        HttpStatus status = HttpStatus.OK;
+
         return new ResponseEntity<>(
             new ApiResponse(
-                HttpStatus.OK,
+                status,
                 this.equipeService
                     .findJogos(nome)
                     .stream()
                     .map(this.jogoMapper::toJogoRetrievalDTO)
                     .collect(Collectors.toList())
             ),
-            HttpStatus.OK
+            status
         );
     }
 }

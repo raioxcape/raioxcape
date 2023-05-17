@@ -1,4 +1,4 @@
-package com.raioxcape.backend.dto.equipe.retrieval;
+package com.raioxcape.backend.dto.equipe;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -10,24 +10,20 @@ import lombok.ToString;
 
 import java.time.LocalDateTime;
 
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @ToString
-@JsonPropertyOrder(value = {"id", "nome", "integrantes", "criadaEm", "atualizadaEm"})
-public class EquipeRetrievalDTO {
+@JsonPropertyOrder(value = {"id", "nome", "criadoEm", "atualizadoEm"})
+public class IntegranteRetrievalDTO {
 
     private final Integer id;
 
     private final String nome;
 
-    private final List<IntegranteRetrievalDTO> integrantes;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    private final LocalDateTime criadoEm;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
-    private final LocalDateTime criadaEm;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
-    private final LocalDateTime atualizadaEm;
+    private final LocalDateTime atualizadoEm;
 }

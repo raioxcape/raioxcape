@@ -1,4 +1,4 @@
-package com.raioxcape.backend.dto.jogo.creation;
+package com.raioxcape.backend.dto.jogo;
 
 import com.raioxcape.backend.exception.ValorInvalidoException;
 

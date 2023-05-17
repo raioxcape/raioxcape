@@ -1,6 +1,6 @@
 package com.raioxcape.backend.mapper.enigma;
 
-import com.raioxcape.backend.dto.enigma.retrieval.EnigmaRetrievalDTO;
+import com.raioxcape.backend.dto.enigma.EnigmaRetrievalDTO;
 import com.raioxcape.backend.mapper.jogo.OpcaoRespostaEnigmaMapper;
 import com.raioxcape.backend.model.Enigma;
 

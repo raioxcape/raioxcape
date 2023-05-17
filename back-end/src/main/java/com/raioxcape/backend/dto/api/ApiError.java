@@ -1,4 +1,4 @@
-package com.raioxcape.backend.dto.api.response;
+package com.raioxcape.backend.dto.api;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -99,16 +99,16 @@ public class ApiError {
         this.addValidationError(objectError.getObjectName(), objectError.getDefaultMessage());
     }
 
-    public void addValidationError(List<ObjectError> globalErrors) {
-        globalErrors.forEach(this::addValidationError);
+    public void addValidationError(List<ObjectError> objectErrors) {
+        objectErrors.forEach(this::addValidationError);
     }
 
-    private void addValidationError(ConstraintViolation<?> cv) {
+    private void addValidationError(ConstraintViolation<?> constraintViolation) {
         this.addValidationError(
-            cv.getRootBeanClass().getSimpleName(),
-            ((PathImpl) cv.getPropertyPath()).getLeafNode().asString(),
-            cv.getInvalidValue(),
-            cv.getMessage()
+            constraintViolation.getRootBeanClass().getSimpleName(),
+            ((PathImpl) constraintViolation.getPropertyPath()).getLeafNode().asString(),
+            constraintViolation.getInvalidValue(),
+            constraintViolation.getMessage()
         );
     }
 

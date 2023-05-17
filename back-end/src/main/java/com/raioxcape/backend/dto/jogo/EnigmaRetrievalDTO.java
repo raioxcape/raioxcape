@@ -1,6 +1,4 @@
-package com.raioxcape.backend.dto.enigma.retrieval;
-
-import com.raioxcape.backend.dto.jogo.retrieval.OpcaoRespostaEnigmaRetrievalDTO;
+package com.raioxcape.backend.dto.jogo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -20,7 +18,8 @@ import java.util.List;
 @ToString
 @JsonPropertyOrder(value = {
     "id", "pergunta", "opcoesResposta", "portaCaminho", "nivelDificuldade",
-    "tempoEstimadoSolucaoSegundos", "pontos", "criadoEm", "atualizadoEm"
+    "tempoEstimadoSolucaoSegundos", "pontos", "foiSolucionado", "opcoesRespostaEquipe",
+    "tempoDecorridoSolucaoSegundos", "pontosEquipe", "criadoEm", "atualizadoEm"
 })
 public class EnigmaRetrievalDTO {
 
@@ -37,6 +36,14 @@ public class EnigmaRetrievalDTO {
     private Integer tempoEstimadoSolucaoSegundos;
 
     private Integer pontos;
+
+    private Boolean foiSolucionado;
+
+    private final List<OpcaoRespostaEnigmaRetrievalDTO> opcoesRespostaEquipe;
+
+    private Integer tempoDecorridoSolucaoSegundos;
+
+    private Integer pontosEquipe;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     private final LocalDateTime criadoEm;

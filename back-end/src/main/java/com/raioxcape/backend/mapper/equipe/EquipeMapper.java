@@ -1,6 +1,6 @@
 package com.raioxcape.backend.mapper.equipe;
 
-import com.raioxcape.backend.dto.equipe.retrieval.EquipeRetrievalDTO;
+import com.raioxcape.backend.dto.equipe.EquipeRetrievalDTO;
 import com.raioxcape.backend.model.Equipe;
 
 import lombok.RequiredArgsConstructor;

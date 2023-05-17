@@ -1,7 +1,7 @@
 package com.raioxcape.backend.controller;
 
-import com.raioxcape.backend.dto.api.response.ApiError;
-import com.raioxcape.backend.dto.api.response.ApiResponse;
+import com.raioxcape.backend.dto.api.ApiError;
+import com.raioxcape.backend.dto.api.ApiResponse;
 import com.raioxcape.backend.exception.EntidadeJaExisteException;
 import com.raioxcape.backend.exception.EntidadeNaoExisteException;
 import com.raioxcape.backend.exception.ValorInvalidoException;

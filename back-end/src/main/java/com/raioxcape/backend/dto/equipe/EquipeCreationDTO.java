@@ -1,4 +1,4 @@
-package com.raioxcape.backend.dto.equipe.creation;
+package com.raioxcape.backend.dto.equipe;
 
 import com.raioxcape.backend.exception.ValorInvalidoException;
 

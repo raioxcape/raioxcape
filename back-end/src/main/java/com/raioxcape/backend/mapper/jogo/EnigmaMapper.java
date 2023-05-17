@@ -1,6 +1,6 @@
 package com.raioxcape.backend.mapper.jogo;
 
-import com.raioxcape.backend.dto.jogo.retrieval.EnigmaRetrievalDTO;
+import com.raioxcape.backend.dto.jogo.EnigmaRetrievalDTO;
 import com.raioxcape.backend.model.EnigmaJogo;
 
 import lombok.RequiredArgsConstructor;

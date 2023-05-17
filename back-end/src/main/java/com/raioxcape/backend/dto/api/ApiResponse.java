@@ -1,4 +1,4 @@
-package com.raioxcape.backend.dto.api.response;
+package com.raioxcape.backend.dto.api;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

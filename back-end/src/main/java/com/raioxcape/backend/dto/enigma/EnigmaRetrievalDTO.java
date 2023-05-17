@@ -1,6 +1,6 @@
-package com.raioxcape.backend.dto.jogo.retrieval;
+package com.raioxcape.backend.dto.enigma;
 
-import com.raioxcape.backend.dto.equipe.retrieval.EquipeRetrievalDTO;
+import com.raioxcape.backend.dto.jogo.OpcaoRespostaEnigmaRetrievalDTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -18,16 +18,25 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @ToString
-@JsonPropertyOrder(value = {"id", "equipe", "enigmas", "pontos", "criadoEm", "atualizadoEm"})
-public class JogoRetrievalDTO {
+@JsonPropertyOrder(value = {
+    "id", "pergunta", "opcoesResposta", "portaCaminho", "nivelDificuldade",
+    "tempoEstimadoSolucaoSegundos", "pontos", "criadoEm", "atualizadoEm"
+})
+public class EnigmaRetrievalDTO {
 
     private final Integer id;
 
-    private final EquipeRetrievalDTO equipe;
+    private final String pergunta;
 
-    private final List<EnigmaRetrievalDTO> enigmas;
+    private final List<OpcaoRespostaEnigmaRetrievalDTO> opcoesResposta;
 
-    private final Integer pontos;
+    private final String portaCaminho;
+
+    private final String nivelDificuldade;
+
+    private Integer tempoEstimadoSolucaoSegundos;
+
+    private Integer pontos;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     private final LocalDateTime criadoEm;

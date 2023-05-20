@@ -44,6 +44,12 @@ public class Jogo {
 
     public Jogo() {
         this.enigmas = new ArrayList<>();
+        this.pontos = 0;
+    }
+
+    public Jogo(Equipe equipe) {
+        this();
+        this.equipe = equipe;
     }
 
     @Override

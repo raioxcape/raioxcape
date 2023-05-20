@@ -10,6 +10,8 @@ public interface EquipeService {
 
     Equipe findByNome(String nome);
 
+    Equipe findById(int id);
+
     List<Equipe> findAll();
 
     List<Jogo> findJogos(String nome);

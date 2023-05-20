@@ -1,5 +1,6 @@
 package com.raioxcape.backend.service;
 
+import com.raioxcape.backend.dto.jogo.JogoCreationDTO;
 import com.raioxcape.backend.exception.EntidadeNaoExisteException;
 import com.raioxcape.backend.model.Jogo;
 import com.raioxcape.backend.repository.JogoRepository;
@@ -17,6 +18,8 @@ public class JogoServiceImpl implements JogoService {
 
     private final JogoRepository jogoRepository;
 
+    private final EquipeService equipeService;
+
     @Override
     public Jogo findById(int id) {
         return this.jogoRepository
@@ -33,5 +36,16 @@ public class JogoServiceImpl implements JogoService {
         jogos.sort(Comparator.comparing(Jogo::getCriadoEm).reversed());
 
         return jogos;
+    }
+
+    @Override
+    public Jogo save(JogoCreationDTO jogoCreationDTO) {
+        jogoCreationDTO.validate();
+
+        Jogo jogo = this.jogoRepository.save(new Jogo(this.equipeService.findById(jogoCreationDTO.getIdEquipe())));
+
+        this.jogoRepository.refresh(jogo);
+
+        return jogo;
     }
 }

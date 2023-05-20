@@ -32,6 +32,15 @@ public class EquipeServiceImpl implements EquipeService {
     }
 
     @Override
+    public Equipe findById(int id) {
+        return this.equipeRepository
+            .findById(id)
+            .orElseThrow(() -> new EntidadeNaoExisteException(
+                String.format("Não foi encontrada nenhuma equipe com o id igual a %d", id))
+            );
+    }
+
+    @Override
     public List<Equipe> findAll() {
         List<Equipe> equipes = this.equipeRepository.findAll();
 

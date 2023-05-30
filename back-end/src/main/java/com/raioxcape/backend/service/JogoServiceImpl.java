@@ -1,5 +1,6 @@
 package com.raioxcape.backend.service;
 
+import com.raioxcape.backend.dto.jogo.EnigmaUpdateDTO;
 import com.raioxcape.backend.dto.jogo.JogoCreationDTO;
 import com.raioxcape.backend.exception.EntidadeNaoExisteException;
 import com.raioxcape.backend.model.Jogo;
@@ -47,5 +48,11 @@ public class JogoServiceImpl implements JogoService {
         this.jogoRepository.refresh(jogo);
 
         return jogo;
+    }
+
+    @Override
+    public Jogo updateEnigma(int idJogo, int idEnigma, EnigmaUpdateDTO enigmaUpdateDTO) {
+
+        return null;
     }
 }

@@ -38,7 +38,7 @@ public class EnigmaMapper {
             enigmaJogo.getTempoDecorridoSolucaoSegundos(),
             enigmaJogo.getPontos(),
             enigmaJogo.getEnigma().getCriadoEm(),
-            enigmaJogo.getEnigma().getAtualizadoEm()
+            enigmaJogo.getAtualizadoEm()
         );
     }
 }

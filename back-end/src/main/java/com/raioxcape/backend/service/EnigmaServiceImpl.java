@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -28,10 +27,6 @@ public class EnigmaServiceImpl implements EnigmaService {
 
     @Override
     public List<Enigma> findAll() {
-        List<Enigma> enigmas = this.enigmaRepository.findAll();
-
-        enigmas.sort(Comparator.comparing(Enigma::getCriadoEm).reversed());
-
-        return enigmas;
+        return this.enigmaRepository.findAll();
     }
 }

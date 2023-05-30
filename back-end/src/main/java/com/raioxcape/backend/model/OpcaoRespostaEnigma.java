@@ -28,7 +28,7 @@ public class OpcaoRespostaEnigma {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "opcao_resposta", nullable = false, length = 127)
+    @Column(name = "opcao_resposta", nullable = false)
     private String opcaoResposta;
 
     @ManyToOne(optional = false, cascade = CascadeType.REFRESH)
@@ -38,7 +38,7 @@ public class OpcaoRespostaEnigma {
     @Column(name = "esta_correta", columnDefinition = "BIT", length = 1, nullable = false)
     private Boolean estaCorreta;
 
-    @Column(name = "explicacao")
+    @Column(name = "explicacao", length = 512)
     private String explicacao;
 
     @Column(name = "criada_em", insertable = false, updatable = false, nullable = false)

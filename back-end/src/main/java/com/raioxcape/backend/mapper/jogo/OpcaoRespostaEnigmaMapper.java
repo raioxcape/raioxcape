@@ -14,7 +14,7 @@ public class OpcaoRespostaEnigmaMapper {
 
     public OpcaoRespostaEnigmaRetrievalDTO toOpcaoRespostaEnigmaRetrievalDTO(OpcaoRespostaEnigmaJogo opcaoRespostaEnigmaJogo) {
         return new OpcaoRespostaEnigmaRetrievalDTO(
-            opcaoRespostaEnigmaJogo.getId(),
+            opcaoRespostaEnigmaJogo.getOpcaoRespostaEnigma().getId(),
             opcaoRespostaEnigmaJogo.getOpcaoRespostaEnigma().getOpcaoResposta(),
             opcaoRespostaEnigmaJogo.getOpcaoRespostaEnigma().getEstaCorreta(),
             opcaoRespostaEnigmaJogo.getOpcaoRespostaEnigma().getExplicacao(),

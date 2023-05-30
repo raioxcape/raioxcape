@@ -42,6 +42,11 @@ public class OpcaoRespostaEnigmaJogo {
     @Column(name = "atualizada_em", insertable = false)
     private LocalDateTime atualizadaEm;
 
+    public OpcaoRespostaEnigmaJogo(OpcaoRespostaEnigma opcaoRespostaEnigma, EnigmaJogo enigmaJogo) {
+        this.opcaoRespostaEnigma = opcaoRespostaEnigma;
+        this.enigmaJogo = enigmaJogo;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(

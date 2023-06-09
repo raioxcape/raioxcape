@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="teams-rigth">
+        <div class="content">
+            <h3>Menu de Equipes</h3>
+            <div class="form-content">
+               <div class="div-select">
+                <select>
+                    <option>Selecione a Equipe</option>
+                    <option>Primeira opção</option>
+                    <option>Segunda opção</option>
+                    <option>Terceira opção</option>
+                    <option>Quarta opção</option>
+                </select>
+            </div>
+                <div class="example-button-row">
+                   <button mat-raised-button (click)="goToForms();">Criar Equipe</button>
+                </div>
+                <div class="example-button-row">
+                    <a routerLink="/history"><button mat-raised-button>Lista de Equipes</button></a>
+                </div>
+            </div>
+              
+        </div>
+    </div>
+
+    <div class="teams-left">
+        <section>
+            <a routerLink="/"><button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                <!--<mat-icon>keyboard_arrow_left</mat-icon>-->
+                <mat-icon>arrow_back_ios</mat-icon>
+            </button></a><br>            
+        </section>
+        <img class="img" alt="Raio Xcape" src="assets/img/medico.png"/>
+    </div>
+</div>
+

@@ -1,0 +1,43 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover, a:active{
+    color: #0b2447;
+}
+
+.navigation-items{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+mat-toolbar{
+    border-radius: 3px;
+    height: 10%;
+}
+
+@media(max-width: 959px){
+    mat-toolbar{
+        border-radius: 0px;
+    }
+}
+img {
+    display: block;
+    max-height: 10%;
+}
+
+.mat-toolbar-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation-items {
+    display: flex;
+}
+
+.navigation-items p {
+    margin-left: 10px;
+}

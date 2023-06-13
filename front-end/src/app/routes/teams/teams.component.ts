@@ -16,4 +16,8 @@ export class TeamsComponent {
   goToForms(){
     this.router.navigate(['/teams/forms']);
   }
+
+  goToList() {
+    this.router.navigate(['/teams/list']);
+  }
 }

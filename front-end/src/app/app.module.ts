@@ -13,15 +13,25 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsComponent } from './routes/teams/forms/forms.component';
 import {MatIconModule} from '@angular/material/icon';
-
-
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
+import { FormsModule, FormGroup } from '@angular/forms';
+import { ListComponent } from './routes/teams/list/list.component';
+import { HistoryComponent } from './routes/history/history.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { HeaderComponent } from './routes/header/header.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     TeamsComponent,
-    FormsComponent
+    FormsComponent,
+    ListComponent,
+    HistoryComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +41,13 @@ import {MatIconModule} from '@angular/material/icon';
     MatFormFieldModule,
     MatSelectModule,    
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
+    MatCardModule,
+    FormsModule,
+    MatTableModule,
+    MatToolbarModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

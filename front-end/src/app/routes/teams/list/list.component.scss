@@ -1,0 +1,33 @@
+.table-wrapper {
+    width: 90%;
+    height: 100vh;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.table-container {
+    width: 80%; /* Defina a largura desejada aqui */
+}
+
+table {
+    width: 80%;
+}
+
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.example-button-row button,
+.example-button-row a {
+    margin-left: 5%;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    align-items: rigth;
+    justify-content: rigth;
+}

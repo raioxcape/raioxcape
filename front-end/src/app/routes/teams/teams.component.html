@@ -4,19 +4,21 @@
             <h3>Menu de Equipes</h3>
             <div class="form-content">
                <div class="div-select">
-                <select>
-                    <option>Selecione a Equipe</option>
-                    <option>Primeira opção</option>
-                    <option>Segunda opção</option>
-                    <option>Terceira opção</option>
-                    <option>Quarta opção</option>
-                </select>
-            </div>
-                <div class="example-button-row">
-                   <button mat-raised-button (click)="goToForms();">Criar Equipe</button>
+                    <select>
+                        <option>Selecione a Equipe</option>
+                        <option>Primeira opção</option>
+                        <option>Segunda opção</option>
+                        <option>Terceira opção</option>
+                        <option>Quarta opção</option>
+                    </select>
                 </div>
-                <div class="example-button-row">
-                    <a routerLink="/history"><button mat-raised-button>Lista de Equipes</button></a>
+                <div class="content-button">
+                    <div class="example-button-row">
+                    <button mat-raised-button (click)="goToForms();">Criar Equipe</button>
+                    </div>
+                    <div class="example-button-row">
+                        <button mat-raised-button (click)="goToList();">Lista de Equipes</button>
+                    </div>
                 </div>
             </div>
               
@@ -30,7 +32,8 @@
                 <mat-icon>arrow_back_ios</mat-icon>
             </button></a><br>            
         </section>
-        <img class="img" alt="Raio Xcape" src="assets/img/medico.png"/>
+        <!--<img class="img" alt="Raio Xcape" src="assets/img/logoreduz.png"/>-->
     </div>
 </div>
+
 

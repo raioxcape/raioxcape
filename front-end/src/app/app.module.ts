@@ -22,6 +22,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { HeaderComponent } from './routes/header/header.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { HttpClientModule } from '@angular/common/http';
+import { TeamsService } from './service/teams-service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     FormsComponent,
     ListComponent,
     HistoryComponent,
-    HeaderComponent
+    HeaderComponent    
   ],
   imports: [
     BrowserModule,
@@ -47,9 +49,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     FormsModule,
     MatTableModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    TeamsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

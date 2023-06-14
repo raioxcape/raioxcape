@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+
 import { NgModel } from '@angular/forms';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Equipe } from 'src/app/classes/Equipe';
+import { Integrante } from 'src/app/classes/Integrante';
+import { TeamsService } from 'src/app/service/teams-service';
 
 @Component({
   selector: 'app-forms',
@@ -10,29 +14,35 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class FormsComponent {
 
   quantity: number;
-  integrantes: string[];
+  integrantes : Integrante[] = []; 
+  equipe : Equipe;
 
-  constructor(){
+  constructor(private teamsService : TeamsService){
     this.quantity = 1;
-    this.integrantes = [''];
-
+    this.equipe = new Equipe();
    }
 
-   increment() {
-    if (this.quantity < 10) {
-      this.quantity++;
-      this.integrantes.push(''); // Adiciona um novo campo vazio para o novo integrante
-    }
-  }
-  
-  decrement() {
-    if (this.quantity > 1) {
-      this.quantity--;
-      this.integrantes.pop(); // Remove o campo do último integrante
-    }
+   
+
+  adicionarIntegrante() {
+    this.integrantes = new Array(this.quantity).fill('').map(() => new Integrante());
   }
 
-  saveTeam(){
-    console.log("ENVIOU!");
+  saveTeam(form: any){
+    console.log(form.value);
+    this.equipe.nome = form.value.teamName;
+    this.equipe.integrantes = this.integrantes;
+
+    console.log(this.equipe);
+    this.teamsService.saveTeam(this.equipe).subscribe(
+      response => {
+        // Lógica de manipulação da resposta do serviço, se necessário
+        console.log(response);
+      },
+      error => {
+        // Lógica de tratamento de erro, se necessário
+        console.error(error);
+      }
+    );
   }
 }

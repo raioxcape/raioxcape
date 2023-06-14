@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { TeamsService } from 'src/app/service/teams-service';
 
 export interface PeriodicElement {
   name: string;
@@ -30,7 +31,22 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent {
+export class ListComponent implements OnInit {
+  
+  constructor(private teamsService : TeamsService){
+
+  }
+  
+  ngOnInit(): void {
+    this.teamsService.getTeams().subscribe(
+      (data: any) => {
+        console.log(data);
+      },
+      (error) => {
+        console.error('Ocorreu um erro ao obter os dados das equipes:', error);
+      }
+    );
+  }
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);

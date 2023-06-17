@@ -12,7 +12,7 @@ repositories {
 
 tasks.named("bootJar") {
     manifest {
-        attributes 'Start-Class': 'com.raioxcape.backend.RaioXcapeBackend'
+        attributes 'Main-Class': 'com.raioxcape.backend.RaioXcapeBackend'
     }
 }
 

@@ -11,15 +11,19 @@ repositories {
 }
 
 jar {
-    enabled = true
-
-    manifest {
-        attributes 'Main-Class': 'com.raioxcape.backend.RaioXcapeBackend'
-    }
+    enabled = false
 }
 
-bootJar {
-    mainClass = 'com.raioxcape.backend.RaioXcapeBackend'
+tasks.withType(Jar).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes['Main-Class'] = 'com.raioxcape.backend.RaioXcapeBackend'
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 dependencies {

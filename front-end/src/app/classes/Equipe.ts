@@ -6,7 +6,7 @@ export class Equipe {
     nome! : string;
     criadaEm! : Date;
     atualizadaEm! : Date;
-    integrantes! : Integrante[];
+    integrantes! : string[];
     jogos! : Jogo[];
 
 }

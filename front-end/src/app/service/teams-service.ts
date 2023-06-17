@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 
-import { HttpClient} from "@angular/common/http";
+import { HttpClient,  HttpHeaders} from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Equipe } from "../classes/Equipe";
 
-
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class TeamsService {
     
     baseUrl : string = "";
@@ -15,10 +16,11 @@ export class TeamsService {
     }
 
     getTeams() {
-        return this.http.get('http://localhost:8080/api/equipes');
+        return this.http.get('api/equipes');
     }
 
     saveTeam(equipe : Equipe): Observable<any>{
-        return this.http.post('http://localhost:8080/api/equipes', equipe);
+        console.log(JSON.stringify(equipe));
+        return this.http.post('api/equipes', equipe);
     }
 }

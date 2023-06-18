@@ -13,6 +13,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -49,6 +50,8 @@ public class SecurityConfiguration {
         } else {
             allowedOrigins.add("*");
         }
+
+        System.out.printf("\nallowedOrigins = %s\n", Arrays.toString(allowedOrigins.toArray()));
 
         configuration.setAllowedOrigins(allowedOrigins);
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"));

@@ -29,9 +29,9 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-            .cors(withDefaults())
             .csrf()
             .disable()
+            .cors(withDefaults())
             .authorizeHttpRequests()
             .anyRequest()
             .permitAll()
@@ -52,12 +52,11 @@ public class SecurityConfiguration {
         }
 
         configuration.setAllowedOrigins(allowedOrigins);
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList(
-            "Authorization", "Access-Control-Allow-Origin", "Content-Type", "X-Requested-With",
-            "Accept", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"
+            "Content-Type", "Accept", "Origin", "Cache-Control",
+            "Access-Control-Request-Method", "Access-Control-Request-Headers"
         ));
-        configuration.setExposedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 

@@ -1,6 +1,11 @@
 spring:
+  profiles:
+    active: development
   datasource:
-    url: jdbc:mysql://localhost:3306/raioxcape
-    username: raioxcape
-    password: raioxcape
     driver-class-name: com.mysql.cj.jdbc.Driver
+    name: raioxcape
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+    time-zone: America/Sao_Paulo
+    locale: pt_BR

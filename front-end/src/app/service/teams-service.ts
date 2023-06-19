@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 
 import { HttpClient,  HttpHeaders} from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, delay, tap } from "rxjs";
 import { Equipe } from "../classes/Equipe";
 
 @Injectable({
@@ -9,18 +9,21 @@ import { Equipe } from "../classes/Equipe";
   })
 export class TeamsService {
     
-    baseUrl : string = "";
+    baseUrl : string = "api/equipes";
     
     constructor(private http : HttpClient){
         
     }
 
     getTeams() {
-        return this.http.get('api/equipes');
+        return this.http.get<Equipe[]>(this.baseUrl)
+        .pipe(
+           // delay(5000),
+            tap()
+        );
     }
 
     saveTeam(equipe : Equipe): Observable<any>{
-        console.log(JSON.stringify(equipe));
-        return this.http.post('api/equipes', equipe);
+        return this.http.post(this.baseUrl, equipe);
     }
 }

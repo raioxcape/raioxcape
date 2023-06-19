@@ -1,33 +1,101 @@
-.table-wrapper {
-    width: 90%;
-    height: 100vh;
-}
-.content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
-.table-container {
-    width: 80%; /* Defina a largura desejada aqui */
-}
-
 table {
-    width: 80%;
-}
-
-.mat-mdc-form-field {
-    font-size: 14px;
     width: 100%;
 }
 
-.example-button-row button,
-.example-button-row a {
-    margin-left: 5%;
-    font-size: 15px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    align-items: rigth;
-    justify-content: rigth;
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    min-height: 100vh;
+}
+
+mat-card {
+    width: 80%;
+    height: 80%;
+    padding: 20px;
+    overflow: auto;
+    //position: relative;
+   
+}
+
+h3 {
+    color: black;
+    font-size: 150%;
+    font-family: 'Helvetica';
+    margin-bottom: 15px;
+     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-spinner {
+    margin-top: auto;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover,
+a:active {
+    color: #0b2447;
+}
+
+.navigation-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+mat-toolbar {
+    border-radius: 0px;
+    height: 10%;
+}
+
+@media(max-width: 959px) {
+    mat-toolbar {
+        border-radius: 0px;
+    }
+}
+
+.mat-toolbar-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation-items {
+    display: flex;
+}
+
+.navigation-items p {
+    margin-left: 10px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.mat-toolbar span {
+    color: white;
+}
+
+.material-icons.color_white {
+    color: white;
 }

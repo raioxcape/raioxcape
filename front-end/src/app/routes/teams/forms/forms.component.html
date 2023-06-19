@@ -6,20 +6,22 @@
             
             <form #form="ngForm" id="newOrEditTeams" name="newOrEditTeams" (ngSubmit)="saveTeam(form);">
                 
-                <label for="teamName">Nome da Equipe:</label><br>
-                <input type="text" id="teamName" name="teamName" required [(ngModel)]="equipe.nome"><br>
+                <label for="teamName">Nome da Equipe: <label class="required">*</label></label><br>
+                <input type="text" id="teamName" name="teamName" required [(ngModel)]="equipe.nome" #teamName="ngModel"><br>    
+
                 
-                <label for="qtdIntegrantes">Número de Integrantes:</label><br>
-                <input type="number" id="qtdIntegrantes" name="qtdIntegrantes" [(ngModel)]="quantity" min="1" max="10" value="{{quantity}}" (ngModelChange)="adicionarIntegrante()"><br>
+                <label for="qtdIntegrantes">Número de Integrantes: <label class="required">*</label></label><br>
+                <input type="number" id="qtdIntegrantes" name="qtdIntegrantes" [(ngModel)]="quantity" min="1" max="10" value="{{quantity}}" (ngModelChange)="adicionarIntegrante()" #qtdIntegrantes="ngModel"><br>
                 
                 <div *ngFor="let integrante of integrantes; let i=index">
-                    <label [for]="'nameIntegrante' + i">Nome Integrante {{i + 1}}:</label><br>
+                    <label [for]="'nameIntegrante' + i">Nome Integrante {{i + 1}}: <label class="required">*</label></label><br>
                     <input type="text" [id]="'nameIntegrante' + i" [name]="'nameIntegrante' + i" required [(ngModel)]="integrantes[i].nome"><br>
-                  </div>
+                    
+                </div>
                   
                 <div class="button-form mat-button-form">
                     <div class="example-button-row">
-                        <button mat-raised-button type="submit" color="primary">Salvar</button>
+                        <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid">Salvar</button>
                     </div>
                 </div>
             </form> 
@@ -30,7 +32,7 @@
     <section>
         <a routerLink="/teams"><button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <!--<mat-icon>keyboard_arrow_left</mat-icon>-->
-            <mat-icon>arrow_back_ios</mat-icon> 
+            <mat-icon class="material-icons color_white">arrow_back_ios</mat-icon> 
         </button></a><br>            
     </section>
     <img class="img" alt="Raio Xcape" src="assets/img/logoreduz.png"/>

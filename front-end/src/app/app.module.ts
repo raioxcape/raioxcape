@@ -9,11 +9,6 @@ import { FormsModule, FormGroup } from '@angular/forms';
 import { HeaderInterceptor } from './header-interceptor';
 
 import { HomeComponent } from './routes/home/home.component';
-import { TeamsComponent } from './routes/teams/teams.component';
-import { FormsComponent } from './routes/teams/forms/forms.component';
-import { ListComponent } from './routes/teams/list/list.component';
-import { HistoryComponent } from './routes/history/history.component';
-import { HeaderComponent } from './routes/header/header.component';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
@@ -26,23 +21,21 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+
 
 import { TeamsService } from './service/teams-service';
+import { AppMaterialModule } from './shared/app-material/app-material.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    TeamsComponent,
-    FormsComponent,
-    ListComponent,
-    HistoryComponent,
-    HeaderComponent    
+    HomeComponent        
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AppMaterialModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatFormFieldModule,

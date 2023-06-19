@@ -14,7 +14,7 @@ a:hover, a:active{
 }
 
 mat-toolbar{
-    border-radius: 3px;
+    border-radius: 0px;
     height: 10%;
 }
 
@@ -22,10 +22,6 @@ mat-toolbar{
     mat-toolbar{
         border-radius: 0px;
     }
-}
-img {
-    display: block;
-    max-height: 10%;
 }
 
 .mat-toolbar-row {
@@ -41,3 +37,12 @@ img {
 .navigation-items p {
     margin-left: 10px;
 }
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.mat-toolbar span {
+    color: white;
+}
+.material-icons.color_white { color: white; }

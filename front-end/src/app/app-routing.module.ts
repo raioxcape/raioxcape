@@ -15,27 +15,11 @@ const routes: Routes = [
   },
   {
     path: 'teams',
-    component: TeamsComponent
-  },
-  {
-    path: 'teams/forms',
-    component: FormsComponent
-  },
-  {
-    path: 'teams/list',
-    component: ListComponent
+    loadChildren: () => import('./routes/teams/teams.module').then(m => m.TeamsModule)
   },
   {
     path: 'history',
-    component: HistoryComponent
-  },
-  {
-    path: 'history/report',
-    component: HistoryReportComponent
-  },
-  {
-    path: 'header',
-    component: HeaderComponent
+    loadChildren: () => import('./routes/history/history.module').then(m => m.HistoryModule)
   }
 ];
 

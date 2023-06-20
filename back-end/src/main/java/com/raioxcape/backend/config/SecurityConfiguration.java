@@ -1,69 +1,49 @@
 package com.raioxcape.backend.config;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 import java.util.List;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 @Configuration
-@EnableWebSecurity
-public class SecurityConfiguration {
+@EnableWebMvc
+public class SecurityConfiguration implements WebMvcConfigurer {
+
+    @Value(value = "${cors.mapping}")
+    private String mapping;
 
     @Value(value = "${cors.allowed-origins}")
     private List<String> allowedOrigins;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity
-            .cors(withDefaults())
-            .csrf()
-            .disable()
-            .authorizeHttpRequests()
-            .anyRequest()
-            .permitAll()
-            .and()
-            .build();
-    }
+    @Value(value = "${cors.allowed-methods}")
+    private List<String> allowedMethods;
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
+    @Value(value = "${cors.allowed-headers}")
+    private List<String> allowedHeaders;
 
-        configuration.setAllowedOrigins(this.allowedOrigins);
+    @Value(value = "${cors.exposed-headers}")
+    private List<String> exposedHeaders;
 
-        configuration.setAllowedMethods(Arrays.asList(
-            HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.PUT.name(),
-            HttpMethod.DELETE.name(), HttpMethod.HEAD.name(), HttpMethod.OPTIONS.name()
-        ));
+    @Value(value = "${cors.allow-credentials}")
+    private boolean allowCredentials;
 
-        configuration.setAllowedHeaders(Arrays.asList(
-            HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, HttpHeaders.CONTENT_TYPE, HttpHeaders.ACCEPT,
-            HttpHeaders.ORIGIN, HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS,
-            HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, HttpHeaders.AUTHORIZATION, "X-Requested-With"
-        ));
+    @Value(value = "${cors.access-control-max-age}")
+    private int accessControlMaxAge;
 
-        configuration.setExposedHeaders(Arrays.asList(
-            HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD,
-            HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, HttpHeaders.ORIGIN, HttpHeaders.CONTENT_TYPE,
-            HttpHeaders.AUTHORIZATION, HttpHeaders.ACCEPT
-        ));
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-        source.registerCorsConfiguration("/**", configuration);
-
-        return source;
+    @Override
+    public void addCorsMappings(@NotNull CorsRegistry registry) {
+        registry
+            .addMapping(this.mapping)
+            .allowedOrigins(this.allowedOrigins.toArray(new String[0]))
+            .allowedMethods(this.allowedMethods.toArray(new String[0]))
+            .allowedHeaders(this.allowedHeaders.toArray(new String[0]))
+            .exposedHeaders(this.exposedHeaders.toArray(new String[0]))
+            .allowCredentials(this.allowCredentials)
+            .maxAge(this.accessControlMaxAge);
     }
 }

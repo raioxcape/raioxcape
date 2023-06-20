@@ -3,4 +3,4 @@ spring:
     url: jdbc:mysql://raioxcape:raioxcape@localhost:3306/raioxcape
 cors:
   allowed-origins: >
-    *
+    http://localhost:4200

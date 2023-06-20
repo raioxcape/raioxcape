@@ -1,6 +1,7 @@
 package com.raioxcape.backend.service;
 
 import com.raioxcape.backend.dto.equipe.EquipeCreationDTO;
+import com.raioxcape.backend.dto.equipe.EquipeUpdateDTO;
 import com.raioxcape.backend.exception.EntidadeJaExisteException;
 import com.raioxcape.backend.exception.EntidadeNaoExisteException;
 import com.raioxcape.backend.model.Equipe;
@@ -23,7 +24,7 @@ public class EquipeServiceImpl implements EquipeService {
     private final IntegranteServiceImpl integranteService;
 
     @Override
-    public Equipe findByNome(String nome) {
+    public Equipe findEquipeByNome(String nome) {
         return this.equipeRepository
             .findByNomeEqualsIgnoreCase(nome)
             .orElseThrow(() -> new EntidadeNaoExisteException(
@@ -32,7 +33,7 @@ public class EquipeServiceImpl implements EquipeService {
     }
 
     @Override
-    public Equipe findById(int id) {
+    public Equipe findEquipeById(int id) {
         return this.equipeRepository
             .findById(id)
             .orElseThrow(() -> new EntidadeNaoExisteException(
@@ -41,7 +42,7 @@ public class EquipeServiceImpl implements EquipeService {
     }
 
     @Override
-    public List<Equipe> findAll() {
+    public List<Equipe> findAllEquipes() {
         List<Equipe> equipes = this.equipeRepository.findAll();
 
         equipes.sort(Comparator.comparing(Equipe::getCriadaEm).reversed());
@@ -50,8 +51,8 @@ public class EquipeServiceImpl implements EquipeService {
     }
 
     @Override
-    public List<Jogo> findJogos(String nome) {
-        List<Jogo> jogos = this.findByNome(nome).getJogos();
+    public List<Jogo> findAllJogos(String nome) {
+        List<Jogo> jogos = this.findEquipeByNome(nome).getJogos();
 
         jogos.sort(Comparator.comparing(Jogo::getCriadoEm).reversed());
 
@@ -59,7 +60,7 @@ public class EquipeServiceImpl implements EquipeService {
     }
 
     @Override
-    public Equipe save(EquipeCreationDTO equipeCreationDTO) {
+    public Equipe saveEquipe(EquipeCreationDTO equipeCreationDTO) {
         equipeCreationDTO.validate();
 
         if (this.equipeRepository.existsByNomeEqualsIgnoreCase(equipeCreationDTO.getNome())) {
@@ -71,8 +72,29 @@ public class EquipeServiceImpl implements EquipeService {
         Equipe equipe = this.equipeRepository.save(new Equipe(equipeCreationDTO.getNome()));
 
         for (String integrante : equipeCreationDTO.getIntegrantes()) {
-            this.integranteService.save(integrante, equipe);
+            this.integranteService.saveIntegrante(integrante, equipe);
         }
+
+        this.equipeRepository.refresh(equipe);
+
+        return equipe;
+    }
+
+    @Override
+    public Equipe updateEquipeByNome(String nome, EquipeUpdateDTO equipeUpdateDTO) {
+        equipeUpdateDTO.validate();
+
+        if (this.equipeRepository.existsByNomeEqualsIgnoreCase(equipeUpdateDTO.getNome())) {
+            throw new EntidadeJaExisteException(
+                String.format("Já existe uma equipe com o nome igual a '%s'", equipeUpdateDTO.getNome())
+            );
+        }
+
+        Equipe equipe = this.findEquipeByNome(nome);
+
+        equipe.setNome(equipeUpdateDTO.getNome());
+
+        this.equipeRepository.save(equipe);
 
         this.equipeRepository.refresh(equipe);
 

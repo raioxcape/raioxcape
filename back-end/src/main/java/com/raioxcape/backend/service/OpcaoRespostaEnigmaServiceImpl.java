@@ -15,7 +15,7 @@ public class OpcaoRespostaEnigmaServiceImpl implements OpcaoRespostaEnigmaServic
     private final OpcaoRespostaEnigmaRepository opcaoRespostaEnigmaRepository;
 
     @Override
-    public OpcaoRespostaEnigma findById(int id) {
+    public OpcaoRespostaEnigma findOpcaoRespostaEnigmaById(int id) {
         return this.opcaoRespostaEnigmaRepository
             .findById(id)
             .orElseThrow(() -> new EntidadeNaoExisteException(

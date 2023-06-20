@@ -18,7 +18,7 @@ public class EnigmaJogoServiceImpl implements EnigmaJogoService {
     private final OpcaoRespostaEnigmaJogoService opcaoRespostaEnigmaJogoService;
 
     @Override
-    public EnigmaJogo findByIdEnigmaAndIdJogo(int idEnigma, int idJogo) {
+    public EnigmaJogo findEnigmaJogoByIdEnigmaAndIdJogo(int idEnigma, int idJogo) {
         return this.enigmaJogoRepository
             .findByEnigmaIdAndJogoId(idEnigma, idJogo)
             .orElseThrow(() -> new EntidadeNaoExisteException(
@@ -27,10 +27,10 @@ public class EnigmaJogoServiceImpl implements EnigmaJogoService {
     }
 
     @Override
-    public EnigmaJogo update(int idEnigma, int idJogo, EnigmaUpdateDTO enigmaUpdateDTO) {
+    public EnigmaJogo updateEnigmaJogoByIdEnigmaAndIdJogo(int idEnigma, int idJogo, EnigmaUpdateDTO enigmaUpdateDTO) {
         enigmaUpdateDTO.validate();
 
-        EnigmaJogo enigmaJogoAntigo = this.findByIdEnigmaAndIdJogo(idEnigma, idJogo);
+        EnigmaJogo enigmaJogoAntigo = this.findEnigmaJogoByIdEnigmaAndIdJogo(idEnigma, idJogo);
 
         int tempoDecorridoSolucaoSegundos = enigmaUpdateDTO.getTempoDecorridoSolucaoSegundos();
         int pontosEquipe = enigmaJogoAntigo.getEnigma().calcularPontosEquipe(enigmaUpdateDTO.getIdsOpcoesRespostaEquipe(), tempoDecorridoSolucaoSegundos);
@@ -38,7 +38,7 @@ public class EnigmaJogoServiceImpl implements EnigmaJogoService {
         enigmaJogoAntigo.setTempoDecorridoSolucaoSegundos(tempoDecorridoSolucaoSegundos);
         enigmaJogoAntigo.setPontos(pontosEquipe);
 
-        this.opcaoRespostaEnigmaJogoService.save(enigmaUpdateDTO.getIdsOpcoesRespostaEquipe(), idEnigma, idJogo);
+        this.opcaoRespostaEnigmaJogoService.saveOpcaoRespostaEnigmaJogo(enigmaUpdateDTO.getIdsOpcoesRespostaEquipe(), idEnigma, idJogo);
 
         EnigmaJogo enigmaJogoNovo = this.enigmaJogoRepository.save(enigmaJogoAntigo);
 

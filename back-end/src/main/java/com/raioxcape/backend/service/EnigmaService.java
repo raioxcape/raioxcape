@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface EnigmaService {
 
-    Enigma findById(int id);
+    Enigma findEnigmaById(int id);
 
-    List<Enigma> findAll();
+    List<Enigma> findAllEnigmas();
 }

@@ -25,27 +25,27 @@ public class EnigmaController {
     private final EnigmaMapper enigmaMapper;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ApiResponse> findEnigma(@PathVariable("id") int id) {
+    public ResponseEntity<ApiResponse> findEnigmaById(@PathVariable(name = "id") int id) {
         HttpStatus status = HttpStatus.OK;
 
         return new ResponseEntity<>(
             new ApiResponse(
                 status,
-                this.enigmaMapper.toEnigmaRetrievalDTO(this.enigmaService.findById(id))
+                this.enigmaMapper.toEnigmaRetrievalDTO(this.enigmaService.findEnigmaById(id))
             ),
             status
         );
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse> findEnigmas() {
+    public ResponseEntity<ApiResponse> findAllEnigmas() {
         HttpStatus status = HttpStatus.OK;
 
         return new ResponseEntity<>(
             new ApiResponse(
                 status,
                 this.enigmaService
-                    .findAll()
+                    .findAllEnigmas()
                     .stream()
                     .map(this.enigmaMapper::toEnigmaRetrievalDTO)
                     .collect(Collectors.toList())

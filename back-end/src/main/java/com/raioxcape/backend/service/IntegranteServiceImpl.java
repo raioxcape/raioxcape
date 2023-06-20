@@ -16,7 +16,7 @@ public class IntegranteServiceImpl implements IntegranteService {
     private final IntegranteRepository integranteRepository;
 
     @Override
-    public Integrante save(String nome, Equipe equipe) {
+    public Integrante saveIntegrante(String nome, Equipe equipe) {
         if (this.integranteRepository.existsByNomeEqualsIgnoreCaseAndEquipeNomeEqualsIgnoreCase(
             nome, equipe.getNome()
         )) {

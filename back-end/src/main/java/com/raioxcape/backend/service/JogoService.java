@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface JogoService {
 
-    Jogo findById(int id);
+    Jogo findJogoById(int id);
 
-    List<Jogo> findAll();
+    List<Jogo> findAllJogos();
 
-    Jogo save(JogoCreationDTO jogoCreationDTO);
+    Jogo saveJogo(JogoCreationDTO jogoCreationDTO);
 
-    Jogo updateEnigma(int idJogo, int idEnigma, EnigmaUpdateDTO enigmaUpdateDTO);
+    Jogo updateJogoEnigmaByIdJogoAndIdEnigma(int idJogo, int idEnigma, EnigmaUpdateDTO enigmaUpdateDTO);
 }

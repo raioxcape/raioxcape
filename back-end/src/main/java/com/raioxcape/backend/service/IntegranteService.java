@@ -5,5 +5,5 @@ import com.raioxcape.backend.model.Integrante;
 
 public interface IntegranteService {
 
-    Integrante save(String nome, Equipe equipe);
+    Integrante saveIntegrante(String nome, Equipe equipe);
 }

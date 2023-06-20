@@ -32,7 +32,7 @@ public class OpcaoRespostaEnigmaJogoServiceImpl implements OpcaoRespostaEnigmaJo
     }
 
     @Override
-    public OpcaoRespostaEnigmaJogo save(int idOpcaoRespostaEnigma, int idEnigma, int idJogo) {
+    public OpcaoRespostaEnigmaJogo saveOpcaoRespostaEnigmaJogo(int idOpcaoRespostaEnigma, int idEnigma, int idJogo) {
         if (this.opcaoRespostaEnigmaJogoRepository.existsByOpcaoRespostaEnigmaIdAndEnigmaJogoEnigmaIdAndEnigmaJogoJogoId(
             idOpcaoRespostaEnigma,
             idEnigma,
@@ -50,8 +50,8 @@ public class OpcaoRespostaEnigmaJogoServiceImpl implements OpcaoRespostaEnigmaJo
 
         OpcaoRespostaEnigmaJogo opcaoRespostaEnigmaJogo = this.opcaoRespostaEnigmaJogoRepository.save(
             new OpcaoRespostaEnigmaJogo(
-                this.opcaoRespostaEnigmaService.findById(idOpcaoRespostaEnigma),
-                this.enigmaJogoService.findByIdEnigmaAndIdJogo(idEnigma, idJogo)
+                this.opcaoRespostaEnigmaService.findOpcaoRespostaEnigmaById(idOpcaoRespostaEnigma),
+                this.enigmaJogoService.findEnigmaJogoByIdEnigmaAndIdJogo(idEnigma, idJogo)
             )
         );
 
@@ -61,11 +61,11 @@ public class OpcaoRespostaEnigmaJogoServiceImpl implements OpcaoRespostaEnigmaJo
     }
 
     @Override
-    public List<OpcaoRespostaEnigmaJogo> save(List<Integer> idsOpcoesRespostaEnigma, int idEnigma, int idJogo) {
+    public List<OpcaoRespostaEnigmaJogo> saveOpcaoRespostaEnigmaJogo(List<Integer> idsOpcoesRespostaEnigma, int idEnigma, int idJogo) {
         List<OpcaoRespostaEnigmaJogo> opcoesRespostaEnigmaJogo = new ArrayList<>();
 
         for (int idOpcaoRespostaEnigma : idsOpcoesRespostaEnigma) {
-            opcoesRespostaEnigmaJogo.add(this.save(idOpcaoRespostaEnigma, idEnigma, idJogo));
+            opcoesRespostaEnigmaJogo.add(this.saveOpcaoRespostaEnigmaJogo(idOpcaoRespostaEnigma, idEnigma, idJogo));
         }
 
         return opcoesRespostaEnigmaJogo;

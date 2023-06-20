@@ -22,7 +22,7 @@ public class JogoServiceImpl implements JogoService {
     private final EquipeService equipeService;
 
     @Override
-    public Jogo findById(int id) {
+    public Jogo findJogoById(int id) {
         return this.jogoRepository
             .findById(id)
             .orElseThrow(() -> new EntidadeNaoExisteException(
@@ -31,7 +31,7 @@ public class JogoServiceImpl implements JogoService {
     }
 
     @Override
-    public List<Jogo> findAll() {
+    public List<Jogo> findAllJogos() {
         List<Jogo> jogos = this.jogoRepository.findAll();
 
         jogos.sort(Comparator.comparing(Jogo::getCriadoEm).reversed());
@@ -40,10 +40,10 @@ public class JogoServiceImpl implements JogoService {
     }
 
     @Override
-    public Jogo save(JogoCreationDTO jogoCreationDTO) {
+    public Jogo saveJogo(JogoCreationDTO jogoCreationDTO) {
         jogoCreationDTO.validate();
 
-        Jogo jogo = this.jogoRepository.save(new Jogo(this.equipeService.findById(jogoCreationDTO.getIdEquipe())));
+        Jogo jogo = this.jogoRepository.save(new Jogo(this.equipeService.findEquipeById(jogoCreationDTO.getIdEquipe())));
 
         this.jogoRepository.refresh(jogo);
 
@@ -51,7 +51,7 @@ public class JogoServiceImpl implements JogoService {
     }
 
     @Override
-    public Jogo updateEnigma(int idJogo, int idEnigma, EnigmaUpdateDTO enigmaUpdateDTO) {
+    public Jogo updateJogoEnigmaByIdJogoAndIdEnigma(int idJogo, int idEnigma, EnigmaUpdateDTO enigmaUpdateDTO) {
 
         return null;
     }

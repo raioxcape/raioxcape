@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface OpcaoRespostaEnigmaJogoService {
 
-    OpcaoRespostaEnigmaJogo save(int idOpcaoRespostaEnigma, int idEnigma, int idJogo);
+    OpcaoRespostaEnigmaJogo saveOpcaoRespostaEnigmaJogo(int idOpcaoRespostaEnigma, int idEnigma, int idJogo);
 
-    List<OpcaoRespostaEnigmaJogo> save(List<Integer> idsOpcoesRespostaEnigma, int idEnigma, int idJogo);
+    List<OpcaoRespostaEnigmaJogo> saveOpcaoRespostaEnigmaJogo(List<Integer> idsOpcoesRespostaEnigma, int idEnigma, int idJogo);
 }

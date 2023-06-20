@@ -4,5 +4,5 @@ import com.raioxcape.backend.model.OpcaoRespostaEnigma;
 
 public interface OpcaoRespostaEnigmaService {
 
-    OpcaoRespostaEnigma findById(int id);
+    OpcaoRespostaEnigma findOpcaoRespostaEnigmaById(int id);
 }

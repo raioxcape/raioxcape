@@ -17,7 +17,7 @@ public class EnigmaServiceImpl implements EnigmaService {
     private final EnigmaRepository enigmaRepository;
 
     @Override
-    public Enigma findById(int id) {
+    public Enigma findEnigmaById(int id) {
         return this.enigmaRepository
             .findById(id)
             .orElseThrow(() -> new EntidadeNaoExisteException(
@@ -26,7 +26,7 @@ public class EnigmaServiceImpl implements EnigmaService {
     }
 
     @Override
-    public List<Enigma> findAll() {
+    public List<Enigma> findAllEnigmas() {
         return this.enigmaRepository.findAll();
     }
 }

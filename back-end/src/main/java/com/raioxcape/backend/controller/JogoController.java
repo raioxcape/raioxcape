@@ -35,34 +35,34 @@ public class JogoController {
         return new ResponseEntity<>(
             new ApiResponse(
                 status,
-                this.jogoMapper.toJogoRetrievalDTO(this.jogoService.save(jogoCreationDTO))
+                this.jogoMapper.toJogoRetrievalDTO(this.jogoService.saveJogo(jogoCreationDTO))
             ),
             status
         );
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ApiResponse> findJogo(@PathVariable("id") int id) {
+    public ResponseEntity<ApiResponse> findJogoById(@PathVariable(name = "id") int id) {
         HttpStatus status = HttpStatus.OK;
 
         return new ResponseEntity<>(
             new ApiResponse(
                 status,
-                this.jogoMapper.toJogoRetrievalDTO(this.jogoService.findById(id))
+                this.jogoMapper.toJogoRetrievalDTO(this.jogoService.findJogoById(id))
             ),
             status
         );
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse> findJogos() {
+    public ResponseEntity<ApiResponse> findAllJogos() {
         HttpStatus status = HttpStatus.OK;
 
         return new ResponseEntity<>(
             new ApiResponse(
                 status,
                 this.jogoService
-                    .findAll()
+                    .findAllJogos()
                     .stream()
                     .map(this.jogoMapper::toJogoRetrievalDTO)
                     .collect(Collectors.toList())
@@ -72,9 +72,9 @@ public class JogoController {
     }
 
     @PatchMapping(value = "/{idJogo}/enigmas/{idEnigma}")
-    public ResponseEntity<ApiResponse> updateEnigma(
-        @PathVariable("idJogo") int idJogo,
-        @PathVariable("idEnigma") int idEnigma,
+    public ResponseEntity<ApiResponse> updateEnigmaJogoByIdEnigmaAndIdJogo(
+        @PathVariable(name = "idJogo") int idJogo,
+        @PathVariable(name = "idEnigma") int idEnigma,
         @Valid @RequestBody EnigmaUpdateDTO enigmaUpdateDTO
     ) {
         HttpStatus status = HttpStatus.OK;
@@ -82,7 +82,13 @@ public class JogoController {
         return new ResponseEntity<>(
             new ApiResponse(
                 status,
-                this.jogoMapper.toJogoRetrievalDTO(this.enigmaJogoService.update(idEnigma, idJogo, enigmaUpdateDTO).getJogo())
+                this.jogoMapper
+                    .toJogoRetrievalDTO(
+                        this.enigmaJogoService.updateEnigmaJogoByIdEnigmaAndIdJogo(
+                            idEnigma, idJogo, enigmaUpdateDTO
+                        )
+                        .getJogo()
+                    )
             ),
             status
         );

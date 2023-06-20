@@ -5,7 +5,7 @@ import com.raioxcape.backend.model.EnigmaJogo;
 
 public interface EnigmaJogoService {
 
-    EnigmaJogo findByIdEnigmaAndIdJogo(int idEnigma, int idJogo);
+    EnigmaJogo findEnigmaJogoByIdEnigmaAndIdJogo(int idEnigma, int idJogo);
 
-    EnigmaJogo update(int idEnigma, int idJogo, EnigmaUpdateDTO enigmaUpdateDTO);
+    EnigmaJogo updateEnigmaJogoByIdEnigmaAndIdJogo(int idEnigma, int idJogo, EnigmaUpdateDTO enigmaUpdateDTO);
 }

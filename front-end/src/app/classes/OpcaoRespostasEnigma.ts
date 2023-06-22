@@ -1,13 +1,11 @@
-import { Enigma } from "./Enigma";
-import { OpcaoRespostaEnigmaJogo } from "./OpcaoRespostaEnigmaJogo";
+import { Enigma } from './Enigma';
 
-export class OpcaoRespostaEnigma {
-    id! : number;
-    opcaoResposta! : string;
-    enigma! : Enigma;
-    estaCorreta! : boolean;
-    explicacao! : string;
-    criadaEm! : Date;
-    atualizadaEm! : Date;
-    jogos! : OpcaoRespostaEnigmaJogo[];
-}
+export interface OpcaoRespostaEnigma {
+  id: number;
+  opcaoResposta: string;
+  enigma: Enigma;
+  estaCorreta: boolean;
+  explicacao: string;
+  criadaEm: Date;
+  atualizadaEm: Date;
+};

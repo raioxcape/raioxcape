@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
-import { FormBuilder, NgModel, Validators } from '@angular/forms';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-
-import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-
-import { Equipe } from 'src/app/classes/Equipe';
-import { Integrante } from 'src/app/classes/Integrante';
-import { TeamsService } from 'src/app/service/teams-service';
+import { EquipeService } from 'src/app/service/equipe-service';
 import { ActivatedRoute } from '@angular/router';
+import { EquipeCreationDTO } from 'src/app/classes/dto/EquipeCreationDTO';
+import { IntegranteCreationDTO } from 'src/app/classes/dto/IntegranteCreationDTO';
 
 
 @Component({
@@ -19,61 +15,59 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FormsComponent implements OnInit {
 
-  quantity: number;
-  integrantes : Integrante[] = []; 
-  equipe : Equipe;
-  submitted : boolean = false;
-  equipeRec : string = "";
+  equipe: EquipeCreationDTO;
+  integrantes: IntegranteCreationDTO[];
+  quantidadeIntegrantes: number;
+  submitted: boolean;
+  equipeRec: string;
 
-  constructor(private teamsService : TeamsService, private http : HttpClient,
-    private formBuilder: FormBuilder, private toastr: ToastrService, private route: ActivatedRoute){
-    this.quantity = 1;
-    this.equipe = new Equipe();
-    this.integrantes = [new Integrante()];
+  constructor(
+    private equipeService: EquipeService, private http: HttpClient, private formBuilder: FormBuilder,
+    private toastr: ToastrService, private route: ActivatedRoute
+  ) {
+    this.equipe = new EquipeCreationDTO();
+    this.integrantes = [new IntegranteCreationDTO()];
+    this.quantidadeIntegrantes = 1;
+    this.submitted = false;
+    this.equipeRec = '';
 
     this.formBuilder.group({
-      teamName: ['', Validators.required], 
-      integrantes: this.formBuilder.array([], Validators.required) 
+      nomeEquipe: ['', Validators.required],
+      integrantes: this.formBuilder.array([], Validators.required)
     });
-   }
-
-  adicionarIntegrante() {
-    this.integrantes = new Array(this.quantity).fill('').map(() => new Integrante());
   }
 
-  saveTeam(form: any) {
+  adicionarIntegrante(): void {
+    this.integrantes = new Array(this.quantidadeIntegrantes).fill('').map(() => new IntegranteCreationDTO());
+  }
+
+  saveEquipe(form: any) {
     console.log(form);
-    this.equipe.nome = form.value.teamName;
-    this.equipe.integrantes = this.integrantes.map(integrante => integrante.nome);
-    let message = "";
 
-    if(form.valid) {
-      this.equipe.nome = form.value.teamName;
-      this.equipe.integrantes = this.integrantes.map(integrante => integrante.nome);
+    if (form.valid) {
+      this.equipe.nome = form.value.nomeEquipe;
+      this.equipe.integrantes = this.integrantes.map((integrante: IntegranteCreationDTO) => integrante.nome);
 
-      this.teamsService.saveTeam(this.equipe).subscribe(
-        response => {
-          if(response.status === "CREATED" && response.error === null) {
-            
-            message = "Equipe cadastrada com sucesso!";
-            this.toastr.success(message);
+      this.equipeService.saveEquipe(this.equipe).subscribe({
+        next: (response) => {
+          if (response.status === 'CREATED' && response.error === null) {
+            this.toastr.success('A equipe foi cadastrada com sucesso!');
             form.reset();
           }
+
           console.log(response);
         },
-        error => {
-          message = "Erro ao salvar equipe.";
-          this.toastr.success(message, error);
+        error: (error) => {
+          this.toastr.success('Não foi possível cadastrar a equipe.', error);
           console.error(error);
         }
-      );
+      });
     } else {
-      message = "Prencha todos os campos antes de enviar!";
-      this.toastr.warning(message); 
+      this.toastr.warning('Preencha todos os campos do formulário.');
     }
   }
-  
-  ngOnInit(){
-    
+
+  ngOnInit(): void {
+
   }
-}
+};

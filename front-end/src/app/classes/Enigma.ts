@@ -1,17 +1,19 @@
-import { EnigmaJogo } from "./EnigmaJogo";
-import { NivelDificuldade } from "./NivelDificuldade";
-import { OpcaoRespostaEnigma } from "./OpcaoRespostasEnigma";
-import { PortaCaminho } from "./PortaCaminho";
+import { OpcaoRespostaEnigma } from './OpcaoRespostasEnigma';
+import { PortaCaminho } from './PortaCaminho';
+import { NivelDificuldade } from './NivelDificuldade';
 
-export class Enigma {
-    id! : number;
-    pergunta! : string;
-    portaCaminho! : PortaCaminho;
-    nivelDificuldade! : NivelDificuldade;
-    tempoEstimadoSolucaoSegundos! : number;
-    pontos! : number;
-    criaoaEm! : Date;
-    atualizadoEm! : Date;
-    opcoesResposta! : OpcaoRespostaEnigma;
-    jogo! : EnigmaJogo[];
-}
+export interface Enigma {
+  id: number;
+  pergunta: string;
+  opcoesResposta: OpcaoRespostaEnigma[];
+  portaCaminho: PortaCaminho;
+  nivelDificuldade: NivelDificuldade;
+  tempoEstimadoSolucaoSegundos: number;
+  pontos: number;
+  foiSolucionado?: boolean;
+  opcoesRespostaEquipe?: OpcaoRespostaEnigma[];
+  tempoDecorridoSolucaoSegundos?: number;
+  pontosEquipe?: number;
+  criadoEm: Date;
+  atualizadoEm: Date;
+};

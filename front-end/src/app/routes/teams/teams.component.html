@@ -6,7 +6,7 @@
                <div class="div-select">
                     <select (change)="teamSelectionChanged($event)">
                         <option disabled selected>Selecione a Equipe</option>
-                        <option *ngFor="let team of listOfTeams">{{ team }}</option>
+                        <option *ngFor="let nomeEquipe of nomesEquipes">{{ nomeEquipe }}</option>
                     </select>
                 </div>
                 <div class="content-button">

@@ -24,7 +24,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 
-import { TeamsService } from './service/teams-service';
+import { EquipeService } from './service/equipe-service';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 
 @NgModule({
@@ -53,7 +53,7 @@ import { AppMaterialModule } from './shared/app-material/app-material.module';
     ToastrModule.forRoot()
   ],
   providers: [
-    TeamsService,
+    EquipeService,
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

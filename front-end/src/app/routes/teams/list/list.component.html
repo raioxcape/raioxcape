@@ -1,14 +1,14 @@
 <p>
     <mat-toolbar color="primary">
-      <a mat-icon-button class="example-icon" [routerLink]="['/']">
+      <button mat-icon-button class="example-icon" [routerLink]="['/']">
         <mat-icon class="material-icons color_white">menu</mat-icon>
-      </a>
+      </button>
       <a [routerLink]="['/']"><span>Página Inicial</span></a>
       <span class="example-spacer"></span>
-      <a mat-stroked-button class="example-icon favorite-icon" [routerLink]="['teams']">
+      <button mat-stroked-button class="example-icon favorite-icon" [routerLink]="['../']">
         <span>Menu de Equipes</span>
-      </a>
-      <button mat-stroked-button class="example-icon" [routerLink]="['history']">
+      </button>
+      <button mat-stroked-button class="example-icon" [routerLink]="['../../history']">
         <span>Histórico</span>
       </button>
     </mat-toolbar>

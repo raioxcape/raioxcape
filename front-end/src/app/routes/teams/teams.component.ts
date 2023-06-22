@@ -29,6 +29,10 @@ export class TeamsComponent {
     this.router.navigate(['list'], { relativeTo: this.route });
   }
 
+  goToGame(){
+    this.router.navigate(['./game']);
+  }
+
   getTeams() {
     if(this.listOfTeams.length === 0) {
       let sub = this.teamsService.getTeams().subscribe((response: any) => {

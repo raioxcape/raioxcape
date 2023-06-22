@@ -23,14 +23,16 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
-
 import { TeamsService } from './service/teams-service';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
+import { GameComponent } from './routes/game/game.component';
+import { HistoryModule } from './routes/history/history.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent        
+    HomeComponent,
+    GameComponent        
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { AppMaterialModule } from './shared/app-material/app-material.module';
     MatSidenavModule,
     HttpClientModule,
     MatSnackBarModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    
   ],
   providers: [
     TeamsService,

@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
-
-import { Router, ActivatedRoute  } from '@angular/router';
-import { map } from 'rxjs/operators';
-
-import { TeamsService } from 'src/app/service/teams-service';
-
+import { Router, ActivatedRoute } from '@angular/router';
+import { EquipeService } from 'src/app/service/equipe-service';
 
 @Component({
   selector: 'app-teams',
@@ -13,15 +9,15 @@ import { TeamsService } from 'src/app/service/teams-service';
 })
 export class TeamsComponent {
 
-  listOfTeams: string[];
-  isTeamSelected: boolean = false;
+  nomesEquipes: string[];
+  isTeamSelected: boolean;
 
-  constructor(private router: Router, private teamsService: TeamsService,  private route: ActivatedRoute) {
-    this.listOfTeams = [];
-  }  
+  constructor(private router: Router, private equipeService: EquipeService, private route: ActivatedRoute) {
+    this.nomesEquipes = [];
+    this.isTeamSelected = false;
+  }
 
-
-  goToForms(){
+  goToForms() {
     this.router.navigate(['forms'], { relativeTo: this.route });
   }
 
@@ -34,15 +30,14 @@ export class TeamsComponent {
   }
 
   getTeams() {
-    if(this.listOfTeams.length === 0) {
-      let sub = this.teamsService.getTeams().subscribe((response: any) => {
-        this.listOfTeams = response.data.map((equipe: { nome: any; }) => equipe.nome);        
-      });
-    } 
+    if (this.nomesEquipes.length === 0) {
+      this.nomesEquipes = this.equipeService.getNomesEquipes();
+    }
   }
 
   teamSelectionChanged(event: any) {
     const value = event.target.value;
+
     if (value && value !== 'Selecione a Equipe') {
       this.isTeamSelected = true;
     } else {
@@ -50,8 +45,7 @@ export class TeamsComponent {
     }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getTeams();
   }
-  
-}
+};

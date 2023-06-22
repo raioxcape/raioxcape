@@ -23,7 +23,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
+<<<<<<< HEAD
 import { TeamsService } from './service/teams-service';
+=======
+
+import { EquipeService } from './service/equipe-service';
+>>>>>>> 515124fc318bebaa316155b27159760aa7f5ef24
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { GameComponent } from './routes/game/game.component';
 import { HistoryModule } from './routes/history/history.module';
@@ -56,7 +61,7 @@ import { HistoryModule } from './routes/history/history.module';
     
   ],
   providers: [
-    TeamsService,
+    EquipeService,
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

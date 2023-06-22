@@ -1,5 +1,5 @@
 export enum NivelDificuldade {
-    FACIL = 'Fácil',
-    MEDIO = 'Médio',
-    DIFICIL = 'Difícil'
+  FACIL = 'Fácil',
+  MEDIO = 'Médio',
+  DIFICIL = 'Difícil'
 };

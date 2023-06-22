@@ -4,18 +4,18 @@
         <mat-card>
             <p>Preencha as informações abaixo!<br><span style="color: red;">*Obrigatório</span></p>
             
-            <form #form="ngForm" id="newOrEditTeams" name="newOrEditTeams" (ngSubmit)="saveTeam(form);">
+            <form #form="ngForm" id="newOrEditTeams" name="newOrEditTeams" (ngSubmit)="saveEquipe(form);">
                 
-                <label for="teamName">Nome da Equipe: <label class="required">*</label></label><br>
-                <input type="text" id="teamName" name="teamName" required [(ngModel)]="equipe.nome" #teamName="ngModel"><br>    
+                <label for="nomeEquipe">Nome da Equipe: <label class="required">*</label></label><br>
+                <input type="text" id="nomeEquipe" name="nomeEquipe" required [(ngModel)]="equipe.nome" #nomeEquipe="ngModel"><br>    
 
                 
                 <label for="qtdIntegrantes">Número de Integrantes: <label class="required">*</label></label><br>
-                <input type="number" id="qtdIntegrantes" name="qtdIntegrantes" [(ngModel)]="quantity" min="1" max="10" value="{{quantity}}" (ngModelChange)="adicionarIntegrante()" #qtdIntegrantes="ngModel"><br>
+                <input type="number" id="qtdIntegrantes" name="qtdIntegrantes" [(ngModel)]="quantidadeIntegrantes" min="1" max="10" value="{{quantidadeIntegrantes}}" (ngModelChange)="adicionarIntegrante()" #qtdIntegrantes="ngModel"><br>
                 
-                <div *ngFor="let integrante of integrantes; let i=index">
-                    <label [for]="'nameIntegrante' + i">Nome Integrante {{i + 1}}: <label class="required">*</label></label><br>
-                    <input type="text" [id]="'nameIntegrante' + i" [name]="'nameIntegrante' + i" required [(ngModel)]="integrantes[i].nome"><br>
+                <div *ngFor="let integrante of integrantes; let i = index">
+                    <label [for]="'nomeIntegrante' + i">Nome Integrante {{i + 1}}: <label class="required">*</label></label><br>
+                    <input type="text" [id]="'nomeIntegrante' + i" [name]="'nomeIntegrante' + i" required [(ngModel)]="integrantes[i].nome"><br>
                     
                 </div>
                   

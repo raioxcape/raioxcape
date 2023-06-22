@@ -15,6 +15,8 @@ public class EquipeMapper {
 
     private final IntegranteMapper integranteMapper;
 
+    private final JogoMapper jogoMapper;
+
     public EquipeRetrievalDTO toEquipeRetrievalDTO(Equipe equipe) {
         return new EquipeRetrievalDTO(
             equipe.getId(),
@@ -23,6 +25,11 @@ public class EquipeMapper {
                 .getIntegrantes()
                 .stream()
                 .map(this.integranteMapper::toIntegranteRetrievalDTO)
+                .collect(Collectors.toList()),
+            equipe
+                .getJogos()
+                .stream()
+                .map(this.jogoMapper::toJogoRetrievalDTO)
                 .collect(Collectors.toList()),
             equipe.getCriadaEm(),
             equipe.getAtualizadaEm()

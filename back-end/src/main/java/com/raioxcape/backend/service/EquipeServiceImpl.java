@@ -5,7 +5,6 @@ import com.raioxcape.backend.dto.equipe.EquipeUpdateDTO;
 import com.raioxcape.backend.exception.EntidadeJaExisteException;
 import com.raioxcape.backend.exception.EntidadeNaoExisteException;
 import com.raioxcape.backend.model.Equipe;
-import com.raioxcape.backend.model.Jogo;
 import com.raioxcape.backend.repository.EquipeRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -48,15 +47,6 @@ public class EquipeServiceImpl implements EquipeService {
         equipes.sort(Comparator.comparing(Equipe::getCriadaEm).reversed());
 
         return equipes;
-    }
-
-    @Override
-    public List<Jogo> findAllJogos(String nome) {
-        List<Jogo> jogos = this.findEquipeByNome(nome).getJogos();
-
-        jogos.sort(Comparator.comparing(Jogo::getCriadoEm).reversed());
-
-        return jogos;
     }
 
     @Override

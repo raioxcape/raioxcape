@@ -15,33 +15,33 @@ export abstract class ResourceService<T> {
 
   }
 
-  abstract getResourceUrl(): string;
+  protected abstract getResourceUrl(): string;
 
-  get(url: string): Observable<ApiResponse<any>> {
+  protected get(url: string): Observable<ApiResponse<any>> {
     return this.http.get<ApiResponse<any>>(url).pipe(catchError(this.handleError));
   }
 
-  getAll(): Observable<ApiResponse<T[]>> {
+  protected getAll(): Observable<ApiResponse<T[]>> {
     return this.http.get<ApiResponse<T[]>>(this.endpointUrl).pipe(catchError(this.handleError));
   }
 
-  getOne(id: string | number): Observable<ApiResponse<T>> {
+  protected getOne(id: string | number): Observable<ApiResponse<T>> {
     return this.http.get<ApiResponse<T>>(`${this.endpointUrl}/${id}`).pipe(catchError(this.handleError));
   }
 
-  save(resource: any): Observable<ApiResponse<T>> {
+  protected save(resource: any): Observable<ApiResponse<T>> {
     return this.http.post<ApiResponse<T>>(this.endpointUrl, resource).pipe(catchError(this.handleError));
   }
 
-  delete(id: string | number): Observable<any> {
+  protected delete(id: string | number): Observable<any> {
     return this.http.delete<ApiResponse<T>>(`${this.endpointUrl}/${id}`).pipe(catchError(this.handleError));
   }
 
-  update(id: string | number, resource: Observable<ApiResponse<T>>) {
+  protected patch(id: string | number, resource: any): Observable<ApiResponse<T>> {
     return this.http.patch<ApiResponse<T>>(`${this.endpointUrl}/${id}`, resource).pipe(catchError(this.handleError));
   }
 
-  private handleError(error: HttpErrorResponse): Observable<never> {
+  protected handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(() => error);
   }
 }

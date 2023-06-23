@@ -5,7 +5,7 @@ export interface Equipe {
   id : number;
   nome : string;
   integrantes : Integrante[];
-  jogos : Jogo[];
+  jogos? : Jogo[];
   criadaEm : Date;
   atualizadaEm : Date;
 };

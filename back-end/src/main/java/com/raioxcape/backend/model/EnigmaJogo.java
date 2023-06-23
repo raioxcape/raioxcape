@@ -60,6 +60,71 @@ public class EnigmaJogo {
 
     public EnigmaJogo() {
         this.respostas = new ArrayList<>();
+        this.foiSolucionado = false;
+        this.tempoDecorridoSolucaoSegundos = 0;
+        this.pontos = 0;
+    }
+
+    public EnigmaJogo(Enigma enigma, Jogo jogo) {
+        this();
+        this.enigma = enigma;
+        this.jogo = jogo;
+    }
+
+    private int calcularNumeroAcertosEquipe(List<Integer> idsOpcoesRespostaEquipe) {
+        List<Integer> idsOpcoesRespostaCorretas = this.enigma.getIdsOpcoesRespostaCorretas();
+
+        int numeroAcertosEquipe = 0;
+
+        for (Integer idOpcaoRespostaEquipe : idsOpcoesRespostaEquipe) {
+            if (idsOpcoesRespostaCorretas.contains(idOpcaoRespostaEquipe)) {
+                numeroAcertosEquipe++;
+            }
+        }
+
+        return numeroAcertosEquipe;
+    }
+
+    private double calcularPeso(List<Integer> idsOpcoesRespostaEquipe) {
+        int numeroOpcoesRespostaEquipe = idsOpcoesRespostaEquipe.size();
+        int numeroAcertosEquipe = this.calcularNumeroAcertosEquipe(idsOpcoesRespostaEquipe);
+        int numeroOpcoesRespostaCorretas = this.enigma.getIdsOpcoesRespostaCorretas().size();
+
+        if ((numeroAcertosEquipe & numeroOpcoesRespostaCorretas & numeroOpcoesRespostaEquipe) == 1) {
+            return 1.0;
+        }
+
+        return (double) numeroAcertosEquipe / numeroOpcoesRespostaCorretas / numeroOpcoesRespostaEquipe;
+    }
+
+    private int calcularPontosEquipe(List<Integer> idsOpcoesRespostaEquipe, int tempoDecorridoSolucaoSegundos) {
+        double peso = this.calcularPeso(idsOpcoesRespostaEquipe);
+
+        int tempoEstimadoSolucaoSegundos = this.enigma.getTempoEstimadoSolucaoSegundos();
+        int pontosEnigma = this.enigma.getPontos();
+        int pontosEquipe;
+
+        if (tempoDecorridoSolucaoSegundos == tempoEstimadoSolucaoSegundos) {
+            pontosEquipe = pontosEnigma;
+        } else if (tempoDecorridoSolucaoSegundos < tempoEstimadoSolucaoSegundos) {
+            double tempoSolucaoRapida = tempoEstimadoSolucaoSegundos * 0.4;
+
+            if (tempoDecorridoSolucaoSegundos <= tempoSolucaoRapida) {
+                tempoDecorridoSolucaoSegundos += tempoSolucaoRapida;
+            }
+
+            pontosEquipe = (int) Math.ceil(pontosEnigma * ((double) tempoEstimadoSolucaoSegundos / tempoDecorridoSolucaoSegundos));
+        } else {
+            pontosEquipe = (int) Math.floor(pontosEnigma / ((double) tempoDecorridoSolucaoSegundos / tempoEstimadoSolucaoSegundos));
+        }
+
+        return (int) Math.round(pontosEquipe * peso);
+    }
+
+    public void update(List<Integer> idsOpcoesRespostaEquipe, int tempoDecorridoSolucaoSegundos) {
+        this.tempoDecorridoSolucaoSegundos = tempoDecorridoSolucaoSegundos;
+        this.pontos = this.calcularPontosEquipe(idsOpcoesRespostaEquipe, tempoDecorridoSolucaoSegundos);
+        this.foiSolucionado = true;
     }
 
     @Override

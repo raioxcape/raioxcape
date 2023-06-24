@@ -10,34 +10,27 @@ import { HeaderInterceptor } from './header-interceptor';
 
 import { HomeComponent } from './routes/home/home.component';
 
-import {MatButtonModule} from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatCardModule} from '@angular/material/card';
-import {MatTableModule} from '@angular/material/table';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
-<<<<<<< HEAD
-import { TeamsService } from './service/teams-service';
-=======
-
-import { EquipeService } from './service/equipe-service';
->>>>>>> 515124fc318bebaa316155b27159760aa7f5ef24
+import { EquipeService } from './service/equipe-service'; 
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { GameComponent } from './routes/game/game.component';
-import { HistoryModule } from './routes/history/history.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    GameComponent        
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +39,7 @@ import { HistoryModule } from './routes/history/history.module';
     BrowserAnimationsModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatSelectModule,    
+    MatSelectModule,
     MatInputModule,
     MatIconModule,
     MatDialogModule,
@@ -58,7 +51,7 @@ import { HistoryModule } from './routes/history/history.module';
     HttpClientModule,
     MatSnackBarModule,
     ToastrModule.forRoot(),
-    
+
   ],
   providers: [
     EquipeService,

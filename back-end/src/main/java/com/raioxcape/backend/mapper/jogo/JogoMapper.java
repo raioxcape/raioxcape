@@ -1,7 +1,6 @@
 package com.raioxcape.backend.mapper.jogo;
 
 import com.raioxcape.backend.dto.jogo.JogoRetrievalDTO;
-import com.raioxcape.backend.mapper.equipe.EquipeMapper;
 import com.raioxcape.backend.model.Jogo;
 
 import lombok.RequiredArgsConstructor;

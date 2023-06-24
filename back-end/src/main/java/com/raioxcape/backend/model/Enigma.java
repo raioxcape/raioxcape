@@ -72,47 +72,6 @@ public class Enigma {
             .collect(Collectors.toList());
     }
 
-    public int calcularNumeroAcertosEquipe(List<Integer> idsOpcoesRespostaEquipe) {
-        List<Integer> idsOpcoesRespostaCorretas = this.getIdsOpcoesRespostaCorretas();
-
-        int numeroAcertosEquipe = 0;
-
-        for (Integer idOpcaoRespostaEquipe : idsOpcoesRespostaEquipe) {
-            if (idsOpcoesRespostaCorretas.contains(idOpcaoRespostaEquipe)) {
-                numeroAcertosEquipe++;
-            }
-        }
-
-        return numeroAcertosEquipe;
-    }
-
-    private double calcularPeso(List<Integer> idsOpcoesRespostaEquipe) {
-        int numeroAcertosEquipe = this.calcularNumeroAcertosEquipe(idsOpcoesRespostaEquipe);
-        int numeroOpcoesRespostaCorretas = this.getIdsOpcoesRespostaCorretas().size();
-
-        if (numeroAcertosEquipe == numeroOpcoesRespostaCorretas) {
-            return 1.0;
-        }
-
-        return (double) numeroAcertosEquipe / numeroOpcoesRespostaCorretas / idsOpcoesRespostaEquipe.size();
-    }
-
-    public int calcularPontosEquipe(List<Integer> idsOpcoesRespostaEquipe, int tempoDecorridoSolucaoSegundos) {
-        double peso = this.calcularPeso(idsOpcoesRespostaEquipe);
-
-        int pontos;
-
-        if (tempoDecorridoSolucaoSegundos == this.tempoEstimadoSolucaoSegundos) {
-            pontos = this.pontos;
-        } else if (tempoDecorridoSolucaoSegundos < this.tempoEstimadoSolucaoSegundos) {
-            pontos = (int) Math.ceil(this.pontos * ((double) this.tempoEstimadoSolucaoSegundos / tempoDecorridoSolucaoSegundos));
-        } else {
-            pontos = (int) Math.floor(this.pontos / ((double) tempoDecorridoSolucaoSegundos / this.tempoEstimadoSolucaoSegundos));
-        }
-
-        return (int) Math.round(pontos * peso);
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(this.pergunta);

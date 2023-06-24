@@ -12,7 +12,9 @@ public class EntityManagerRepositoryImpl implements EntityManagerRepository {
 
     @Override
     @Transactional
-    public void refresh(Object object) {
-        entityManager.refresh(object);
+    public void refresh(Object ... entities) {
+        for (Object entity : entities) {
+            entityManager.refresh(entity);
+        }
     }
 }

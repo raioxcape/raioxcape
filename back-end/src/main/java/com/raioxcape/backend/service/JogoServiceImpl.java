@@ -3,11 +3,12 @@ package com.raioxcape.backend.service;
 import com.raioxcape.backend.dto.jogo.EnigmaUpdateDTO;
 import com.raioxcape.backend.dto.jogo.JogoCreationDTO;
 import com.raioxcape.backend.exception.EntidadeNaoExisteException;
-import com.raioxcape.backend.model.Jogo;
+import com.raioxcape.backend.model.*;
 import com.raioxcape.backend.repository.JogoRepository;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -20,6 +21,11 @@ public class JogoServiceImpl implements JogoService {
     private final JogoRepository jogoRepository;
 
     private final EquipeService equipeService;
+
+    private final EnigmaJogoService enigmaJogoService;
+
+    @Value(value = "${jogo.quantidade-enigmas-por-porta-caminho}")
+    private int quantidadeEnigmasPorPortaCaminho;
 
     @Override
     public Jogo findJogoById(int id) {
@@ -43,7 +49,9 @@ public class JogoServiceImpl implements JogoService {
     public Jogo saveJogo(JogoCreationDTO jogoCreationDTO) {
         jogoCreationDTO.validate();
 
-        Jogo jogo = this.jogoRepository.save(new Jogo(this.equipeService.findEquipeById(jogoCreationDTO.getIdEquipe())));
+        Jogo jogo = this.jogoRepository.saveAndFlush(new Jogo(this.equipeService.findEquipeById(jogoCreationDTO.getIdEquipe())));
+
+        this.enigmaJogoService.selectEnigmasJogo(jogo, this.quantidadeEnigmasPorPortaCaminho);
 
         this.jogoRepository.refresh(jogo);
 
@@ -51,8 +59,11 @@ public class JogoServiceImpl implements JogoService {
     }
 
     @Override
-    public Jogo updateJogoEnigmaByIdJogoAndIdEnigma(int idJogo, int idEnigma, EnigmaUpdateDTO enigmaUpdateDTO) {
+    public Jogo updateEnigmaJogoByIdEnigmaAndIdJogo(int idEnigma, int idJogo, EnigmaUpdateDTO enigmaUpdateDTO) {
+        Jogo jogo = this.enigmaJogoService.updateEnigmaJogoByIdEnigmaAndIdJogo(idEnigma, idJogo, enigmaUpdateDTO).getJogo();
 
-        return null;
+        this.jogoRepository.refresh(jogo);
+
+        return jogo;
     }
 }

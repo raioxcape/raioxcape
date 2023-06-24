@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Jogo } from '../classes/Jogo';
 import { ApiResponse } from '../classes/dto/ApiResponse';
 import { EquipeCreationDTO } from '../classes/dto/EquipeCreationDTO';
+import { EquipeUpdateDTO } from '../classes/dto/EquipeUpdateDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,10 @@ export class EquipeService extends ResourceService<Equipe> {
 
   saveEquipe(equipe: EquipeCreationDTO): Observable<ApiResponse<Equipe>> {
     return this.save(equipe);
+  }
+
+  updateNomeEquipe(nomeEquipe: string, payload: EquipeUpdateDTO): Observable<ApiResponse<Equipe>> {
+    return this.patch(nomeEquipe, payload);
   }
 
   getNomesEquipes(): string[] {

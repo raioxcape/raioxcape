@@ -48,16 +48,12 @@ public class OpcaoRespostaEnigmaJogoServiceImpl implements OpcaoRespostaEnigmaJo
             );
         }
 
-        OpcaoRespostaEnigmaJogo opcaoRespostaEnigmaJogo = this.opcaoRespostaEnigmaJogoRepository.save(
+        return this.opcaoRespostaEnigmaJogoRepository.saveAndFlush(
             new OpcaoRespostaEnigmaJogo(
                 this.opcaoRespostaEnigmaService.findOpcaoRespostaEnigmaById(idOpcaoRespostaEnigma),
                 this.enigmaJogoService.findEnigmaJogoByIdEnigmaAndIdJogo(idEnigma, idJogo)
             )
         );
-
-        this.opcaoRespostaEnigmaJogoRepository.refresh(opcaoRespostaEnigmaJogo);
-
-        return opcaoRespostaEnigmaJogo;
     }
 
     @Override

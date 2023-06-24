@@ -14,5 +14,5 @@ public interface JogoService {
 
     Jogo saveJogo(JogoCreationDTO jogoCreationDTO);
 
-    Jogo updateJogoEnigmaByIdJogoAndIdEnigma(int idJogo, int idEnigma, EnigmaUpdateDTO enigmaUpdateDTO);
+    Jogo updateEnigmaJogoByIdEnigmaAndIdJogo(int idEnigma, int idJogo, EnigmaUpdateDTO enigmaUpdateDTO);
 }

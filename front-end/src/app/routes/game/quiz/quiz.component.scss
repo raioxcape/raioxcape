@@ -1,0 +1,155 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+.img-log {
+    max-width: 10px;
+}
+
+mat-card {
+    width: 50%;
+    padding: 8px;
+}
+
+mat-card-content.mat-mdc-card-content {
+    height: 65%;
+}
+
+#mat-question {
+    height: 80%;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: #0B2447;
+}
+
+#mat-title {
+    background-color: white;
+    width: 100%;
+    height: 25%;
+    margin-bottom: 3%;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3%;
+}
+
+.question-label {
+    background-color: white;
+    width: 70%;
+}
+
+#nivel {
+    background-color: rgb(72, 248, 72);
+    width: 100%;
+    height: 10%;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-weight: bold;
+    align-items: center;
+}
+
+.nivel {
+    margin: 0 0 0 0;
+}
+
+.level-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+}
+
+#mat-enigma {
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+}
+
+#mat-header {
+    margin-top: 15px;
+    width: 50%;
+    height: 100%;
+}
+
+.categoria {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Helvetica';
+    margin-bottom: 2px;
+}
+
+.title {
+    margin-bottom: -25px;
+}
+
+.cabecalho {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center
+}
+
+.option {
+    margin: 10% 150% 0 150%;
+}
+
+.time,
+.score {
+    color: black;
+    font-size: 15px;
+    font-family: 'Helvetica';
+}
+
+.material-icons.color_white {
+    color: #0b2447;
+    justify-content: right;
+}
+
+.bkg-img {
+    position: fixed;
+    width: 10%;
+    top: 1;
+    bottom: 0;
+    right: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top right;
+    opacity: 0.8;
+}
+
+.link-back {
+    position: absolute;
+}
+
+.example-button-row button,
+.example-button-row a {
+    margin-top: 10px;
+    width: 50%;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mat-tab-group {
+    margin-bottom: 48px;
+}

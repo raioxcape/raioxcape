@@ -7,16 +7,15 @@ table {
     align-items: center;
     justify-content: center;
     height: auto;
-    min-height: 100vh;
+    min-height: 90vh;
 }
 
 mat-card {
     width: 80%;
-    height: 80%;
+    height: 70%;
     padding: 20px;
     overflow: auto;
-    //position: relative;
-   
+    position: relative;
 }
 
 h3 {
@@ -24,13 +23,15 @@ h3 {
     font-size: 150%;
     font-family: 'Helvetica';
     margin-bottom: 15px;
-     display: flex;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .loading-spinner {
     margin-top: auto;
+    align-items: center;
+    justify-content: center;
 }
 
 .mat-mdc-row .mat-mdc-cell {
@@ -64,8 +65,7 @@ a:active {
 }
 
 mat-toolbar {
-    border-radius: 0px;
-    height: 10%;
+    height: 8%;
 }
 
 @media(max-width: 959px) {

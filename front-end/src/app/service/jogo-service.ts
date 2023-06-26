@@ -21,7 +21,7 @@ export class JogoService extends ResourceService<Jogo> {
   }
 
   saveJogo(jogo: JogoCreationDTO): Observable<ApiResponse<Jogo>> {
-    return this.save(jogo);
+    return this.save(JSON.stringify(jogo));
   }
 
   getJogo(id: number): Observable<ApiResponse<Jogo>> {

@@ -18,7 +18,7 @@
                     </div>
                     <br>
                     <div class="example-button-row">
-                        <button mat-flat-button [routerLink]="['../game']" [disabled]="!isTeamSelected" style="background-color: #a4cdfd;">Jogar</button>
+                        <button mat-flat-button  [disabled]="!isTeamSelected" (click)="criaJogo(nomeEquipe);" style="background-color: #a4cdfd;">Jogar</button>
                     </div>
                 </div>
                 

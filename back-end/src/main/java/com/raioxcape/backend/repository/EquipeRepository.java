@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface EquipeRepository extends JpaRepository<Equipe, Integer>, EntityManagerRepository {
 
-    boolean existsByNomeEqualsIgnoreCase(String nome);
+    boolean existsByNomeEqualsIgnoreCase(String nomeEquipe);
 
-    Optional<Equipe> findByNomeEqualsIgnoreCase(String nome);
+    Optional<Equipe> findByNomeEqualsIgnoreCase(String nomeEquipe);
 }

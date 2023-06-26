@@ -3,7 +3,9 @@ package com.raioxcape.backend.controller;
 import com.raioxcape.backend.dto.api.ApiResponse;
 import com.raioxcape.backend.dto.jogo.EnigmaUpdateDTO;
 import com.raioxcape.backend.dto.jogo.JogoCreationDTO;
+import com.raioxcape.backend.mapper.jogo.EnigmaMapper;
 import com.raioxcape.backend.mapper.jogo.JogoMapper;
+import com.raioxcape.backend.service.EnigmaJogoService;
 import com.raioxcape.backend.service.JogoService;
 
 import jakarta.validation.Valid;
@@ -24,6 +26,10 @@ public class JogoController {
     private final JogoService jogoService;
 
     private final JogoMapper jogoMapper;
+
+    private final EnigmaJogoService enigmaJogoService;
+
+    private final EnigmaMapper enigmaMapper;
 
     @PostMapping
     public ResponseEntity<ApiResponse> createJogo(@Valid @RequestBody JogoCreationDTO jogoCreationDTO) {
@@ -85,6 +91,28 @@ public class JogoController {
                             idEnigma, idJogo, enigmaUpdateDTO
                         )
                     )
+            ),
+            status
+        );
+    }
+
+    @GetMapping(value = "/{idJogo}/enigmas")
+    public ResponseEntity<ApiResponse> findEnigmasJogo(
+        @PathVariable(name = "idJogo") int idJogo,
+        @RequestParam(name = "portaCaminho") String portaCaminho,
+        @RequestParam(name = "nivelDificuldade") String nivelDificuldade,
+        @RequestParam(name = "foiSolucionado", defaultValue = "false") boolean foiSolucionado
+    ) {
+        HttpStatus status = HttpStatus.OK;
+
+        return new ResponseEntity<>(
+            new ApiResponse(
+                status,
+                this.enigmaJogoService
+                    .findEnigmasJogo(idJogo, portaCaminho, nivelDificuldade, foiSolucionado)
+                    .stream()
+                    .map(this.enigmaMapper::toEnigmaRetrievalDTO)
+                    .collect(Collectors.toList())
             ),
             status
         );

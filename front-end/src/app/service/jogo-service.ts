@@ -33,6 +33,9 @@ export class JogoService extends ResourceService<Jogo> {
   }
 
   updateEnigmaJogo(idEnigma: number, idJogo: number, payload: EnigmaUpdateDTO): Observable<ApiResponse<Jogo>> {
-    return this.http.patch<ApiResponse<Jogo>>(`${this.endpointUrl}/${idJogo}/enigmas/${idEnigma}`, payload).pipe(catchError(this.handleError));
+    return this
+      .http
+      .patch<ApiResponse<Jogo>>(`${this.endpointUrl}/${idJogo}/enigmas/${idEnigma}`, payload)
+      .pipe(catchError(this.handleError));
   }
 };

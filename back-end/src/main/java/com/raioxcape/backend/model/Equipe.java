@@ -55,6 +55,16 @@ public class Equipe {
         this.nome = nome;
     }
 
+    public void adicionarIntegrante(Integrante integrante) {
+        integrante.setEquipe(this);
+        this.integrantes.add(integrante);
+    }
+
+    public void removerIntegrante(Integrante integrante) {
+        this.integrantes.remove(integrante);
+        integrante.setEquipe(null);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(this.nome);

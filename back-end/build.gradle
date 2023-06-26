@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "org.springframework.boot" version '3.0.6'
+    id 'org.springframework.boot' version '3.0.6'
 }
 
 group = 'com.raioxcape'
@@ -43,7 +43,7 @@ test {
 }
 
 bootRun {
-    jvmArgs = ["-Duser.timezone=America/Sao_Paulo"]
+    jvmArgs = ['-Duser.timezone=America/Sao_Paulo']
 }
 
 java {

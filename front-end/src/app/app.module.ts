@@ -8,8 +8,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, FormGroup } from '@angular/forms';
 import { HeaderInterceptor } from './header-interceptor';
 
-import { HomeComponent } from './routes/home/home.component';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,6 +24,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { EquipeService } from './service/equipe-service'; 
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { GameComponent } from './routes/game/game.component';
+import { HomeComponent } from './routes/home/home.component';
 
 @NgModule({
   declarations: [

@@ -1,5 +1,12 @@
 <div class="container">
     <div class="teams-rigth">
+        <div class="info">
+            <button mat-icon-button (click)="openDialog();">
+                <mat-icon class="material-icons color_white">
+                    <span class="material-symbols-outlined">info</span>
+                </mat-icon>
+            </button>
+        </div>
         <div class="content">
             <h3>Menu de Equipes</h3>
             <div class="form-content">
@@ -21,17 +28,14 @@
                         <button mat-flat-button  [disabled]="!isTeamSelected" (click)="criaJogo(nomeEquipe);" style="background-color: #a4cdfd;">Jogar</button>
                     </div>
                 </div>
-                
             </div>
-              
         </div>
     </div>
-
     <div class="teams-left">
         <section>
             <a routerLink="/"><button mat-icon-button>
                 <!--<mat-icon>keyboard_arrow_left</mat-icon>-->
-                <mat-icon class="material-icons color_white">arrow_back_ios</mat-icon>
+                <mat-icon class="material-icons color_blue">arrow_back_ios</mat-icon>
             </button></a><br>            
         </section>
         <img class="img" alt="Raio Xcape" src="assets/img/medico.png"/>

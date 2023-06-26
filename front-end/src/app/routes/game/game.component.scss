@@ -62,6 +62,20 @@ p {
     bottom: 0;
 }
 
+.material-icons.color_blue {
+    color: #0b2447;
+}
+
+.info {
+    display: flex;
+    justify-content: right;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }

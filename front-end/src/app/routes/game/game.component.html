@@ -1,8 +1,17 @@
 <div class="container">
     <div class="header">
-        <a routerLink="/teams"><button mat-icon-button>
+        <div class="return">
+            <button mat-icon-button [routerLink]="['/teams']">
                 <mat-icon class="material-icons color_white">arrow_back_ios</mat-icon>
-            </button></a><br>
+            </button>
+        </div>
+        <div class="info">
+            <button mat-icon-button (click)="openDialog();">
+                <mat-icon class="material-icons color_blue">
+                    <span class="material-symbols-outlined">info</span>    
+                </mat-icon>
+            </button>
+        </div>
     </div>
     <div class="content">
         <h3>Escolha uma porta caminho</h3>

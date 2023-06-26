@@ -1,0 +1,38 @@
+h2 {
+    color: black;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Helvetica';
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 100%;
+    font-weight: 300;
+    font-family: 'Helvetica';
+    text-align: justify;
+    line-height: 1.5;
+    padding: 2%;
+    color: #0b2447;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.material-icons.color_white {
+    color: #0823b9;
+}

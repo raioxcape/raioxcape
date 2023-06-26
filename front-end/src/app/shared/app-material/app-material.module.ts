@@ -15,8 +15,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatTabsModule} from '@angular/material/tabs';
-
-
+import {MatDialog} from '@angular/material/dialog';
 
 @NgModule({
   exports: [

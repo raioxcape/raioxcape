@@ -24,11 +24,20 @@ public class EquipeServiceImpl implements EquipeService {
     private final IntegranteServiceImpl integranteService;
 
     @Override
-    public Equipe findEquipeById(int id) {
+    public Equipe findEquipeByNome(String nomeEquipe) {
         return this.equipeRepository
-            .findById(id)
+            .findByNomeEqualsIgnoreCase(nomeEquipe)
             .orElseThrow(() -> new EntidadeNaoExisteException(
-                String.format("Não foi encontrada nenhuma equipe com o id igual a %d", id))
+                String.format("Não foi encontrada nenhuma equipe com o nome igual a '%s'", nomeEquipe))
+            );
+    }
+
+    @Override
+    public Equipe findEquipeById(int idEquipe) {
+        return this.equipeRepository
+            .findById(idEquipe)
+            .orElseThrow(() -> new EntidadeNaoExisteException(
+                String.format("Não foi encontrada nenhuma equipe com o id igual a %d", idEquipe))
             );
     }
 
@@ -65,7 +74,7 @@ public class EquipeServiceImpl implements EquipeService {
 
     @Transactional
     @Override
-    public Equipe updateEquipeById(int id, EquipeUpdateDTO equipeUpdateDTO) {
+    public Equipe updateEquipeByNome(String nomeEquipe, EquipeUpdateDTO equipeUpdateDTO) {
         equipeUpdateDTO.validate();
 
         if (this.equipeRepository.existsByNomeEqualsIgnoreCase(equipeUpdateDTO.getNome())) {
@@ -74,7 +83,7 @@ public class EquipeServiceImpl implements EquipeService {
             );
         }
 
-        Equipe equipe = this.findEquipeById(id);
+        Equipe equipe = this.findEquipeByNome(nomeEquipe);
 
         equipe.setNome(equipeUpdateDTO.getNome());
 

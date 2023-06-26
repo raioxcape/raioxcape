@@ -38,9 +38,9 @@ public class EquipeController {
         );
     }
 
-    @PatchMapping(value = "/{id}")
-    public ResponseEntity<ApiResponse> updateEquipeById(
-        @PathVariable(name = "id") int id,
+    @PatchMapping(value = "/{nome}")
+    public ResponseEntity<ApiResponse> updateEquipeByNome(
+        @PathVariable(name = "nome") String nomeEquipe,
         @Valid @RequestBody EquipeUpdateDTO equipeUpdateDTO
     ) {
         HttpStatus status = HttpStatus.OK;
@@ -48,20 +48,20 @@ public class EquipeController {
         return new ResponseEntity<>(
             new ApiResponse(
                 status,
-                this.equipeMapper.toEquipeRetrievalDTO(this.equipeService.updateEquipeById(id, equipeUpdateDTO))
+                this.equipeMapper.toEquipeRetrievalDTO(this.equipeService.updateEquipeByNome(nomeEquipe, equipeUpdateDTO))
             ),
             status
         );
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<ApiResponse> findEquipeById(@PathVariable(name = "id") int id) {
+    @GetMapping(value = "/{nome}")
+    public ResponseEntity<ApiResponse> findEquipeByNome(@PathVariable(name = "nome") String nomeEquipe) {
         HttpStatus status = HttpStatus.OK;
 
         return new ResponseEntity<>(
             new ApiResponse(
                 status,
-                this.equipeMapper.toEquipeRetrievalDTO(this.equipeService.findEquipeById(id))
+                this.equipeMapper.toEquipeRetrievalDTO(this.equipeService.findEquipeByNome(nomeEquipe))
             ),
             status
         );

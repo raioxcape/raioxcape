@@ -52,6 +52,14 @@ public class Jogo {
         this.equipe = equipe;
     }
 
+    public void adicionarEnigmas(List<EnigmaJogo> enigmasJogo) {
+        for (EnigmaJogo enigmaJogo : enigmasJogo) {
+            enigmaJogo.setJogo(this);
+        }
+
+        this.enigmas.addAll(enigmasJogo);
+    }
+
     @Override
     public int hashCode() {
         return this.getClass().hashCode();

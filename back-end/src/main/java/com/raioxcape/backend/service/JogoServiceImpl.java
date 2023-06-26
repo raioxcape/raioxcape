@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
@@ -45,19 +46,21 @@ public class JogoServiceImpl implements JogoService {
         return jogos;
     }
 
+    @Transactional
     @Override
     public Jogo saveJogo(JogoCreationDTO jogoCreationDTO) {
         jogoCreationDTO.validate();
 
         Jogo jogo = this.jogoRepository.saveAndFlush(new Jogo(this.equipeService.findEquipeById(jogoCreationDTO.getIdEquipe())));
 
-        this.enigmaJogoService.selectEnigmasJogo(jogo, this.quantidadeEnigmasPorPortaCaminho);
+        jogo.adicionarEnigmas(this.enigmaJogoService.selectEnigmasJogo(jogo, this.quantidadeEnigmasPorPortaCaminho));
 
         this.jogoRepository.refresh(jogo);
 
         return jogo;
     }
 
+    @Transactional
     @Override
     public Jogo updateEnigmaJogoByIdEnigmaAndIdJogo(int idEnigma, int idJogo, EnigmaUpdateDTO enigmaUpdateDTO) {
         Jogo jogo = this.enigmaJogoService.updateEnigmaJogoByIdEnigmaAndIdJogo(idEnigma, idJogo, enigmaUpdateDTO).getJogo();

@@ -8,6 +8,7 @@ import com.raioxcape.backend.repository.IntegranteRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,6 +16,7 @@ public class IntegranteServiceImpl implements IntegranteService {
 
     private final IntegranteRepository integranteRepository;
 
+    @Transactional
     @Override
     public Integrante saveIntegrante(String nome, Equipe equipe) {
         if (this.integranteRepository.existsByNomeEqualsIgnoreCaseAndEquipeNomeEqualsIgnoreCase(
@@ -25,10 +27,6 @@ public class IntegranteServiceImpl implements IntegranteService {
             );
         }
 
-        Integrante integrante = this.integranteRepository.save(new Integrante(nome, equipe));
-
-        this.integranteRepository.refresh(integrante);
-
-        return integrante;
+        return this.integranteRepository.saveAndFlush(new Integrante(nome, equipe));
     }
 }

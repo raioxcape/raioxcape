@@ -4,8 +4,6 @@ CREATE DATABASE IF NOT EXISTS raioxcape CHARACTER SET = utf8mb4 COLLATE = utf8mb
 
 USE raioxcape;
 
-DROP TRIGGER IF EXISTS marcar_enigma_como_solucionado;
-
 DROP TRIGGER IF EXISTS atualizar_pontos;
 
 DROP TABLE IF EXISTS opcao_resposta_enigma_jogo;
@@ -112,27 +110,14 @@ CREATE TABLE IF NOT EXISTS opcao_resposta_enigma_jogo (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 DELIMITER $$
-CREATE TRIGGER marcar_enigma_como_solucionado
-AFTER INSERT ON opcao_resposta_enigma_jogo
-FOR EACH ROW
-BEGIN
-    UPDATE enigma_jogo
-    SET enigma_jogo.foi_solucionado = 1
-    WHERE enigma_jogo.id_enigma_jogo = NEW.id_enigma_jogo; 
-END $$
-DELIMITER ;
-
-DELIMITER $$
 CREATE TRIGGER atualizar_pontos
 AFTER UPDATE ON enigma_jogo
 FOR EACH ROW
 BEGIN
-    UPDATE jogo
-    SET jogo.pontos = (
-        SELECT SUM(enigma_jogo.pontos)
-        FROM enigma_jogo
-        WHERE jogo.id_jogo = NEW.id_jogo
-    )
-    WHERE jogo.id_jogo = NEW.id_jogo; 
+	DECLARE pontos_atualizados INT DEFAULT 0;
+	
+	SET pontos_atualizados = (SELECT SUM(ej.pontos) FROM enigma_jogo AS ej WHERE ej.id_jogo = NEW.id_jogo);
+	
+    UPDATE jogo SET jogo.pontos = pontos_atualizados WHERE jogo.id_jogo = NEW.id_jogo; 
 END $$
 DELIMITER ;

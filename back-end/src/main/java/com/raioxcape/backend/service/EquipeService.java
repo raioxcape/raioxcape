@@ -8,13 +8,11 @@ import java.util.List;
 
 public interface EquipeService {
 
-    Equipe findEquipeByNome(String nome);
-
     Equipe findEquipeById(int id);
 
     List<Equipe> findAllEquipes();
 
     Equipe saveEquipe(EquipeCreationDTO equipeCreationDTO);
 
-    Equipe updateEquipeByNome(String nome, EquipeUpdateDTO equipeUpdateDTO);
+    Equipe updateEquipeById(int id, EquipeUpdateDTO equipeUpdateDTO);
 }

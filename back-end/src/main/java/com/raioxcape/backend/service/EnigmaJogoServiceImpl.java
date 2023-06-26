@@ -9,6 +9,7 @@ import com.raioxcape.backend.repository.EnigmaJogoRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class EnigmaJogoServiceImpl implements EnigmaJogoService {
             );
     }
 
+    @Transactional
     @Override
     public EnigmaJogo updateEnigmaJogoByIdEnigmaAndIdJogo(int idEnigma, int idJogo, EnigmaUpdateDTO enigmaUpdateDTO) {
         enigmaUpdateDTO.validate();
@@ -41,7 +43,7 @@ public class EnigmaJogoServiceImpl implements EnigmaJogoService {
 
         antigoEnigmaJogo.update(enigmaUpdateDTO.getIdsOpcoesRespostaEquipe(), enigmaUpdateDTO.getTempoDecorridoSolucaoSegundos());
 
-        this.opcaoRespostaEnigmaJogoService.saveOpcaoRespostaEnigmaJogo(enigmaUpdateDTO.getIdsOpcoesRespostaEquipe(), idEnigma, idJogo);
+        antigoEnigmaJogo.adicionarRespostas(this.opcaoRespostaEnigmaJogoService.saveOpcoesRespostaEnigmaJogo(enigmaUpdateDTO.getIdsOpcoesRespostaEquipe(), idEnigma, idJogo));
 
         EnigmaJogo novoEnigmaJogo = this.enigmaJogoRepository.saveAndFlush(antigoEnigmaJogo);
 
@@ -50,6 +52,7 @@ public class EnigmaJogoServiceImpl implements EnigmaJogoService {
         return novoEnigmaJogo;
     }
 
+    @Transactional
     @Override
     public List<EnigmaJogo> selectEnigmasJogo(Jogo jogo, int quantidade) {
         if (Objects.isNull(jogo)) {
@@ -69,5 +72,15 @@ public class EnigmaJogoServiceImpl implements EnigmaJogoService {
         }
 
         return enigmasJogo;
+    }
+
+    @Override
+    public List<EnigmaJogo> findEnigmasJogo(
+        int idJogo,
+        String portaCaminho,
+        String nivelDificuldade,
+        boolean foiSolucionado
+    ) {
+        return this.enigmaJogoRepository.findEnigmasJogo(idJogo, portaCaminho, nivelDificuldade, foiSolucionado);
     }
 }

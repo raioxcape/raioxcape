@@ -21,24 +21,24 @@ export class EquipeService extends ResourceService<Equipe> {
     return 'equipes';
   }
 
-  getEquipe(nome: string): Observable<ApiResponse<Equipe>> {
-    return this.getOne(nome);
+  getEquipe(id: number): Observable<ApiResponse<Equipe>> {
+    return this.getOne(id);
   }
 
   getEquipes(): Observable<ApiResponse<Equipe[]>> {
     return this.getAll();
   }
 
-  getJogosEquipe(nomeEquipe: string): Observable<ApiResponse<Jogo>> {
-    return this.get(`${this.endpointUrl}/${nomeEquipe}/jogos`);
+  getJogosEquipe(id: number): Observable<ApiResponse<Jogo>> {
+    return this.get(`${this.endpointUrl}/${id}/jogos`);
   }
 
   saveEquipe(equipe: EquipeCreationDTO): Observable<ApiResponse<Equipe>> {
     return this.save(equipe);
   }
 
-  updateNomeEquipe(nomeEquipe: string, payload: EquipeUpdateDTO): Observable<ApiResponse<Equipe>> {
-    return this.patch(nomeEquipe, payload);
+  updateEquipe(id: number, payload: EquipeUpdateDTO): Observable<ApiResponse<Equipe>> {
+    return this.patch(id, payload);
   }
 
   getNomesEquipes(): string[] {
@@ -47,7 +47,7 @@ export class EquipeService extends ResourceService<Equipe> {
     this
       .getEquipes()
       .subscribe((response: ApiResponse<Equipe[]>) => {
-        response.data.forEach((equipe: Equipe) => nomesEquipes.push(equipe.nome));
+        response.data.forEach((equipe: Equipe) => nomesEquipes.push(equipe.nome.trim()));
       });
 
     return nomesEquipes;

@@ -71,6 +71,14 @@ public class EnigmaJogo {
         this.jogo = jogo;
     }
 
+    public void adicionarRespostas(List<OpcaoRespostaEnigmaJogo> respostas) {
+        for (OpcaoRespostaEnigmaJogo resposta : respostas) {
+            resposta.setEnigmaJogo(this);
+        }
+
+        this.respostas.addAll(respostas);
+    }
+
     private int calcularNumeroAcertosEquipe(List<Integer> idsOpcoesRespostaEquipe) {
         List<Integer> idsOpcoesRespostaCorretas = this.enigma.getIdsOpcoesRespostaCorretas();
 

@@ -8,5 +8,5 @@ public interface OpcaoRespostaEnigmaJogoService {
 
     OpcaoRespostaEnigmaJogo saveOpcaoRespostaEnigmaJogo(int idOpcaoRespostaEnigma, int idEnigma, int idJogo);
 
-    List<OpcaoRespostaEnigmaJogo> saveOpcaoRespostaEnigmaJogo(List<Integer> idsOpcoesRespostaEnigma, int idEnigma, int idJogo);
+    List<OpcaoRespostaEnigmaJogo> saveOpcoesRespostaEnigmaJogo(List<Integer> idsOpcoesRespostaEnigma, int idEnigma, int idJogo);
 }

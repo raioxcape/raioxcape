@@ -10,6 +10,7 @@ import com.raioxcape.backend.repository.EquipeRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
@@ -21,15 +22,6 @@ public class EquipeServiceImpl implements EquipeService {
     private final EquipeRepository equipeRepository;
 
     private final IntegranteServiceImpl integranteService;
-
-    @Override
-    public Equipe findEquipeByNome(String nome) {
-        return this.equipeRepository
-            .findByNomeEqualsIgnoreCase(nome)
-            .orElseThrow(() -> new EntidadeNaoExisteException(
-                String.format("Não foi encontrada nenhuma equipe com o nome igual a '%s'", nome))
-            );
-    }
 
     @Override
     public Equipe findEquipeById(int id) {
@@ -49,6 +41,7 @@ public class EquipeServiceImpl implements EquipeService {
         return equipes;
     }
 
+    @Transactional
     @Override
     public Equipe saveEquipe(EquipeCreationDTO equipeCreationDTO) {
         equipeCreationDTO.validate();
@@ -59,10 +52,10 @@ public class EquipeServiceImpl implements EquipeService {
             );
         }
 
-        Equipe equipe = this.equipeRepository.save(new Equipe(equipeCreationDTO.getNome()));
+        Equipe equipe = this.equipeRepository.saveAndFlush(new Equipe(equipeCreationDTO.getNome()));
 
-        for (String integrante : equipeCreationDTO.getIntegrantes()) {
-            this.integranteService.saveIntegrante(integrante, equipe);
+        for (String nomeIntegrante : equipeCreationDTO.getIntegrantes()) {
+            equipe.adicionarIntegrante(this.integranteService.saveIntegrante(nomeIntegrante, equipe));
         }
 
         this.equipeRepository.refresh(equipe);
@@ -70,8 +63,9 @@ public class EquipeServiceImpl implements EquipeService {
         return equipe;
     }
 
+    @Transactional
     @Override
-    public Equipe updateEquipeByNome(String nome, EquipeUpdateDTO equipeUpdateDTO) {
+    public Equipe updateEquipeById(int id, EquipeUpdateDTO equipeUpdateDTO) {
         equipeUpdateDTO.validate();
 
         if (this.equipeRepository.existsByNomeEqualsIgnoreCase(equipeUpdateDTO.getNome())) {
@@ -80,11 +74,11 @@ public class EquipeServiceImpl implements EquipeService {
             );
         }
 
-        Equipe equipe = this.findEquipeByNome(nome);
+        Equipe equipe = this.findEquipeById(id);
 
         equipe.setNome(equipeUpdateDTO.getNome());
 
-        this.equipeRepository.save(equipe);
+        this.equipeRepository.saveAndFlush(equipe);
 
         this.equipeRepository.refresh(equipe);
 

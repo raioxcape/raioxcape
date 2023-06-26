@@ -1,7 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/raioxcape
-    username: root
+    url: jdbc:mysql://raioxcape:raioxcape@localhost:3306/raioxcape
+    # Virgínia, usa a linha de baixo ao invés da de cima :)
+    # url: jdbc:mysql://root@localhost:3306/raioxcape
 cors:
   allowed-origins: >
     http://localhost:4200

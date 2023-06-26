@@ -8,11 +8,8 @@
 .teams-left {
     width: 50%;
     height: 100vh;
-
     float: left;
-    //background-image: url("/assets/img/teams.png");
     background-size: cover;
-    /* Ajusta o tamanho da imagem para cobrir todo o espaço da div */
     background-position: center;
 }
 
@@ -21,7 +18,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 90vh;
     gap: 15px;
 }
 
@@ -87,6 +84,15 @@ div img {
     height: auto;
 }
 
-.material-icons.color_white {
+.material-icons.color_blue {
     color: #0b2447;
+}
+
+.material-icons.color_white {
+    color: white;
+}
+
+.info {
+    display: flex;
+    justify-content: right;
 }

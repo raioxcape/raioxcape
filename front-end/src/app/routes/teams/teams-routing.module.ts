@@ -4,6 +4,8 @@ import { TeamsComponent } from './teams.component';
 import { FormsComponent } from './forms/forms.component';
 import { ListComponent } from './list/list.component';
 
+import { RulesComponent } from '../rules/rules.component';
+
 const routes: Routes = [
   {
     path: '',

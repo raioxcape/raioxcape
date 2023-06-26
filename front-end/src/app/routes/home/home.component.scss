@@ -1,10 +1,10 @@
 .example-button-row button,
 .example-button-row a {
-    margin-right: 8px;
-    height: 60px;
-    width: 300px;
-    font-size: 15px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-right: 8px;
+  height: 60px;
+  width: 300px;
+  font-size: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .example-disabled {
@@ -12,20 +12,33 @@
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
 }
 
 .logo-img {
-    width: 600px;
-    margin-top: 0px;
-  }
+  width: 600px;
+  margin-top: 0px;
+}
 
 .button-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 300,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+.info {
+  display: flex;
+  justify-content: right;
 }

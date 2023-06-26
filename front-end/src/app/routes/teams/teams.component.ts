@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import {MatDialog} from '@angular/material/dialog';
 
 import { EquipeService } from 'src/app/service/equipe-service';
 import { JogoService } from 'src/app/service/jogo-service';
@@ -8,6 +8,7 @@ import { JogoCreationDTO } from 'src/app/classes/dto/JogoCreationDTO';
 import { Equipe } from 'src/app/classes/Equipe';
 import { ApiResponse } from 'src/app/classes/dto/ApiResponse';
 import { Jogo } from 'src/app/classes/Jogo';
+import { RulesComponent } from '../rules/rules.component';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class TeamsComponent {
   jogo! : Jogo;
 
   constructor(private router: Router, private equipeService: EquipeService,
-    private jogoService: JogoService, private route: ActivatedRoute) {
+    private jogoService: JogoService, private route: ActivatedRoute, public dialog : MatDialog) {
     this.nomesEquipes = [];
     this.isTeamSelected = false;
     this.nomeEquipe = "";
@@ -45,6 +46,14 @@ export class TeamsComponent {
     if (this.nomesEquipes.length === 0) {
       this.nomesEquipes = this.equipeService.getNomesEquipes();
     }
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(RulesComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   teamSelectionChanged(event: any) {

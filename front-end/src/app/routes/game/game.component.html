@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="header">
+        <a routerLink="/teams"><button mat-icon-button>
+                <mat-icon class="material-icons color_white">arrow_back_ios</mat-icon>
+            </button></a><br>
+    </div>
+    <div class="content">
+        <h3>Escolha uma porta caminho</h3>
+        <div class="options">
+            <div class="portas">
+                <img class="door-img" alt="Raio Xcape" src="assets/img/porta1.png" />
+                <p> {{ portaCaminho.CABECA_E_PESCOCO }} </p>
+                <div class="example-button-row">
+                    <button mat-raised-button style="background-color: #87b9f3b2;">Escolher porta</button>
+                </div>
+            </div>
+            <div class="portas">
+                <img class="door-img" alt="Raio Xcape" src="assets/img/porta2.png" />
+                <p> {{ portaCaminho.TORAX }} </p>
+                <div class="example-button-row">
+                    <button mat-raised-button style="background-color: #87b9f3b2;">Escolher porta</button>
+                </div>
+            </div>
+            <div class="portas">
+                <img class="door-img" alt="Raio Xcape" src="assets/img/porta3.png" />
+                <p> {{ portaCaminho.ABDOMEN }} </p>
+                <div class="example-button-row">
+                    <button mat-raised-button style="background-color: #87b9f3b2;">Escolher porta</button>
+                </div>
+            </div>
+            <div class="portas">
+                <img class="door-img" alt="Raio Xcape" src="assets/img/porta4.png" />
+                <p> {{ portaCaminho.MUSCULO_ESQUELETICO }} </p>
+                <div class="example-button-row">
+                    <button mat-raised-button style="background-color: #87b9f3b2;">Escolher porta</button>
+                </div>
+            </div>
+        </div>
+        <p class="warning">Atenção! É recomendado que você jogue as portas em ordem</p>
+    </div>
+</div>

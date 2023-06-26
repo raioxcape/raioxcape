@@ -13,7 +13,7 @@ import { FormBuilder, FormsModule, NgModel, Validators } from '@angular/forms';
   declarations: [
     TeamsComponent,
     FormsComponent,
-    ListComponent,
+    ListComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,48 @@
+<body style="background-color: #F2FEFF;">
+    <a class="link-back" routerLink="/game"><button mat-icon-button>
+            <mat-icon class="material-icons color_white">arrow_back_ios</mat-icon>
+        </button></a>
+    <img class="bkg-img" src="assets/img/logoreduz1.png" />
+    <div class="header">
+        <mat-card id="mat-header">
+            <div class="cabecalho">
+                <h3 class="categoria">Categoria</h3>
+                <mat-divider></mat-divider>
+                <div class="conteudo">
+                    <div class="option">
+                        <p class="time">Tempo</p>
+                    </div>
+                    <div class="option">
+                        <p class="score">Pontuação</p>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div><br>
+    <div class="content">
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+            <mat-tab label="1 -12"></mat-tab>
+        </mat-tab-group>
+        <mat-card id="mat-question">
+            <mat-card-content>
+                <mat-card id="mat-title">
+                    <div class="card-header">
+                        <div class="question-label">
+                            <label for="">Questão</label>
+                        </div>
+                        <div class="level-card">
+                            <mat-card id="nivel">
+                                <p class="nivel">Fácil</p></mat-card>
+                        </div>
+                    </div>
+                </mat-card>
+                <mat-card id="mat-enigma">
+                    <p>Pergunta1</p>
+                </mat-card>
+            </mat-card-content>
+        </mat-card>
+        <div class="example-button-row">
+            <button mat-raised-button color="primary">Enviar</button>
+        </div>
+    </div>
+</body>

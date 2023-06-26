@@ -1,6 +1,7 @@
 spring:
   datasource:
-    url: jdbc:mysql://raioxcape:raioxcape@localhost:3306/raioxcape
+    url: jdbc:mysql://localhost:3306/raioxcape
+    username: root
 cors:
   allowed-origins: >
     http://localhost:4200

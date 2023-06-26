@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'history',
     loadChildren: () => import('./routes/history/history.module').then(m => m.HistoryModule)
+  },
+  {
+    path: 'game',
+    loadChildren: () => import('./routes/game/game.module').then(m => m.GameModule)
   }
 ];
 

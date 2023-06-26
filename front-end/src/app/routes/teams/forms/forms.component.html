@@ -16,7 +16,6 @@
                 <div *ngFor="let integrante of integrantes; let i = index">
                     <label [for]="'nomeIntegrante' + i">Nome Integrante {{i + 1}}: <label class="required">*</label></label><br>
                     <input type="text" [id]="'nomeIntegrante' + i" [name]="'nomeIntegrante' + i" required [(ngModel)]="integrantes[i].nome"><br>
-                    
                 </div>
                   
                 <div class="button-form mat-button-form">
@@ -35,5 +34,5 @@
             <mat-icon class="material-icons color_white">arrow_back_ios</mat-icon> 
         </button></a><br>            
     </section>
-    <img class="img" alt="Raio Xcape" src="assets/img/logoreduz.png"/>
+    <img class="img" alt="Raio Xcape" src="assets/img/medico.png"/>
 </div>

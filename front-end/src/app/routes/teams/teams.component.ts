@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
-
 import { EquipeService } from 'src/app/service/equipe-service';
 import { JogoService } from 'src/app/service/jogo-service';
 import { JogoCreationDTO } from 'src/app/classes/dto/JogoCreationDTO';
 import { Equipe } from 'src/app/classes/Equipe';
 import { ApiResponse } from 'src/app/classes/dto/ApiResponse';
 import { Jogo } from 'src/app/classes/Jogo';
-
 
 @Component({
   selector: 'app-teams',

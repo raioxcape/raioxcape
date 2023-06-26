@@ -21,8 +21,8 @@ export class EquipeService extends ResourceService<Equipe> {
     return 'equipes';
   }
 
-  getEquipe(id: number): Observable<ApiResponse<Equipe>> {
-    return this.getOne(id);
+  getEquipe(nomeEquipe: string): Observable<ApiResponse<Equipe>> {
+    return this.getOne(nomeEquipe);
   }
 
   getEquipes(): Observable<ApiResponse<Equipe[]>> {
@@ -37,8 +37,8 @@ export class EquipeService extends ResourceService<Equipe> {
     return this.save(equipe);
   }
 
-  updateEquipe(id: number, payload: EquipeUpdateDTO): Observable<ApiResponse<Equipe>> {
-    return this.patch(id, payload);
+  updateEquipe(nomeEquipe: string, payload: EquipeUpdateDTO): Observable<ApiResponse<Equipe>> {
+    return this.patch(nomeEquipe, payload);
   }
 
   getNomesEquipes(): string[] {

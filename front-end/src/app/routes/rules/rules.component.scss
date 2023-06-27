@@ -3,17 +3,44 @@ h2 {
     font-size: 50px;
     font-weight: bold;
     font-family: 'Helvetica';
-    margin-bottom: 15px;
+    margin-left: 0;
 }
+
+.title {
+    color: black;
+    font-weight: bold;
+    font-size: 120%;
+    font-family: 'Helvetica';
+    margin-left: 0;
+}
+
 
 p {
     font-size: 100%;
     font-weight: 300;
     font-family: 'Helvetica';
     text-align: justify;
-    line-height: 1.5;
-    padding: 2%;
+    line-height: 1.5;;
     color: #0b2447;
+}
+
+.obs {
+    text-decoration: underline;
+    font-style: italic;
+    font-weight: bold;
+}
+
+li {
+    color: #0b2447;
+}
+
+.goodgame {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.enumerate {
+    font-weight: bold;
 }
 
 ::-webkit-scrollbar {

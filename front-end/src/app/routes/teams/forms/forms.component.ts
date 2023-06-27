@@ -38,7 +38,14 @@ export class FormsComponent implements OnInit {
   }
 
   adicionarIntegrante(): void {
-    this.integrantes = new Array(this.quantidadeIntegrantes).fill('').map(() => new IntegranteCreationDTO());
+    const nomeIntegrantesAntigos = this.integrantes.map(integrante => integrante.nome);
+    this.integrantes = new Array(this.quantidadeIntegrantes).fill('').map((_, index) => {
+      if (nomeIntegrantesAntigos[index]) {
+        return { nome: nomeIntegrantesAntigos[index] };
+      } else {
+        return new IntegranteCreationDTO();
+      }
+    });
   }
 
   saveEquipe(form: any) {
@@ -54,7 +61,6 @@ export class FormsComponent implements OnInit {
             this.toastr.success('A equipe foi cadastrada com sucesso!');
             form.reset();
           }
-
           console.log(response);
         },
         error: (error) => {

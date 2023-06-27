@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'quiz',
     component: QuizComponent
+  },
+  {
+    path: 'game-data/:jogoId',
+    component: GameComponent
   }
 ];
 

@@ -8,6 +8,7 @@ import { Equipe } from 'src/app/classes/Equipe';
 import { ApiResponse } from 'src/app/classes/dto/ApiResponse';
 import { Jogo } from 'src/app/classes/Jogo';
 import { RulesComponent } from '../rules/rules.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-teams',
@@ -21,10 +22,11 @@ export class TeamsComponent {
   nomeEquipe: string;
   equipeSelected: Equipe;
   jogoDTO: JogoCreationDTO;
-  jogo! : Jogo;
+  jogoId! : number;
 
   constructor(private router: Router, private equipeService: EquipeService,
-    private jogoService: JogoService, private route: ActivatedRoute, public dialog : MatDialog) {
+    private jogoService: JogoService, private route: ActivatedRoute, public dialog : MatDialog,
+    private toastr: ToastrService) {
     this.nomesEquipes = [];
     this.isTeamSelected = false;
     this.nomeEquipe = "";
@@ -75,11 +77,13 @@ export class TeamsComponent {
       console.log(this.jogoDTO);
       this.jogoService.saveJogo(this.jogoDTO).subscribe((response: ApiResponse<Jogo>) => {
         console.log(response);
-        if (response.status === "OK") {
+        if (response.status === "CREATED") {
           //ir para jogo e passa parametro de jogo
-          //this.router.navigate(['../game']);
+          this.jogoId = response.data.id;
+          this.router.navigate(['game', this.jogoId]);
         } else {
           //toastr
+          this.toastr.error("Erro ao criar jogo.", "Erro");
         }
       });
 

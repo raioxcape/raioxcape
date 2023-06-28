@@ -1,11 +1,11 @@
 import { Equipe } from './Equipe';
 import { Enigma } from './Enigma';
 
-export interface Jogo {
-  id: number;
+export class Jogo {
+  id!: number;
   equipe?: Equipe;
-  enigmas: Enigma[];
-  pontos: number;
-  criadoEm: Date;
-  atualizadoEm: Date;
+  enigmas!: Enigma[];
+  pontos!: number;
+  criadoEm!: Date;
+  atualizadoEm!: Date;
 };

@@ -15,7 +15,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatTabsModule} from '@angular/material/tabs';
-import {MatDialog} from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   exports: [
@@ -36,7 +37,11 @@ import {MatDialog} from '@angular/material/dialog';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatDividerModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule
+
   ]
 })
 export class AppMaterialModule { }

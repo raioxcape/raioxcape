@@ -20,7 +20,7 @@ mat-card-content.mat-mdc-card-content {
 }
 
 #mat-question {
-    height: 80%;
+    height: 90%;
     border-top-left-radius: 30px;
     border-bottom-right-radius: 30px;
     background-color: #0B2447;
@@ -142,14 +142,31 @@ mat-card-content.mat-mdc-card-content {
     position: absolute;
 }
 
+button,
 .example-button-row button,
 .example-button-row a {
     margin-top: 10px;
-    width: 50%;
+    width: 10%;
     font-size: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 .mat-tab-group {
     margin-bottom: 48px;
+}
+
+.example-section {
+    margin: 12px 0;
+}
+
+.opcaoResposta {
+    margin: 0px 0px 1px 0px;
+    font-size: 10px
+}
+
+mat-checkbox {
+    margin: 0px 0px 0px 0px;
 }

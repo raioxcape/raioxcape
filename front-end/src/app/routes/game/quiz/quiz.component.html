@@ -1,12 +1,12 @@
 <body style="background-color: #F2FEFF;">
-    <a class="link-back" routerLink="/game"><button mat-icon-button>
+    <a class="link-back" routerLink="/game/{{jogoId}}"><button mat-icon-button>
             <mat-icon class="material-icons color_white">arrow_back_ios</mat-icon>
         </button></a>
     <img class="bkg-img" src="assets/img/logoreduz1.png" />
     <div class="header">
         <mat-card id="mat-header">
             <div class="cabecalho">
-                <h3 class="categoria">Categoria</h3>
+                <h3 class="categoria">{{ this.categoria }}</h3>
                 <mat-divider></mat-divider>
                 <div class="conteudo">
                     <div class="option">

@@ -78,15 +78,13 @@ export class TeamsComponent {
       this.jogoService.saveJogo(this.jogoDTO).subscribe((response: ApiResponse<Jogo>) => {
         console.log(response);
         if (response.status === "CREATED") {
-          //ir para jogo e passa parametro de jogo
           this.jogoId = response.data.id;
-          this.router.navigate(['game', this.jogoId]);
+          this.router.navigate(['/game/', this.jogoId]);
+          
         } else {
-          //toastr
           this.toastr.error("Erro ao criar jogo.", "Erro");
         }
       });
-
     });
   }
 

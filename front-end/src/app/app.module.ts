@@ -23,7 +23,6 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 import { EquipeService } from './service/equipe-service'; 
 import { AppMaterialModule } from './shared/app-material/app-material.module';
-import { GameComponent } from './routes/game/game.component';
 import { HomeComponent } from './routes/home/home.component';
 
 @NgModule({

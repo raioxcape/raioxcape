@@ -20,6 +20,13 @@
             </div>
         </mat-card>
     </div><br>
+    <div class="info">
+        <button mat-icon-button (click)="openDialog();">
+            <mat-icon class="material-icons color_blue">
+                <span class="material-symbols-outlined">info</span>    
+            </mat-icon>
+        </button>
+    </div>
     <div class="content">
         <mat-card id="mat-question">
             <mat-card-content>
@@ -29,7 +36,7 @@
                             <label>Questão {{ indiceAtual+1 }}</label>
                         </div>
                         <div class="level-card">
-                            <mat-card id="nivel">
+                            <mat-card id="nivel" >
                                 <p class="nivel">{{ perguntaAtual!.nivelDificuldade }}</p>
                             </mat-card>
                         </div>
@@ -38,17 +45,17 @@
                 <mat-card id="mat-enigma">
                     <p id="pergunta">{{ perguntaAtual!.pergunta }}</p>
                     <section class="example-section" >
-                        <p class="opcaoResposta"><mat-checkbox class="opcaoResposta" id="resposta1">{{ perguntaAtual.opcoesResposta[0].opcaoResposta }}</mat-checkbox></p>
-                        <p class="opcaoResposta"><mat-checkbox class="opcaoResposta" id="resposta2">{{ perguntaAtual.opcoesResposta[1].opcaoResposta }}</mat-checkbox></p>
-                        <p class="opcaoResposta"><mat-checkbox class="opcaoResposta" id="resposta3">{{ perguntaAtual.opcoesResposta[2].opcaoResposta }}</mat-checkbox></p>
-                        <p class="opcaoResposta"><mat-checkbox class="opcaoResposta" id="resposta4">{{ perguntaAtual.opcoesResposta[3].opcaoResposta }}</mat-checkbox></p>
+                        <p class="opcaoResposta"><mat-checkbox class="opcaoResposta" id="resposta1" (change)="salvarResposta(0)">{{ perguntaAtual.opcoesResposta[0].opcaoResposta }}</mat-checkbox></p>
+                        <p class="opcaoResposta"><mat-checkbox class="opcaoResposta" id="resposta2" (change)="salvarResposta(1)">{{ perguntaAtual.opcoesResposta[1].opcaoResposta }}</mat-checkbox></p>
+                        <p class="opcaoResposta"><mat-checkbox class="opcaoResposta" id="resposta3" (change)="salvarResposta(2)">{{ perguntaAtual.opcoesResposta[2].opcaoResposta }}</mat-checkbox></p>
+                        <p class="opcaoResposta"><mat-checkbox class="opcaoResposta" id="resposta4" (change)="salvarResposta(3)">{{ perguntaAtual.opcoesResposta[3].opcaoResposta }}</mat-checkbox></p>
                     </section>
                 </mat-card>
             </mat-card-content>
         </mat-card>
     </div>
     <div class="example-button-row">
-        <button mat-raised-button id="btn-proximo" color="primary" (click)="salvarRespostas()">Próximo</button>
+        <button mat-raised-button id="btn-proximo" [disabled]="respostasSelecionadas.length === 0" color="primary" (click)="verificarResposta(respostasSelecionadas)">Próximo</button>
     </div>
 
 </body>

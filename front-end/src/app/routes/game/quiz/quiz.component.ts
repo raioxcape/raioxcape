@@ -4,8 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Enigma } from 'src/app/classes/Enigma';
 import { Jogo } from 'src/app/classes/Jogo';
+import { NivelDificuldade } from 'src/app/classes/NivelDificuldade';
 import { PortaCaminho } from 'src/app/classes/PortaCaminho';
 import { JogoService } from 'src/app/service/jogo-service';
+import { RulesComponent } from '../../rules/rules.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-quiz',
@@ -21,14 +24,25 @@ export class QuizComponent implements OnInit {
   enigmas: Enigma[];
   perguntaAtual!: Enigma;
   indiceAtual: number = 0;
+  respostasSelecionadas: number[] = [];
+  nivelDificuldade! : NivelDificuldade;
 
   constructor(private route: ActivatedRoute, private jogoService: JogoService,
-    private router: Router, private toastr: ToastrService, private _formBuilder: FormBuilder) {
+    private router: Router, private toastr: ToastrService, private _formBuilder: FormBuilder,
+    public dialog: MatDialog) {
     this.categoria = "";
     this.jogo = new Jogo();
     this.enigmas = [];
   }
   
+  openDialog() {
+    const dialogRef = this.dialog.open(RulesComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
   proximaPergunta() {
     if (this.indiceAtual < this.enigmas.length - 1) {
       this.indiceAtual++;
@@ -36,13 +50,21 @@ export class QuizComponent implements OnInit {
     }
   }
 
-  salvarRespostas() {
-    //Logica para salvar resposta
-
+  verificarResposta(respostas : number[]) {
+    console.log(respostas);
 
     this.proximaPergunta();
+
   }
-  
+
+  salvarResposta(index: number) {
+    const idOpcaoSelecionada = this.perguntaAtual.opcoesResposta[index].id;
+    if (this.respostasSelecionadas.includes(idOpcaoSelecionada)) {
+      this.respostasSelecionadas = this.respostasSelecionadas.filter(id => id !== idOpcaoSelecionada);
+    } else {
+      this.respostasSelecionadas.push(idOpcaoSelecionada);
+    }
+  }
 
 
   ngOnInit() {
@@ -63,7 +85,7 @@ export class QuizComponent implements OnInit {
 
       this.jogoService.getJogo(this.jogoId).subscribe((response: any) => {
         console.log(response);
-        console.log(this.categoria);
+
         if (response.status === "OK") {
           this.jogo.id = response.data.id;
           this.jogo.atualizadoEm = response.data.atualizadoEm;
@@ -72,12 +94,10 @@ export class QuizComponent implements OnInit {
           console.log(this.enigmas);
           this.jogo.pontos = response.data.pontos;
           this.perguntaAtual = this.enigmas[this.indiceAtual];
-          console.log(this.jogo);
         } else {
           this.toastr.error("Erro ao trazer os dados do jogo!", "Erro");
         }
       });
     });
-    
   }
 }

@@ -20,7 +20,7 @@ mat-card-content.mat-mdc-card-content {
 }
 
 #mat-question {
-    height: 90%;
+    height: 85%;
     border-top-left-radius: 30px;
     border-bottom-right-radius: 30px;
     background-color: #0B2447;
@@ -47,8 +47,8 @@ mat-card-content.mat-mdc-card-content {
 
 #nivel {
     background-color: rgb(72, 248, 72);
-    width: 100%;
-    height: 10%;
+    width: 80%;
+    height: 6%;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     font-weight: bold;
@@ -57,6 +57,7 @@ mat-card-content.mat-mdc-card-content {
 
 .nivel {
     margin: 0 0 0 0;
+    font-size: 12px;
 }
 
 .level-card {
@@ -68,7 +69,7 @@ mat-card-content.mat-mdc-card-content {
 
 #mat-enigma {
     width: 100%;
-    height: 100%;
+    height: 105%;
 }
 
 .header {
@@ -169,4 +170,33 @@ button,
 
 mat-checkbox {
     margin: 0px 0px 0px 0px;
+}
+
+#pergunta {
+    margin-bottom: 0px;
+    margin-right: 1px;
+    margin-left: 1px;
+}
+
+.facil {
+  background-color: green;
+}
+
+.medio {
+  background-color: yellow;
+}
+
+.dificil {
+  background-color: orange;
+}
+
+.material-icons.color_blue {
+    color: #0b2447;
+}
+
+.info {
+    display: flex;
+    justify-content: right;
+    position: absolute;
+    justify-content: right;
 }

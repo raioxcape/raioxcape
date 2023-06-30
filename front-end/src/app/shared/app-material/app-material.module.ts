@@ -17,6 +17,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   exports: [

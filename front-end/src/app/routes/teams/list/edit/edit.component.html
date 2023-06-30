@@ -1,0 +1,17 @@
+<div class="dialog">
+    <h2 mat-dialog-title>Editar equipe</h2>
+    <mat-dialog-content class="mat-typography">
+        <label for="nomeEquipe">Nome da Equipe: <label class="required">*</label></label><br>
+        <input type="text" id="nomeEquipe" name="nomeEquipe" required [(ngModel)]="data.nome" #nomeEquipe=""><br>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <div class="button-form mat-button-form">
+            <div class="example-button-row">
+                <button mat-button mat-dialog-close>Cancelar</button>
+                <button mat-raised-button type="submit" (click)="editTeam(nomeEquipe.value);" color="primary">Salvar</button>
+            </div>
+        </div>
+    </mat-dialog-actions>
+</div>

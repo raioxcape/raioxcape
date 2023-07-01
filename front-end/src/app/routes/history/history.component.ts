@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { Equipe } from 'src/app/classes/Equipe';
 import { EquipeService } from 'src/app/service/equipe-service';
 import { MatTableDataSource } from '@angular/material/table';
+import { Jogo } from 'src/app/classes/Jogo';
+import { JogoService } from 'src/app/service/jogo-service';
+import { HistoryReportComponent } from './report/report.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-history',
@@ -9,23 +13,31 @@ import { MatTableDataSource } from '@angular/material/table';
     styleUrls: ['./history.component.scss']
 })
 export class HistoryComponent {
-  teams: Equipe[] = [];
-  displayedColumns: string[] = ['nome', 'criadaEm', 'atualizadaEm', 'integrantes', 'actions'];
+ 
+  jogos: Jogo[] = [];
+  displayedColumns: string[] = ['criadoEm', 'atualizadoEm', 'equipe', 'pontuacao', 'actions'];
   dataSource: any;
   isLoading: boolean = false;
-  clickedRows = new Set<Equipe>();
+  clickedRows = new Set<Jogo>();
 
-  constructor(private equipeService: EquipeService) {
+  constructor(private jogoService: JogoService, public dialog: MatDialog) {
 
+  }
+
+  openDialog(row:any) {
+    //console.log(row);
+    this.dialog.open(HistoryReportComponent,  {
+      data: row
+    });
   }
 
 
   ngOnInit(): void {
-    this.equipeService.getEquipes().subscribe({
+    this.jogoService.getJogos().subscribe({
       next: (response: any) => {
-        this.teams = response.data;
+        this.jogos = response.data;
         this.isLoading = true;
-        this.dataSource = new MatTableDataSource(this.teams);
+        this.dataSource = new MatTableDataSource(this.jogos);
         console.log(response.data);
       },
       error: (error) => {

@@ -11,6 +11,7 @@ import { RulesComponent } from '../../rules/rules.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EnigmaUpdateDTO } from 'src/app/classes/dto/EnigmaUpdateDTO';
 import { ApiResponse } from 'src/app/classes/dto/ApiResponse';
+import { ModalComponent } from './modal/modal.component';
 
 @Component({
   selector: 'app-quiz',
@@ -45,6 +46,10 @@ export class QuizComponent implements OnInit {
     const dialogRef = this.dialog.open(RulesComponent);
   }
 
+  openDialogEnd() {
+    const dialogRef = this.dialog.open(ModalComponent);
+  }
+
   iniciarTempoResposta() {
     this.tempoInicial = Date.now();
   }
@@ -57,12 +62,17 @@ export class QuizComponent implements OnInit {
 
   proximaPergunta() {
     this.iniciarTempoResposta();
-
+    console.log(this.enigmas.length - 1);
     if (this.indiceAtual < this.enigmas.length - 1) {
+      console.log(this.indiceAtual);
       this.indiceAtual++;
-      this.perguntaAtual = this.enigmas[this.indiceAtual + 1];
+      console.log(this.indiceAtual);
+      this.perguntaAtual = this.enigmas[this.indiceAtual];
+      this.verificaDificuldade(this.perguntaAtual);
+    } else {
+     this.openDialogEnd();
     }
-    this.verificaDificuldade(this.perguntaAtual);
+
   }
 
   verificarResposta(respostas: number[]) {
@@ -132,7 +142,7 @@ export class QuizComponent implements OnInit {
           this.jogo.criadoEm = response.data.criadoEm;
           this.enigmas = response.data.enigmas.filter((enigma: Enigma) => enigma.portaCaminho === this.portaCaminhoEscolhida);
           console.log(this.enigmas);
-
+          console.log(response);
           this.jogo.pontos = response.data.pontos;
           this.perguntaAtual = this.enigmas[this.indiceAtual];
           this.verificaDificuldade(this.perguntaAtual);

@@ -28,10 +28,12 @@ h3 {
     justify-content: center;
 }
 
+mat-spinner,
 .loading-spinner {
-    margin-top: auto;
+    display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
 }
 
 .mat-mdc-row .mat-mdc-cell {
@@ -98,4 +100,22 @@ mat-toolbar {
 
 .material-icons.color_white {
     color: white;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
 }

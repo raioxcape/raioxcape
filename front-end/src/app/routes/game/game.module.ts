@@ -6,6 +6,7 @@ import { GameComponent } from './game.component';
 import { AppMaterialModule } from 'src/app/shared/app-material/app-material.module';
 import { RulesComponent } from '../rules/rules.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { ModalComponent } from './quiz/modal/modal.component';
 
 
 
@@ -13,7 +14,8 @@ import { QuizComponent } from './quiz/quiz.component';
   declarations: [
     GameComponent,
     RulesComponent,
-    QuizComponent
+    QuizComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,

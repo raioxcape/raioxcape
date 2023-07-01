@@ -3,17 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { AppMaterialModule } from 'src/app/shared/app-material/app-material.module';
 import { FormBuilder, FormsModule, NgModel, Validators } from '@angular/forms';
-import { HeaderComponent } from '../header/header.component';
-import { HeaderModule } from '../header/header.module';
 import { HistoryComponent } from './history.component';
 import { HistoryRoutingModule } from './history-routing.module';
+import { HistoryReportComponent } from './report/report.component';
 
 
 @NgModule({
   declarations: [
-    HistoryComponent
+    HistoryComponent, 
+    HistoryReportComponent
  ],
   imports: [
+    CommonModule,
     AppMaterialModule,
     HistoryRoutingModule
   ], 

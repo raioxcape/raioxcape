@@ -47,9 +47,6 @@ export class EditComponent {
     } else {
       this.toastr.warning("Equipe inalterada, nome igual ao antigo.", "Atenção!");
     }
-
-    
-    
   }
 
 }

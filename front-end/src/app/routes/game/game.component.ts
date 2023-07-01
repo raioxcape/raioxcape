@@ -8,6 +8,7 @@ import { RulesComponent } from '../rules/rules.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Jogo } from 'src/app/classes/Jogo';
+import { Equipe } from 'src/app/classes/Equipe';
 
 @Component({
   selector: 'app-game',
@@ -19,6 +20,7 @@ export class GameComponent implements OnInit {
   jogoId!: number;
   portaCaminho = PortaCaminho;
   portaCaminhoEscolhida! : string;
+  equipe : Equipe = new Equipe();
 
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private jogoService: JogoService,
     private router: Router) {

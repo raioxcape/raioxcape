@@ -15,4 +15,6 @@ public interface EnigmaJogoService {
     List<EnigmaJogo> selectEnigmasJogo(Jogo jogo, int quantidade);
 
     List<EnigmaJogo> findEnigmasJogo(int idJogo, String portaCaminho, String nivelDificuldade, boolean foiSolucionado);
+
+    int findPontosPortaCaminhoJogo(int idJogo, String portaCaminho);
 }

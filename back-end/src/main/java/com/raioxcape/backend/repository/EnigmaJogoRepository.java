@@ -26,4 +26,15 @@ public interface EnigmaJogoRepository extends JpaRepository<EnigmaJogo, Integer>
         """
     )
     List<EnigmaJogo> findEnigmasJogo(int idJogo, String portaCaminho, String nivelDificuldade, boolean foiSolucionado);
+
+    @Query(
+        name = "findPontosPortaCaminhoJogo",
+        nativeQuery = true,
+        value = """
+            SELECT SUM(ej.pontos)
+            FROM enigma_jogo AS ej INNER JOIN enigma AS e USING (id_enigma)
+            WHERE ej.id_jogo = :idJogo AND e.porta_caminho = :portaCaminho
+        """
+    )
+    int findPontosPortaCaminhoJogo(int idJogo, String portaCaminho);
 }

@@ -32,10 +32,17 @@ export class JogoService extends ResourceService<Jogo> {
     return this.getAll();
   }
 
-  updateEnigmaJogo(idEnigma: number, idJogo: number, payload: EnigmaUpdateDTO): Observable<ApiResponse<Jogo>> {
+  getPontosPortaCaminhoJogo(idJogo: number, portaCaminho: string): Observable<ApiResponse<number>> {
     return this
       .http
-      .patch<ApiResponse<Jogo>>(`${this.endpointUrl}/${idJogo}/enigmas/${idEnigma}`, payload)
+      .get<ApiResponse<number>>(`${this.endpointUrl}/${idJogo}/portasCaminho/${portaCaminho.toUpperCase()}/pontos`)
+      .pipe(catchError(this.handleError));
+  }
+
+  updateEnigmaJogo(idEnigma: number, idJogo: number, payload: EnigmaUpdateDTO): Observable<ApiResponse<number>> {
+    return this
+      .http
+      .patch<ApiResponse<number>>(`${this.endpointUrl}/${idJogo}/enigmas/${idEnigma}`, payload)
       .pipe(catchError(this.handleError));
   }
 };

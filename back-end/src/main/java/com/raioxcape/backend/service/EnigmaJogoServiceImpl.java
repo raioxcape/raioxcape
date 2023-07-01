@@ -83,4 +83,9 @@ public class EnigmaJogoServiceImpl implements EnigmaJogoService {
     ) {
         return this.enigmaJogoRepository.findEnigmasJogo(idJogo, portaCaminho, nivelDificuldade, foiSolucionado);
     }
+
+    @Override
+    public int findPontosPortaCaminhoJogo(int idJogo, String portaCaminho) {
+        return this.enigmaJogoRepository.findPontosPortaCaminhoJogo(idJogo, portaCaminho);
+    }
 }

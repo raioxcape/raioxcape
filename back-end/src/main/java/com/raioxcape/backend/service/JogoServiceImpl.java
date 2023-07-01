@@ -62,11 +62,7 @@ public class JogoServiceImpl implements JogoService {
 
     @Transactional
     @Override
-    public Jogo updateEnigmaJogoByIdEnigmaAndIdJogo(int idEnigma, int idJogo, EnigmaUpdateDTO enigmaUpdateDTO) {
-        Jogo jogo = this.enigmaJogoService.updateEnigmaJogoByIdEnigmaAndIdJogo(idEnigma, idJogo, enigmaUpdateDTO).getJogo();
-
-        this.jogoRepository.refresh(jogo);
-
-        return jogo;
+    public int updateEnigmaJogoByIdEnigmaAndIdJogo(int idEnigma, int idJogo, EnigmaUpdateDTO enigmaUpdateDTO) {
+        return this.enigmaJogoService.updateEnigmaJogoByIdEnigmaAndIdJogo(idEnigma, idJogo, enigmaUpdateDTO).getPontos();
     }
 }

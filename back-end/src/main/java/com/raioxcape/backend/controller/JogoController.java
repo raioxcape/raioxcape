@@ -84,13 +84,7 @@ public class JogoController {
 
         return new ResponseEntity<>(
             new ApiResponse(
-                status,
-                this.jogoMapper
-                    .toJogoRetrievalDTO(
-                        this.jogoService.updateEnigmaJogoByIdEnigmaAndIdJogo(
-                            idEnigma, idJogo, enigmaUpdateDTO
-                        )
-                    )
+                status, this.jogoService.updateEnigmaJogoByIdEnigmaAndIdJogo(idEnigma, idJogo, enigmaUpdateDTO)
             ),
             status
         );
@@ -114,6 +108,19 @@ public class JogoController {
                     .map(this.enigmaMapper::toEnigmaRetrievalDTO)
                     .collect(Collectors.toList())
             ),
+            status
+        );
+    }
+
+    @GetMapping(value = "/{idJogo}/portasCaminho/{portaCaminho}/pontos")
+    public ResponseEntity<ApiResponse> findPontosPortaCaminhoJogo(
+        @PathVariable(name = "idJogo") int idJogo,
+        @PathVariable(name = "portaCaminho") String portaCaminho
+    ) {
+        HttpStatus status = HttpStatus.OK;
+
+        return new ResponseEntity<>(
+            new ApiResponse(status, this.enigmaJogoService.findPontosPortaCaminhoJogo(idJogo, portaCaminho)),
             status
         );
     }

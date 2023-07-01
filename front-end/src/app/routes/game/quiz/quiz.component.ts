@@ -10,6 +10,7 @@ import { JogoService } from 'src/app/service/jogo-service';
 import { RulesComponent } from '../../rules/rules.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EnigmaUpdateDTO } from 'src/app/classes/dto/EnigmaUpdateDTO';
+import { ApiResponse } from 'src/app/classes/dto/ApiResponse';
 
 @Component({
   selector: 'app-quiz',
@@ -30,7 +31,7 @@ export class QuizComponent implements OnInit {
   dificuldade: string = "";
   tempoInicial: number = 0;
   tempoResposta: number = 0;
-  pontuacao : number = 0;
+  pontuacao: number = 0;
 
   constructor(private route: ActivatedRoute, private jogoService: JogoService,
     private router: Router, private toastr: ToastrService, private _formBuilder: FormBuilder,
@@ -68,15 +69,14 @@ export class QuizComponent implements OnInit {
     console.log(respostas);
     this.pararTempoResposta();
 
-    let payload : EnigmaUpdateDTO = new EnigmaUpdateDTO();
-    payload.tempoDecorridoSolucaoSegundos = this.tempoResposta;
-    payload.idsOpcoesRespostaEquipe = respostas;
-    
+    const payload: EnigmaUpdateDTO = new EnigmaUpdateDTO(this.tempoResposta, respostas);
 
-    this.jogoService.updateEnigmaJogo(this.perguntaAtual.id, this.jogoId, payload).subscribe((response: any) => { 
+    this.jogoService.updateEnigmaJogo(this.perguntaAtual.id, this.jogoId, payload).subscribe((response: ApiResponse<number>) => {
       console.log(response);
 
+      const pontosEquipe: number = response.data;
 
+      this.pontuacao += pontosEquipe;
     });
 
     this.proximaPergunta();
@@ -90,13 +90,13 @@ export class QuizComponent implements OnInit {
 
   salvarResposta(index: number) {
     const idOpcaoSelecionada = this.perguntaAtual.opcoesResposta[index].id;
+
     if (this.respostasSelecionadas.includes(idOpcaoSelecionada)) {
       this.respostasSelecionadas = this.respostasSelecionadas.filter(id => id !== idOpcaoSelecionada);
     } else {
       this.respostasSelecionadas.push(idOpcaoSelecionada);
     }
   }
-
 
   verificaDificuldade(perguntaAtual: Enigma) {
     if (this.perguntaAtual.nivelDificuldade === Object.entries(NivelDificuldade).find(([_, v]) => v === NivelDificuldade.FACIL)![0]) {
@@ -126,7 +126,6 @@ export class QuizComponent implements OnInit {
       }
 
       this.jogoService.getJogo(this.jogoId).subscribe((response: any) => {
-
         if (response.status === "OK") {
           this.jogo.id = response.data.id;
           this.jogo.atualizadoEm = response.data.atualizadoEm;

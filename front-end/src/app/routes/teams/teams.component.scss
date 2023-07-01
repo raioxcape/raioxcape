@@ -18,7 +18,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90vh;
+    height: 85vh;
     gap: 15px;
 }
 
@@ -95,4 +95,19 @@ div img {
 .info {
     display: flex;
     justify-content: right;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    width: 90px;
+}
+
+.info-label {
+    color: white;
+    font-size: 11px;
+    font-family: 'Helvetica';
+    margin-bottom: 0;
 }

@@ -1,16 +1,19 @@
 <div class="container">
     <div class="teams-rigth">
         <div class="info">
-            <button mat-icon-button (click)="openDialog();">
-                <mat-icon class="material-icons color_white">
-                    <span class="material-symbols-outlined">info</span>
-                </mat-icon>
-            </button>
+            <div class="info-container">
+                <button mat-icon-button (click)="openDialog();">
+                    <mat-icon class="material-icons color_white">
+                        <span class="material-symbols-outlined">info</span>
+                    </mat-icon>
+                </button>
+                <p class="info-label">Sobre o jogo</p>
+            </div>
         </div>
         <div class="content">
             <h3>Menu de Equipes</h3>
             <div class="form-content">
-               <div class="div-select">
+                <div class="div-select">
                     <select (change)="teamSelectionChanged($event)">
                         <option disabled selected>Selecione a Equipe</option>
                         <option *ngFor="let nomeEquipe of nomesEquipes">{{ nomeEquipe }}</option>
@@ -18,14 +21,15 @@
                 </div>
                 <div class="content-button">
                     <div class="example-button-row">
-                    <button mat-raised-button (click)="goToForms();">Criar Equipe</button>
+                        <button mat-raised-button (click)="goToForms();">Criar Equipe</button>
                     </div>
                     <div class="example-button-row">
                         <button mat-raised-button (click)="goToList();">Lista de Equipes</button>
                     </div>
                     <br>
                     <div class="example-button-row">
-                        <button mat-flat-button  [disabled]="!isTeamSelected" (click)="criaJogo(nomeEquipe);" style="background-color: #a4cdfd;">Jogar</button>
+                        <button mat-flat-button [disabled]="!isTeamSelected" (click)="criaJogo(nomeEquipe);"
+                            style="background-color: #a4cdfd;">Jogar</button>
                     </div>
                 </div>
             </div>
@@ -34,11 +38,9 @@
     <div class="teams-left">
         <section>
             <a routerLink="/"><button mat-icon-button>
-                <mat-icon class="material-icons color_blue">arrow_back_ios</mat-icon>
-            </button></a><br>            
+                    <mat-icon class="material-icons color_blue">arrow_back_ios</mat-icon>
+                </button></a><br>
         </section>
-        <img class="img" alt="Raio Xcape" src="assets/img/medico.png"/>
+        <img class="img" alt="Raio Xcape" src="assets/img/medico.png" />
     </div>
 </div>
-
-

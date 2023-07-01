@@ -9,6 +9,7 @@ import { PortaCaminho } from 'src/app/classes/PortaCaminho';
 import { JogoService } from 'src/app/service/jogo-service';
 import { RulesComponent } from '../../rules/rules.component';
 import { MatDialog } from '@angular/material/dialog';
+import { EnigmaUpdateDTO } from 'src/app/classes/dto/EnigmaUpdateDTO';
 
 @Component({
   selector: 'app-quiz',
@@ -25,7 +26,11 @@ export class QuizComponent implements OnInit {
   perguntaAtual!: Enigma;
   indiceAtual: number = 0;
   respostasSelecionadas: number[] = [];
-  nivelDificuldade! : NivelDificuldade;
+  nivelDificuldade!: NivelDificuldade;
+  dificuldade: string = "";
+  tempoInicial: number = 0;
+  tempoResposta: number = 0;
+  pontuacao : number = 0;
 
   constructor(private route: ActivatedRoute, private jogoService: JogoService,
     private router: Router, private toastr: ToastrService, private _formBuilder: FormBuilder,
@@ -34,27 +39,53 @@ export class QuizComponent implements OnInit {
     this.jogo = new Jogo();
     this.enigmas = [];
   }
-  
+
   openDialog() {
     const dialogRef = this.dialog.open(RulesComponent);
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+  iniciarTempoResposta() {
+    this.tempoInicial = Date.now();
+  }
+
+  pararTempoResposta() {
+    const tempoAtual = Date.now();
+    this.tempoResposta = (tempoAtual - this.tempoInicial) / 1000;
+    console.log("Tempo de resposta:", this.tempoResposta, "segundos");
   }
 
   proximaPergunta() {
+    this.iniciarTempoResposta();
+
     if (this.indiceAtual < this.enigmas.length - 1) {
       this.indiceAtual++;
       this.perguntaAtual = this.enigmas[this.indiceAtual + 1];
     }
+    this.verificaDificuldade(this.perguntaAtual);
   }
 
-  verificarResposta(respostas : number[]) {
+  verificarResposta(respostas: number[]) {
     console.log(respostas);
+    this.pararTempoResposta();
+
+    let payload : EnigmaUpdateDTO = new EnigmaUpdateDTO();
+    payload.tempoDecorridoSolucaoSegundos = this.tempoResposta;
+    payload.idsOpcoesRespostaEquipe = respostas;
+    
+
+    this.jogoService.updateEnigmaJogo(this.perguntaAtual.id, this.jogoId, payload).subscribe((response: any) => { 
+      console.log(response);
+
+
+    });
 
     this.proximaPergunta();
+    this.respostasSelecionadas = [];
 
+    const checkboxes = document.querySelectorAll('.opcaoResposta input[type="checkbox"]');
+    checkboxes.forEach((checkbox: Element) => {
+      (checkbox as HTMLInputElement).checked = false;
+    });
   }
 
   salvarResposta(index: number) {
@@ -63,6 +94,17 @@ export class QuizComponent implements OnInit {
       this.respostasSelecionadas = this.respostasSelecionadas.filter(id => id !== idOpcaoSelecionada);
     } else {
       this.respostasSelecionadas.push(idOpcaoSelecionada);
+    }
+  }
+
+
+  verificaDificuldade(perguntaAtual: Enigma) {
+    if (this.perguntaAtual.nivelDificuldade === Object.entries(NivelDificuldade).find(([_, v]) => v === NivelDificuldade.FACIL)![0]) {
+      this.dificuldade = 'Fácil';
+    } else if (this.perguntaAtual.nivelDificuldade === Object.entries(NivelDificuldade).find(([_, v]) => v === NivelDificuldade.MEDIO)![0]) {
+      this.dificuldade = 'Médio';
+    } else if (this.perguntaAtual.nivelDificuldade === Object.entries(NivelDificuldade).find(([_, v]) => v === NivelDificuldade.DIFICIL)![0]) {
+      this.dificuldade = 'Difícil';
     }
   }
 
@@ -84,7 +126,6 @@ export class QuizComponent implements OnInit {
       }
 
       this.jogoService.getJogo(this.jogoId).subscribe((response: any) => {
-        console.log(response);
 
         if (response.status === "OK") {
           this.jogo.id = response.data.id;
@@ -92,8 +133,12 @@ export class QuizComponent implements OnInit {
           this.jogo.criadoEm = response.data.criadoEm;
           this.enigmas = response.data.enigmas.filter((enigma: Enigma) => enigma.portaCaminho === this.portaCaminhoEscolhida);
           console.log(this.enigmas);
+
           this.jogo.pontos = response.data.pontos;
           this.perguntaAtual = this.enigmas[this.indiceAtual];
+          this.verificaDificuldade(this.perguntaAtual);
+
+          this.iniciarTempoResposta();
         } else {
           this.toastr.error("Erro ao trazer os dados do jogo!", "Erro");
         }

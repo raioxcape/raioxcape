@@ -46,7 +46,6 @@ mat-card-content.mat-mdc-card-content {
 }
 
 #nivel {
-    background-color: rgb(72, 248, 72);
     width: 80%;
     height: 6%;
     border-top-left-radius: 20px;
@@ -178,17 +177,6 @@ mat-checkbox {
     margin-left: 1px;
 }
 
-.facil {
-  background-color: green;
-}
-
-.medio {
-  background-color: yellow;
-}
-
-.dificil {
-  background-color: orange;
-}
 
 .material-icons.color_blue {
     color: #0b2447;
@@ -196,7 +184,36 @@ mat-checkbox {
 
 .info {
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
     position: absolute;
-    justify-content: right;
+    right: 10px;
+    top: 10px;
+    margin-bottom: 0px;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.info-label {
+    color: #0b2447;
+    font-size: 12px;
+    font-family: 'Helvetica';
+    margin-top: -2px;
+    margin-bottom: 0;
+}
+
+.facil {
+    background-color: rgb(77, 250, 77);
+}
+
+.medio {
+    background-color: yellow;
+}
+
+.dificil {
+    background-color: orange;
 }

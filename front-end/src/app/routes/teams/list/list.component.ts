@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EquipeService } from 'src/app/service/equipe-service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Equipe } from 'src/app/classes/Equipe';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { EditComponent } from './edit/edit.component';
+
 
 @Component({
   selector: 'app-list',
@@ -15,16 +18,18 @@ export class ListComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'criadaEm', 'atualizadaEm', 'integrantes', 'actions'];
   dataSource: any;
   isLoading: boolean = false;
-  clickedRows = new Set<Equipe>();
+  clickedRows = new Set<Equipe>();     
 
-  constructor(private equipeService: EquipeService, private router: Router) {
+  constructor(private equipeService: EquipeService, private router: Router, 
+    public dialog: MatDialog) {
 
   }
 
-  editTeam(row: any) {
-    console.log(row);
-
-    //this.router.navigate(['./forms', row]);
+  
+  openDialog(row: any) {
+    const dialogRef = this.dialog.open(EditComponent,  {
+      data: row 
+    });
   }
 
   ngOnInit(): void {

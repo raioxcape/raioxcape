@@ -1,0 +1,20 @@
+.dialog {
+    padding: 15px;
+}
+
+input {
+    border-radius: 10px;
+    height: 25px;
+    width: 250px;
+    margin: 10px 15px 10px 0px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-color: black;
+}
+
+.example-button-row button,
+.example-button-row a {
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

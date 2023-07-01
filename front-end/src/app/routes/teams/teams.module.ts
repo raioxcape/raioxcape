@@ -7,13 +7,15 @@ import { FormsComponent } from './forms/forms.component';
 import { ListComponent } from './list/list.component';
 import { AppMaterialModule } from 'src/app/shared/app-material/app-material.module';
 import { FormBuilder, FormsModule, NgModel, Validators } from '@angular/forms';
+import { EditComponent } from './list/edit/edit.component';
 
 
 @NgModule({
   declarations: [
     TeamsComponent,
     FormsComponent,
-    ListComponent
+    ListComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,

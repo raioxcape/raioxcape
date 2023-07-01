@@ -6,7 +6,6 @@ table {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: auto;
     min-height: 90vh;
 }
 
@@ -28,11 +27,12 @@ h3 {
     justify-content: center;
 }
 
+mat-spinner,
 .loading-spinner {
-    margin-top: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
 }
 
 .mat-mdc-row .mat-mdc-cell {

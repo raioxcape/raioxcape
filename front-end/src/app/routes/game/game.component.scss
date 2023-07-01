@@ -71,6 +71,22 @@ p {
     justify-content: right;
 }
 
+.info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    width: 100px;
+}
+
+.info-label {
+    color: #0b2447;
+    font-size: 12px;
+    font-family: 'Helvetica';
+    margin-top: -2px;
+    margin-bottom: 0;
+}
+
 .header {
     display: flex;
     justify-content: space-between;

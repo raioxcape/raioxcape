@@ -34,10 +34,11 @@ export class QuizComponent implements OnInit {
   tempoResposta: number = 0;
   pontuacao: number = 0;
 
-  constructor(private route: ActivatedRoute, private jogoService: JogoService,
-    private router: Router, private toastr: ToastrService, private _formBuilder: FormBuilder,
-    public dialog: MatDialog) {
-    this.categoria = "";
+  constructor(
+    private route: ActivatedRoute, private jogoService: JogoService, private router: Router,
+    private toastr: ToastrService, private _formBuilder: FormBuilder, public dialog: MatDialog
+  ) {
+    this.categoria = '';
     this.jogo = new Jogo();
     this.enigmas = [];
   }
@@ -70,7 +71,7 @@ export class QuizComponent implements OnInit {
       this.perguntaAtual = this.enigmas[this.indiceAtual];
       this.verificaDificuldade(this.perguntaAtual);
     } else {
-     this.openDialogEnd();
+      this.openDialogEnd();
     }
 
   }
@@ -92,9 +93,12 @@ export class QuizComponent implements OnInit {
     this.proximaPergunta();
     this.respostasSelecionadas = [];
 
-    const checkboxes = document.querySelectorAll('.opcaoResposta input[type="checkbox"]');
-    checkboxes.forEach((checkbox: Element) => {
-      (checkbox as HTMLInputElement).checked = false;
+    const checkboxes = document.querySelectorAll('.opcaoResposta input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
+
+    checkboxes.forEach((checkbox: HTMLInputElement) => {
+      if (checkbox.checked) {
+        checkbox.checked = false;
+      }
     });
   }
 

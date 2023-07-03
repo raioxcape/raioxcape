@@ -45,10 +45,22 @@
                     <div *ngIf="enigmasTorax.length !== 0; else message">
                         <mat-card id="questao" *ngFor="let pergunta of enigmasTorax; let i = index">
                             <p id="pergunta">{{ i + 1 }}. {{ pergunta.pergunta }} </p>
-                            <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} {{ pergunta.opcoesResposta[0].estaCorreta ? '✔️' : '❌' }} </p>
-                            <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} {{ pergunta.opcoesResposta[1].estaCorreta ? '✔️' : '❌' }} </p>
-                            <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} {{ pergunta.opcoesResposta[2].estaCorreta ? '✔️' : '❌' }} </p>
-                            <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} {{ pergunta.opcoesResposta[3].estaCorreta ? '✔️' : '❌' }} </p>
+                            <div class="containerOpcaoResposta">
+                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
+                                <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} {{ pergunta.opcoesResposta[0].estaCorreta ? '✔️' : '❌' }} </p>
+                            </div>
+                            <div class="containerOpcaoResposta">
+                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
+                                <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} {{ pergunta.opcoesResposta[1].estaCorreta ? '✔️' : '❌' }} </p>
+                            </div>
+                            <div class="containerOpcaoResposta">
+                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
+                                <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} {{ pergunta.opcoesResposta[2].estaCorreta ? '✔️' : '❌' }} </p>
+                            </div>
+                            <div class="containerOpcaoResposta">
+                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
+                                <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} {{ pergunta.opcoesResposta[3].estaCorreta ? '✔️' : '❌' }} </p>
+                            </div>
                         </mat-card>
                     </div>
                     <ng-template #message>
@@ -59,10 +71,22 @@
                     <div *ngIf="enigmasAbdomen.length !== 0; else message">
                         <mat-card id="questao" *ngFor="let pergunta of enigmasAbdomen; let i = index">
                             <p id="pergunta">{{ i + 1 }}. {{ pergunta.pergunta }} </p>
-                            <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} {{ pergunta.opcoesResposta[0].estaCorreta ? '✔️' : '❌' }} </p>
-                            <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} {{ pergunta.opcoesResposta[1].estaCorreta ? '✔️' : '❌' }} </p>
-                            <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} {{ pergunta.opcoesResposta[2].estaCorreta ? '✔️' : '❌' }} </p>
-                            <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} {{ pergunta.opcoesResposta[3].estaCorreta ? '✔️' : '❌' }} </p>
+                            <div class="containerOpcaoResposta">
+                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
+                                <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} {{ pergunta.opcoesResposta[0].estaCorreta ? '✔️' : '❌' }} </p>
+                            </div>
+                            <div class="containerOpcaoResposta">
+                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
+                                <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} {{ pergunta.opcoesResposta[1].estaCorreta ? '✔️' : '❌' }} </p>
+                            </div>
+                            <div class="containerOpcaoResposta">
+                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
+                                <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} {{ pergunta.opcoesResposta[2].estaCorreta ? '✔️' : '❌' }} </p>
+                            </div>
+                            <div class="containerOpcaoResposta">
+                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
+                                <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} {{ pergunta.opcoesResposta[3].estaCorreta ? '✔️' : '❌' }} </p>
+                            </div>
                         </mat-card>
                     </div>
                     <ng-template #message>
@@ -72,11 +96,22 @@
                 <mat-tab label="Músculo Esquelético">
                     <div *ngIf="enigmasMusculoEsqueletico.length !== 0; else message">
                         <mat-card id="questao" *ngFor="let pergunta of enigmasMusculoEsqueletico; let i = index">
-                            <p id="pergunta">{{ i + 1 }}. {{ pergunta.pergunta }} </p>
-                            <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} {{ pergunta.opcoesResposta[0].estaCorreta ? '✔️' : '❌' }} </p>
-                            <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} {{ pergunta.opcoesResposta[1].estaCorreta ? '✔️' : '❌' }} </p>
-                            <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} {{ pergunta.opcoesResposta[2].estaCorreta ? '✔️' : '❌' }} </p>
-                            <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} {{ pergunta.opcoesResposta[3].estaCorreta ? '✔️' : '❌' }} </p>
+                            <div class="containerOpcaoResposta">
+                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
+                                <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} {{ pergunta.opcoesResposta[0].estaCorreta ? '✔️' : '❌' }} </p>
+                            </div>
+                            <div class="containerOpcaoResposta">
+                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
+                                <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} {{ pergunta.opcoesResposta[1].estaCorreta ? '✔️' : '❌' }} </p>
+                            </div>
+                            <div class="containerOpcaoResposta">
+                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
+                                <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} {{ pergunta.opcoesResposta[2].estaCorreta ? '✔️' : '❌' }} </p>
+                            </div>
+                            <div class="containerOpcaoResposta">
+                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
+                                <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} {{ pergunta.opcoesResposta[3].estaCorreta ? '✔️' : '❌' }} </p>
+                            </div>
                         </mat-card>
                     </div>
                     <ng-template #message>

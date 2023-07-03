@@ -23,6 +23,9 @@ public class JogoMapper {
             this.equipeMapper.toEquipeRetrievalDTO(jogo.getEquipe()),
             jogo.getEnigmas().stream().map(this.enigmaMapper::toEnigmaRetrievalDTO).collect(Collectors.toList()),
             jogo.getPontos(),
+            jogo.getNumeroEnigmasSolucionados(),
+            jogo.getNumeroAcertos(),
+            jogo.getNumeroErros(),
             jogo.getCriadoEm(),
             jogo.getAtualizadoEm()
         );

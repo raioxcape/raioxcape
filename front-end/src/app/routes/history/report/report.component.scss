@@ -55,6 +55,14 @@ mat-dialog-content {
     margin-bottom: 5px;
 }
 
+.containerOpcaoResposta {
+    display: flex;
+    align-items: center;
+}
+
+.containerOpcaoResposta > p {
+    margin: 0;
+}
 
 p {
     color: black;

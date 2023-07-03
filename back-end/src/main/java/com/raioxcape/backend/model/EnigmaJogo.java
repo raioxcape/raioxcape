@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Entity(name = "EnigmaJogo")
 @Table(
@@ -56,10 +57,10 @@ public class EnigmaJogo {
     @OneToMany(mappedBy = "enigmaJogo", cascade = CascadeType.REFRESH, orphanRemoval = true)
     @JsonIgnore
     @ToString.Exclude
-    private List<OpcaoRespostaEnigmaJogo> respostas;
+    private List<OpcaoRespostaEnigmaJogo> opcoesResposta;
 
     public EnigmaJogo() {
-        this.respostas = new ArrayList<>();
+        this.opcoesResposta = new ArrayList<>();
         this.foiSolucionado = false;
         this.tempoDecorridoSolucaoSegundos = 0;
         this.pontos = 0;
@@ -71,12 +72,38 @@ public class EnigmaJogo {
         this.jogo = jogo;
     }
 
+    @JsonIgnore
+    private List<Integer> getIdsOpcoesResposta() {
+        return this
+            .opcoesResposta
+            .stream()
+            .map(OpcaoRespostaEnigmaJogo::getId)
+            .collect(Collectors.toList());
+    }
+
+    public boolean foiSolucionadoCorretamente() {
+        List<Integer> idsOpcoesRespostaCorretas = this.enigma.getIdsOpcoesRespostaCorretas();
+        List<Integer> idsOpcoesRespostaEquipe = this.getIdsOpcoesResposta();
+
+        if (idsOpcoesRespostaEquipe.size() != idsOpcoesRespostaCorretas.size()) {
+            return false;
+        }
+
+        for (OpcaoRespostaEnigmaJogo opcaoResposta : this.opcoesResposta) {
+            if (!opcaoResposta.getOpcaoRespostaEnigma().getEstaCorreta()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public void adicionarRespostas(List<OpcaoRespostaEnigmaJogo> respostas) {
         for (OpcaoRespostaEnigmaJogo resposta : respostas) {
             resposta.setEnigmaJogo(this);
         }
 
-        this.respostas.addAll(respostas);
+        this.opcoesResposta.addAll(respostas);
     }
 
     private int calcularNumeroAcertosEquipe(List<Integer> idsOpcoesRespostaEquipe) {

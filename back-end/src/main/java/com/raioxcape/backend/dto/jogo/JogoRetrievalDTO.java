@@ -16,7 +16,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @ToString
-@JsonPropertyOrder(value = {"id", "equipe", "enigmas", "pontos", "criadoEm", "atualizadoEm"})
+@JsonPropertyOrder(value = {
+    "id", "equipe", "enigmas", "pontos", "numeroAcertos",
+    "numeroEnigmasSolucionados", "numeroErros", "criadoEm", "atualizadoEm"
+})
 public class JogoRetrievalDTO {
 
     private final Integer id;
@@ -26,6 +29,12 @@ public class JogoRetrievalDTO {
     private final List<EnigmaRetrievalDTO> enigmas;
 
     private final Integer pontos;
+
+    private final Integer numeroEnigmasSolucionados;
+
+    private final Integer numeroAcertos;
+
+    private final Integer numeroErros;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     private final LocalDateTime criadoEm;

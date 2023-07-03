@@ -6,6 +6,9 @@ export class Jogo {
   equipe?: Equipe;
   enigmas!: Enigma[];
   pontos!: number;
+  numeroEnigmasSolucionados!: number;
+  numeroAcertos!: number;
+  numeroErros!: number;
   criadoEm!: Date;
   atualizadoEm!: Date;
 };

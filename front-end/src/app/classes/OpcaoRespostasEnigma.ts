@@ -6,6 +6,7 @@ export interface OpcaoRespostaEnigma {
   enigma: Enigma;
   estaCorreta: boolean;
   explicacao: string;
+  foiSelecionada?: boolean;
   criadaEm: Date;
   atualizadaEm: Date;
 };

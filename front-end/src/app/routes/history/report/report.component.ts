@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Enigma } from 'src/app/classes/Enigma';
+import { Jogo } from 'src/app/classes/Jogo';
+import { OpcaoRespostaEnigma } from 'src/app/classes/OpcaoRespostasEnigma';
 
 @Component({
   selector: 'app-report',
@@ -10,24 +11,37 @@ import { Enigma } from 'src/app/classes/Enigma';
 })
 export class HistoryReportComponent implements OnInit {
 
-  enigmas1 : Enigma[];
-  enigmas2 : Enigma[];
-  enigmas3 : Enigma[];
-  enigmas4 : Enigma[];
+  enigmasCabecaEPescoco: Enigma[];
+  enigmasTorax: Enigma[];
+  enigmasAbdomen: Enigma[];
+  enigmasMusculoEsqueletico: Enigma[];
 
-  
+  constructor(public dialogRef: MatDialogRef<HistoryReportComponent>, @Inject(MAT_DIALOG_DATA) public data: Jogo) {
+    this.enigmasCabecaEPescoco = this.organizarEnigmas(data, 'CABECA_E_PESCOCO')
+    this.enigmasTorax = this.organizarEnigmas(data, 'TORAX')
+    this.enigmasAbdomen = this.organizarEnigmas(data, 'ABDOMEN')
+    this.enigmasMusculoEsqueletico = this.organizarEnigmas(data, 'MUSCULO_ESQUELETICO')
+  }
 
-  constructor(public dialogRef: MatDialogRef<HistoryReportComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-      
-      this.enigmas1 = data.enigmas.filter((enigma: { portaCaminho: string; foiSolucionado: boolean; })  => enigma.portaCaminho == 'CABECA_E_PESCOCO' && enigma.foiSolucionado);
-      this.enigmas2 = data.enigmas.filter((enigma: { portaCaminho: string; foiSolucionado: boolean; })  => enigma.portaCaminho == 'TORAX' && enigma.foiSolucionado);
-      this.enigmas3 = data.enigmas.filter((enigma: { portaCaminho: string; foiSolucionado: boolean; })  => enigma.portaCaminho == 'ABDOMEN' && enigma.foiSolucionado);
-      this.enigmas4 = data.enigmas.filter((enigma: { portaCaminho: string; foiSolucionado: boolean; })  => enigma.portaCaminho == 'MUSCULO_ESQUELETICO' && enigma.foiSolucionado);
+  organizarEnigmas(jogo: Jogo, portaCaminho: string): Enigma[] {
+    const enigmas = jogo
+      .enigmas
+      .filter((enigma: Enigma) => enigma.portaCaminho == portaCaminho && enigma.foiSolucionado);
+
+    enigmas
+      .forEach(
+        (enigma: Enigma) => enigma.opcoesResposta.forEach(
+          (opcaoResposta: OpcaoRespostaEnigma) => {
+            opcaoResposta.foiSelecionada = enigma.opcoesRespostaEquipe
+              ?.map((opcaoRespostaEquipe: OpcaoRespostaEnigma) => opcaoRespostaEquipe.id).includes(opcaoResposta.id)
+          }
+        )
+      );
+
+    return enigmas;
   }
 
   ngOnInit(): void {
     console.log(this.data);
   }
-
 }

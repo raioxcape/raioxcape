@@ -31,7 +31,7 @@ public class EnigmaMapper {
             enigmaJogo.getEnigma().getPontos(),
             enigmaJogo.getFoiSolucionado(),
             enigmaJogo
-                .getRespostas()
+                .getOpcoesResposta()
                 .stream()
                 .map(this.opcaoRespostaEnigmaMapper::toOpcaoRespostaEnigmaRetrievalDTO)
                 .collect(Collectors.toList()),

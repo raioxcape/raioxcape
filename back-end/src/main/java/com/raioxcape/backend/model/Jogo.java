@@ -52,6 +52,45 @@ public class Jogo {
         this.equipe = equipe;
     }
 
+    @JsonIgnore
+    public int getNumeroEnigmasSolucionados() {
+        int numeroEnigmasSolucionados = 0;
+
+        for (EnigmaJogo enigma : this.enigmas) {
+            if (enigma.getFoiSolucionado()) {
+                numeroEnigmasSolucionados++;
+            }
+        }
+
+        return numeroEnigmasSolucionados;
+    }
+
+    @JsonIgnore
+    public int getNumeroAcertos() {
+        int numeroAcertos = 0;
+
+        for (EnigmaJogo enigma : this.enigmas) {
+            if (enigma.getFoiSolucionado() && enigma.foiSolucionadoCorretamente()) {
+                numeroAcertos++;
+            }
+        }
+
+        return numeroAcertos;
+    }
+
+    @JsonIgnore
+    public int getNumeroErros() {
+        int numeroErros = 0;
+
+        for (EnigmaJogo enigma : this.enigmas) {
+            if (enigma.getFoiSolucionado() && !enigma.foiSolucionadoCorretamente()) {
+                numeroErros++;
+            }
+        }
+
+        return numeroErros;
+    }
+
     public void adicionarEnigmas(List<EnigmaJogo> enigmasJogo) {
         for (EnigmaJogo enigmaJogo : enigmasJogo) {
             enigmaJogo.setJogo(this);

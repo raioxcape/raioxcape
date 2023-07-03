@@ -6,15 +6,85 @@
             <h2>Visão geral:</h2>
             <h3>Jogo criado em: <label for="">{{ data.criadoEm }}</label> </h3>
             <h3>Número de Enigmas: <label for="">{{ data.enigmas.length }}</label> </h3>
+            <h3>Pontuação total: <label for="">{{ data.pontos}}</label> </h3>
             <h3>Acertos: <label for="">{{ data.criadoEm }}</label></h3>
             <h3>Erros: <label for="">{{ data.criadoEm }}</label> </h3>
 
         </mat-card>
         <br>
-        <mat-card>
+        <mat-card id="enigmas">
             <h2>Enigmas:</h2>
+            <mat-tab-group>
+                <mat-tab label="Cabeça e Pescoço">
+                    <div *ngIf="enigmas1.length !== 0; else message">
+                        <mat-card id="questao" *ngFor="let pergunta of enigmas1; let i = index">
+                            <p id="pergunta">{{ i + 1 }}. {{ pergunta.pergunta }} </p>
+                            <p class="opcaoResposta1"> 
+                                {{ pergunta.opcoesResposta[0].opcaoResposta }} 
+                                
+                            </p>
+                            <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} </p>
+                            <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} </p>
+                            <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} </p>
+                        </mat-card>
+                    </div>
+                    <ng-template #message>
+                        <p>Não há enigmas solucionados dessa Porta Caminho!</p>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab label="Tórax">
+                    <div *ngIf="enigmas2.length !== 0; else message">
+                        <mat-card id="questao" *ngFor="let pergunta of enigmas2; let i = index">
+                            <p id="pergunta">{{ i + 1 }}. {{ pergunta.pergunta }} </p>
+                            <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} </p>
+                            <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} </p>
+                            <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} </p>
+                            <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} </p>
+                        </mat-card>
+                    </div>
+                    <ng-template #message>
+                        <p>Não há enigmas solucionados dessa Porta Caminho!</p>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab label="Abdômen">
+                    <div *ngIf="enigmas3.length !== 0; else message">
+                        <mat-card id="questao" *ngFor="let pergunta of enigmas3; let i = index">
+                            <p id="pergunta">{{ i + 1 }}. {{ pergunta.pergunta }} </p>
+                            <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} </p>
+                            <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} </p>
+                            <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} </p>
+                            <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} </p>
+                        </mat-card>
+                    </div>
+                    <ng-template #message>
+                        <p>Não há enigmas solucionados dessa Porta Caminho!</p>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab label="Músculo Esquelético">
+                    <div *ngIf="enigmas4.length !== 0; else message">
+                        <mat-card id="questao" *ngFor="let pergunta of enigmas4; let i = index">
+                            <p id="pergunta">{{ i + 1 }}. {{ pergunta.pergunta }} </p>
+                            <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} </p>
+                            <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} </p>
+                            <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} </p>
+                            <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} </p>
+                        </mat-card>
+                    </div>
+                    <ng-template #message>
+                        <p>Não há enigmas solucionados dessa Porta Caminho!</p>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+
+            <!-- <mat-card id="questao" *ngFor="let pergunta of data.enigmas; let i = index">
+                <p id="pergunta">{{ i + 1 }}. {{ pergunta.pergunta }} </p>
+                <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} </p>
+                <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} </p>
+                <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} </p>
+                <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} </p>
+            </mat-card>-->
         </mat-card>
-        
+
     </mat-dialog-content>
     <mat-dialog-actions align="end">
         <div class="button-form mat-button-form">

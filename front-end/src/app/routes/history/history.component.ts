@@ -25,7 +25,6 @@ export class HistoryComponent {
   }
 
   openDialog(row:any) {
-    //console.log(row);
     this.dialog.open(HistoryReportComponent,  {
       data: row
     });

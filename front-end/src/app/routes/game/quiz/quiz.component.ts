@@ -140,13 +140,13 @@ export class QuizComponent implements OnInit {
           this.jogo.id = response.data.id;
           this.jogo.atualizadoEm = response.data.atualizadoEm;
           this.jogo.criadoEm = response.data.criadoEm;
+          this.jogo.equipe = response.data.equipe;
           this.enigmas = response.data.enigmas.filter((enigma: Enigma) => enigma.portaCaminho === this.portaCaminhoEscolhida);
           console.log(this.enigmas);
           console.log(response);
           this.jogo.pontos = response.data.pontos;
           this.perguntaAtual = this.enigmas[this.indiceAtual];
           this.verificaDificuldade(this.perguntaAtual);
-
           this.iniciarTempoResposta();
         } else {
           this.toastr.error("Erro ao trazer os dados do jogo!", "Erro");

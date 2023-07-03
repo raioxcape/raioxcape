@@ -17,7 +17,7 @@
     <mat-card>
         <h3>Histórico de Jogos</h3>
         <mat-form-field>
-            <mat-label>Filtro por Data:</mat-label>
+            <mat-label>Filtro por Data de Criação:</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Ex. 22/06/2023" #input>
         </mat-form-field>
         <div *ngIf="isLoading; else loading">

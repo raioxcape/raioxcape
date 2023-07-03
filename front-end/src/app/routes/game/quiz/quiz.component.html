@@ -10,6 +10,7 @@
                 <mat-divider></mat-divider>
                 <div class="conteudo">
                     <div class="option">
+                        <p class="score">Equipe: {{ this.jogo.equipe?.nome }} </p>
                         <p class="score">Pontuação: {{ this.pontuacao }} </p>
                     </div>
                 </div>
@@ -45,7 +46,7 @@
                     </div>
                 </mat-card>
                 <mat-card id="mat-enigma">
-                    <p id="pergunta">{{ perguntaAtual!.pergunta }}</p>
+                    <p id="pergunta">{{ this.perguntaAtual.pergunta }}</p>
                     <section class="example-section">
                         <p class="opcaoResposta"><mat-checkbox class="opcaoResposta" id="resposta1"
                                 (change)="salvarResposta(0)">{{ perguntaAtual.opcoesResposta[0].opcaoResposta

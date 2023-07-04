@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { EquipeService } from 'src/app/service/equipe-service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EquipeCreationDTO } from 'src/app/classes/dto/EquipeCreationDTO';
 import { IntegranteCreationDTO } from 'src/app/classes/dto/IntegranteCreationDTO';
 
@@ -23,7 +23,7 @@ export class FormsComponent implements OnInit {
 
   constructor(
     private equipeService: EquipeService, private http: HttpClient, private formBuilder: FormBuilder,
-    private toastr: ToastrService, private route: ActivatedRoute
+    private toastr: ToastrService, private route: ActivatedRoute, private router: Router
   ) {
     this.equipe = new EquipeCreationDTO();
     this.integrantes = [new IntegranteCreationDTO()];
@@ -58,8 +58,11 @@ export class FormsComponent implements OnInit {
       this.equipeService.saveEquipe(this.equipe).subscribe({
         next: (response) => {
           if (response.status === 'CREATED' && response.error === null) {
-            this.toastr.success('A equipe foi cadastrada com sucesso!');
+            this.toastr.success('A equipe foi cadastrada com sucesso!', "Concluído");
             form.reset();
+            setTimeout(function() {
+              window.history.back();
+            }, 3000);
           }
           console.log(response);
         },

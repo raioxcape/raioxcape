@@ -128,34 +128,42 @@ export class QuizComponent implements OnInit {
       this.jogoId = param['id'];
       this.portaCaminhoEscolhida = param['portaCaminho'];
       let teste = param['portaCaminho'];
+      const body = document.getElementById('body');
 
-      if (this.portaCaminhoEscolhida === Object.entries(PortaCaminho).find(([_, v]) => v === PortaCaminho.CABECA_E_PESCOCO)![0]) {
-        this.categoria = PortaCaminho.CABECA_E_PESCOCO;
-      } else if (this.portaCaminhoEscolhida === Object.entries(PortaCaminho).find(([_, v]) => v === PortaCaminho.TORAX)![0]) {
-        this.categoria = PortaCaminho.TORAX;
-      } else if (this.portaCaminhoEscolhida === Object.entries(PortaCaminho).find(([_, v]) => v === PortaCaminho.ABDOMEN)![0]) {
-        this.categoria = PortaCaminho.ABDOMEN;
-      } else if (this.portaCaminhoEscolhida === Object.entries(PortaCaminho).find(([_, v]) => v === PortaCaminho.MUSCULO_ESQUELETICO)![0]) {
-        this.categoria = PortaCaminho.MUSCULO_ESQUELETICO;
-      }
-
-      this.jogoService.getJogo(this.jogoId).subscribe((response: any) => {
-        if (response.status === "OK") {
-          this.jogo.id = response.data.id;
-          this.jogo.atualizadoEm = response.data.atualizadoEm;
-          this.jogo.criadoEm = response.data.criadoEm;
-          this.jogo.equipe = response.data.equipe;
-          this.enigmas = response.data.enigmas.filter((enigma: Enigma) => enigma.portaCaminho === this.portaCaminhoEscolhida);
-          console.log(this.enigmas);
-          console.log(response);
-          this.jogo.pontos = response.data.pontos;
-          this.perguntaAtual = this.enigmas[this.indiceAtual];
-          this.verificaDificuldade(this.perguntaAtual);
-          this.iniciarTempoResposta();
-        } else {
-          this.toastr.error("Erro ao trazer os dados do jogo!", "Erro");
+      if (body) {
+        if (this.portaCaminhoEscolhida === Object.entries(PortaCaminho).find(([_, v]) => v === PortaCaminho.CABECA_E_PESCOCO)![0]) {
+          this.categoria = PortaCaminho.CABECA_E_PESCOCO;
+          body.style.backgroundImage = "url('assets/img/bkg1.jpg')";
+        } else if (this.portaCaminhoEscolhida === Object.entries(PortaCaminho).find(([_, v]) => v === PortaCaminho.TORAX)![0]) {
+          this.categoria = PortaCaminho.TORAX;
+          body.style.backgroundImage = "url('assets/img/bkg12.jpg')";
+        } else if (this.portaCaminhoEscolhida === Object.entries(PortaCaminho).find(([_, v]) => v === PortaCaminho.ABDOMEN)![0]) {
+          this.categoria = PortaCaminho.ABDOMEN;
+          body.style.backgroundImage = "url('assets/img/bkg1.jpg')";
+        } else if (this.portaCaminhoEscolhida === Object.entries(PortaCaminho).find(([_, v]) => v === PortaCaminho.MUSCULO_ESQUELETICO)![0]) {
+          this.categoria = PortaCaminho.MUSCULO_ESQUELETICO;
+          body.style.backgroundImage = "url('assets/img/bkg1.jpg')";
         }
-      });
+
+        this.jogoService.getJogo(this.jogoId).subscribe((response: any) => {
+          if (response.status === "OK") {
+            this.jogo.id = response.data.id;
+            this.jogo.atualizadoEm = response.data.atualizadoEm;
+            this.jogo.criadoEm = response.data.criadoEm;
+            this.jogo.equipe = response.data.equipe;
+            this.enigmas = response.data.enigmas.filter((enigma: Enigma) => enigma.portaCaminho === this.portaCaminhoEscolhida);
+            console.log(this.enigmas);
+            console.log(response);
+            this.jogo.pontos = response.data.pontos;
+            this.perguntaAtual = this.enigmas[this.indiceAtual];
+            this.verificaDificuldade(this.perguntaAtual);
+            this.iniciarTempoResposta();
+          } else {
+            this.toastr.error("Erro ao trazer os dados do jogo!", "Erro");
+          }
+        });
+      }
     });
+
   }
 }

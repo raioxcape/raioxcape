@@ -5,7 +5,6 @@ export class Equipe {
   id! : number;
   nome! : string;
   integrantes! : Integrante[];
-  jogos? : Jogo[];
-  criadaEm! : Date;
-  atualizadaEm! : Date;
+  criadaEm! : string;
+  atualizadaEm! : string;
 };

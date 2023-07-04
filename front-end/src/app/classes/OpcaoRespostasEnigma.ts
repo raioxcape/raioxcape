@@ -7,6 +7,6 @@ export interface OpcaoRespostaEnigma {
   estaCorreta: boolean;
   explicacao: string;
   foiSelecionada?: boolean;
-  criadaEm: Date;
-  atualizadaEm: Date;
+  criadaEm: string;
+  atualizadaEm: string;
 };

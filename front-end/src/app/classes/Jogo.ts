@@ -9,6 +9,6 @@ export class Jogo {
   numeroEnigmasSolucionados!: number;
   numeroAcertos!: number;
   numeroErros!: number;
-  criadoEm!: Date;
-  atualizadoEm!: Date;
+  criadoEm!: string;
+  atualizadoEm!: string;
 };

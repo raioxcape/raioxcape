@@ -14,6 +14,6 @@ export class Enigma {
   opcoesRespostaEquipe?: OpcaoRespostaEnigma[];
   tempoDecorridoSolucaoSegundos?: number;
   pontosEquipe?: number;
-  criadoEm!: Date;
-  atualizadoEm!: Date;
+  criadoEm!: string;
+  atualizadoEm!: string;
 };

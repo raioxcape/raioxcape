@@ -4,6 +4,6 @@ export class Integrante {
   id!: number;
   nome!: string;
   equipe!: Equipe;
-  criadoEm!: Date;
-  atualizadoEm!: Date;
+  criadoEm!: string;
+  atualizadoEm!: string;
 };

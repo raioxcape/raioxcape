@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @ToString
-@JsonPropertyOrder(value = {"id", "nome", "integrantes", "jogos", "criadaEm", "atualizadaEm"})
+@JsonPropertyOrder(value = {"id", "nome", "integrantes", "criadaEm", "atualizadaEm"})
 public class EquipeRetrievalDTO {
 
     private final Integer id;
@@ -24,8 +24,6 @@ public class EquipeRetrievalDTO {
     private final String nome;
 
     private final List<IntegranteRetrievalDTO> integrantes;
-
-    private final List<JogoRetrievalDTO> jogos;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     private final LocalDateTime criadaEm;

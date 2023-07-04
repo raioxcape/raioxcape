@@ -10,7 +10,6 @@ import com.raioxcape.backend.repository.EquipeRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
@@ -50,7 +49,6 @@ public class EquipeServiceImpl implements EquipeService {
         return equipes;
     }
 
-    @Transactional
     @Override
     public Equipe saveEquipe(EquipeCreationDTO equipeCreationDTO) {
         equipeCreationDTO.validate();
@@ -72,7 +70,6 @@ public class EquipeServiceImpl implements EquipeService {
         return equipe;
     }
 
-    @Transactional
     @Override
     public Equipe updateEquipeByNome(String nomeEquipe, EquipeUpdateDTO equipeUpdateDTO) {
         equipeUpdateDTO.validate();

@@ -9,7 +9,6 @@ import com.raioxcape.backend.repository.EnigmaJogoRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +33,6 @@ public class EnigmaJogoServiceImpl implements EnigmaJogoService {
             );
     }
 
-    @Transactional
     @Override
     public EnigmaJogo updateEnigmaJogoByIdEnigmaAndIdJogo(int idEnigma, int idJogo, EnigmaUpdateDTO enigmaUpdateDTO) {
         enigmaUpdateDTO.validate();
@@ -52,7 +50,6 @@ public class EnigmaJogoServiceImpl implements EnigmaJogoService {
         return novoEnigmaJogo;
     }
 
-    @Transactional
     @Override
     public List<EnigmaJogo> selectEnigmasJogo(Jogo jogo, int quantidade) {
         if (Objects.isNull(jogo)) {

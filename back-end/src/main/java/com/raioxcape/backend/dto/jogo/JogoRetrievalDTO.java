@@ -2,6 +2,7 @@ package com.raioxcape.backend.dto.jogo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.raioxcape.backend.dto.equipe.EquipeRetrievalDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

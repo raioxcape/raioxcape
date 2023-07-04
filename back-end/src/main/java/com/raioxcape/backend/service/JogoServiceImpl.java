@@ -3,14 +3,13 @@ package com.raioxcape.backend.service;
 import com.raioxcape.backend.dto.jogo.EnigmaUpdateDTO;
 import com.raioxcape.backend.dto.jogo.JogoCreationDTO;
 import com.raioxcape.backend.exception.EntidadeNaoExisteException;
-import com.raioxcape.backend.model.*;
+import com.raioxcape.backend.model.Jogo;
 import com.raioxcape.backend.repository.JogoRepository;
 
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
@@ -46,7 +45,6 @@ public class JogoServiceImpl implements JogoService {
         return jogos;
     }
 
-    @Transactional
     @Override
     public Jogo saveJogo(JogoCreationDTO jogoCreationDTO) {
         jogoCreationDTO.validate();
@@ -60,7 +58,6 @@ public class JogoServiceImpl implements JogoService {
         return jogo;
     }
 
-    @Transactional
     @Override
     public int updateEnigmaJogoByIdEnigmaAndIdJogo(int idEnigma, int idJogo, EnigmaUpdateDTO enigmaUpdateDTO) {
         return this.enigmaJogoService.updateEnigmaJogoByIdEnigmaAndIdJogo(idEnigma, idJogo, enigmaUpdateDTO).getPontos();

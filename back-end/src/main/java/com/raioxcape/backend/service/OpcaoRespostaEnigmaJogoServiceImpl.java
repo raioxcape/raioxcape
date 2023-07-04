@@ -7,7 +7,6 @@ import com.raioxcape.backend.repository.OpcaoRespostaEnigmaJogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,6 @@ public class OpcaoRespostaEnigmaJogoServiceImpl implements OpcaoRespostaEnigmaJo
         this.enigmaJogoService = enigmaJogoService;
     }
 
-    @Transactional
     @Override
     public OpcaoRespostaEnigmaJogo saveOpcaoRespostaEnigmaJogo(int idOpcaoRespostaEnigma, int idEnigma, int idJogo) {
         if (this.opcaoRespostaEnigmaJogoRepository.existsByOpcaoRespostaEnigmaIdAndEnigmaJogoEnigmaIdAndEnigmaJogoJogoId(
@@ -58,7 +56,6 @@ public class OpcaoRespostaEnigmaJogoServiceImpl implements OpcaoRespostaEnigmaJo
         );
     }
 
-    @Transactional
     @Override
     public List<OpcaoRespostaEnigmaJogo> saveOpcoesRespostaEnigmaJogo(List<Integer> idsOpcoesRespostaEnigma, int idEnigma, int idJogo) {
         List<OpcaoRespostaEnigmaJogo> opcoesRespostaEnigmaJogo = new ArrayList<>();

@@ -17,13 +17,13 @@ export class HistoryReportComponent implements OnInit {
   enigmasMusculoEsqueletico: Enigma[];
 
   constructor(public dialogRef: MatDialogRef<HistoryReportComponent>, @Inject(MAT_DIALOG_DATA) public data: Jogo) {
-    this.enigmasCabecaEPescoco = this.organizarEnigmas(data, 'CABECA_E_PESCOCO')
-    this.enigmasTorax = this.organizarEnigmas(data, 'TORAX')
-    this.enigmasAbdomen = this.organizarEnigmas(data, 'ABDOMEN')
-    this.enigmasMusculoEsqueletico = this.organizarEnigmas(data, 'MUSCULO_ESQUELETICO')
+    this.enigmasCabecaEPescoco = this.filtrarEnigmas(data, 'CABECA_E_PESCOCO')
+    this.enigmasTorax = this.filtrarEnigmas(data, 'TORAX')
+    this.enigmasAbdomen = this.filtrarEnigmas(data, 'ABDOMEN')
+    this.enigmasMusculoEsqueletico = this.filtrarEnigmas(data, 'MUSCULO_ESQUELETICO')
   }
 
-  organizarEnigmas(jogo: Jogo, portaCaminho: string): Enigma[] {
+  filtrarEnigmas(jogo: Jogo, portaCaminho: string): Enigma[] {
     const enigmas = jogo
       .enigmas
       .filter((enigma: Enigma) => enigma.portaCaminho == portaCaminho && enigma.foiSolucionado);
@@ -39,6 +39,12 @@ export class HistoryReportComponent implements OnInit {
       );
 
     return enigmas;
+  }
+
+  determinarTipoInput(enigma: Enigma) {
+    enigma = Object.assign(new Enigma(), enigma);
+
+    return (enigma.getNumeroOpcoesRespostaCorretas() == 1) ? 'radio' : 'checkbox';
   }
 
   ngOnInit(): void {

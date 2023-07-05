@@ -16,4 +16,8 @@ export class Enigma {
   pontosEquipe?: number;
   criadoEm!: string;
   atualizadoEm!: string;
+
+  getNumeroOpcoesRespostaCorretas(): number {
+    return this.opcoesResposta.filter((opcaoResposta: OpcaoRespostaEnigma) => opcaoResposta.estaCorreta).length;
+  }
 };

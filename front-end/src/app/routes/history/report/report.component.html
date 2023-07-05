@@ -17,25 +17,37 @@
             <mat-tab-group>
                 <mat-tab label="Cabeça e Pescoço">
                     <div *ngIf="enigmasCabecaEPescoco.length !== 0; else message">
-                        <mat-card id="questao" *ngFor="let pergunta of enigmasCabecaEPescoco; let i = index">
-                            <p id="pergunta">{{ i + 1 }}. {{ pergunta.pergunta }} </p>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} {{ pergunta.opcoesResposta[0].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[1].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} {{ pergunta.opcoesResposta[1].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[2].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} {{ pergunta.opcoesResposta[2].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[3].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} {{ pergunta.opcoesResposta[3].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                        </mat-card>
+                        <div id="questao" *ngFor="let enigma of enigmasCabecaEPescoco; let i = index">
+                            <mat-card id="questao" *ngIf="this.determinarTipoInput(enigma) == 'radio'; else variasOpcoesResposta">
+                                <mat-radio-group>
+                                    <p id="pergunta">{{ i + 1 }}. {{ enigma.pergunta }}</p>
+            
+                                    <div *ngFor="let opcaoResposta of enigma.opcoesResposta; index as j">
+                                        <div class="containerOpcaoResposta">
+                                            <mat-radio-button [disabled]="true" [checked]="opcaoResposta.foiSelecionada"></mat-radio-button>
+                                            <p class="opcaoResposta">
+                                                {{ opcaoResposta.opcaoResposta }} {{ opcaoResposta.estaCorreta ? '✔️' : '❌' }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </mat-radio-group>
+                            </mat-card>
+
+                            <ng-template #variasOpcoesResposta>
+                                <mat-card id="questao">
+                                    <p id="pergunta">{{ i + 1 }}. {{ enigma.pergunta }}</p>
+            
+                                    <div *ngFor="let opcaoResposta of enigma.opcoesResposta; index as j">
+                                        <div class="containerOpcaoResposta">
+                                            <mat-checkbox [disabled]="true" [checked]="opcaoResposta.foiSelecionada"></mat-checkbox>
+                                            <p class="opcaoResposta">
+                                                {{ opcaoResposta.opcaoResposta }} {{ opcaoResposta.estaCorreta ? '✔️' : '❌' }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </mat-card>
+                            </ng-template>
+                        </div>
                     </div>
                     <ng-template #message>
                         <p>Nenhum enigma nesta porta-caminho foi resolvido até o momento.</p>
@@ -43,25 +55,37 @@
                 </mat-tab>
                 <mat-tab label="Tórax">
                     <div *ngIf="enigmasTorax.length !== 0; else message">
-                        <mat-card id="questao" *ngFor="let pergunta of enigmasTorax; let i = index">
-                            <p id="pergunta">{{ i + 1 }}. {{ pergunta.pergunta }} </p>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} {{ pergunta.opcoesResposta[0].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} {{ pergunta.opcoesResposta[1].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} {{ pergunta.opcoesResposta[2].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} {{ pergunta.opcoesResposta[3].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                        </mat-card>
+                        <div id="questao" *ngFor="let enigma of enigmasTorax; let i = index">
+                            <mat-card id="questao" *ngIf="this.determinarTipoInput(enigma) == 'radio'; else variasOpcoesResposta">
+                                <mat-radio-group>
+                                    <p id="pergunta">{{ i + 1 }}. {{ enigma.pergunta }}</p>
+            
+                                    <div *ngFor="let opcaoResposta of enigma.opcoesResposta; index as j">
+                                        <div class="containerOpcaoResposta">
+                                            <mat-radio-button [disabled]="true" [checked]="opcaoResposta.foiSelecionada"></mat-radio-button>
+                                            <p class="opcaoResposta">
+                                                {{ opcaoResposta.opcaoResposta }} {{ opcaoResposta.estaCorreta ? '✔️' : '❌' }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </mat-radio-group>
+                            </mat-card>
+
+                            <ng-template #variasOpcoesResposta>
+                                <mat-card id="questao">
+                                    <p id="pergunta">{{ i + 1 }}. {{ enigma.pergunta }}</p>
+            
+                                    <div *ngFor="let opcaoResposta of enigma.opcoesResposta; index as j">
+                                        <div class="containerOpcaoResposta">
+                                            <mat-checkbox [disabled]="true" [checked]="opcaoResposta.foiSelecionada"></mat-checkbox>
+                                            <p class="opcaoResposta">
+                                                {{ opcaoResposta.opcaoResposta }} {{ opcaoResposta.estaCorreta ? '✔️' : '❌' }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </mat-card>
+                            </ng-template>
+                        </div>
                     </div>
                     <ng-template #message>
                         <p>Nenhum enigma nesta porta-caminho foi resolvido até o momento.</p>
@@ -69,25 +93,37 @@
                 </mat-tab>
                 <mat-tab label="Abdômen">
                     <div *ngIf="enigmasAbdomen.length !== 0; else message">
-                        <mat-card id="questao" *ngFor="let pergunta of enigmasAbdomen; let i = index">
-                            <p id="pergunta">{{ i + 1 }}. {{ pergunta.pergunta }} </p>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} {{ pergunta.opcoesResposta[0].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} {{ pergunta.opcoesResposta[1].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} {{ pergunta.opcoesResposta[2].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} {{ pergunta.opcoesResposta[3].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                        </mat-card>
+                        <div id="questao" *ngFor="let enigma of enigmasAbdomen; let i = index">
+                            <mat-card id="questao" *ngIf="this.determinarTipoInput(enigma) == 'radio'; else variasOpcoesResposta">
+                                <mat-radio-group>
+                                    <p id="pergunta">{{ i + 1 }}. {{ enigma.pergunta }}</p>
+            
+                                    <div *ngFor="let opcaoResposta of enigma.opcoesResposta; index as j">
+                                        <div class="containerOpcaoResposta">
+                                            <mat-radio-button [disabled]="true" [checked]="opcaoResposta.foiSelecionada"></mat-radio-button>
+                                            <p class="opcaoResposta">
+                                                {{ opcaoResposta.opcaoResposta }} {{ opcaoResposta.estaCorreta ? '✔️' : '❌' }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </mat-radio-group>
+                            </mat-card>
+
+                            <ng-template #variasOpcoesResposta>
+                                <mat-card id="questao">
+                                    <p id="pergunta">{{ i + 1 }}. {{ enigma.pergunta }}</p>
+            
+                                    <div *ngFor="let opcaoResposta of enigma.opcoesResposta; index as j">
+                                        <div class="containerOpcaoResposta">
+                                            <mat-checkbox [disabled]="true" [checked]="opcaoResposta.foiSelecionada"></mat-checkbox>
+                                            <p class="opcaoResposta">
+                                                {{ opcaoResposta.opcaoResposta }} {{ opcaoResposta.estaCorreta ? '✔️' : '❌' }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </mat-card>
+                            </ng-template>
+                        </div>
                     </div>
                     <ng-template #message>
                         <p>Nenhum enigma nesta porta-caminho foi resolvido até o momento.</p>
@@ -95,40 +131,44 @@
                 </mat-tab>
                 <mat-tab label="Músculo Esquelético">
                     <div *ngIf="enigmasMusculoEsqueletico.length !== 0; else message">
-                        <mat-card id="questao" *ngFor="let pergunta of enigmasMusculoEsqueletico; let i = index">
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} {{ pergunta.opcoesResposta[0].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} {{ pergunta.opcoesResposta[1].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} {{ pergunta.opcoesResposta[2].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                            <div class="containerOpcaoResposta">
-                                <mat-checkbox [disabled]="true" [checked]="pergunta.opcoesResposta[0].foiSelecionada"></mat-checkbox>
-                                <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} {{ pergunta.opcoesResposta[3].estaCorreta ? '✔️' : '❌' }} </p>
-                            </div>
-                        </mat-card>
+                        <div id="questao" *ngFor="let enigma of enigmasMusculoEsqueletico; let i = index">
+                            <mat-card id="questao" *ngIf="this.determinarTipoInput(enigma) == 'radio'; else variasOpcoesResposta">
+                                <mat-radio-group>
+                                    <p id="pergunta">{{ i + 1 }}. {{ enigma.pergunta }}</p>
+            
+                                    <div *ngFor="let opcaoResposta of enigma.opcoesResposta; index as j">
+                                        <div class="containerOpcaoResposta">
+                                            <mat-radio-button [disabled]="true" [checked]="opcaoResposta.foiSelecionada"></mat-radio-button>
+                                            <p class="opcaoResposta">
+                                                {{ opcaoResposta.opcaoResposta }} {{ opcaoResposta.estaCorreta ? '✔️' : '❌' }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </mat-radio-group>
+                            </mat-card>
+
+                            <ng-template #variasOpcoesResposta>
+                                <mat-card id="questao">
+                                    <p id="pergunta">{{ i + 1 }}. {{ enigma.pergunta }}</p>
+            
+                                    <div *ngFor="let opcaoResposta of enigma.opcoesResposta; index as j">
+                                        <div class="containerOpcaoResposta">
+                                            <mat-checkbox [disabled]="true" [checked]="opcaoResposta.foiSelecionada"></mat-checkbox>
+                                            <p class="opcaoResposta">
+                                                {{ opcaoResposta.opcaoResposta }} {{ opcaoResposta.estaCorreta ? '✔️' : '❌' }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </mat-card>
+                            </ng-template>
+                        </div>
                     </div>
                     <ng-template #message>
                         <p>Nenhum enigma nesta porta-caminho foi resolvido até o momento.</p>
                     </ng-template>
                 </mat-tab>
             </mat-tab-group>
-
-            <!-- <mat-card id="questao" *ngFor="let pergunta of data.enigmas; let i = index">
-                <p id="pergunta">{{ i + 1 }}. {{ pergunta.pergunta }} </p>
-                <p class="opcaoResposta1"> {{ pergunta.opcoesResposta[0].opcaoResposta }} </p>
-                <p class="opcaoResposta2"> {{ pergunta.opcoesResposta[1].opcaoResposta }} </p>
-                <p class="opcaoResposta3"> {{ pergunta.opcoesResposta[2].opcaoResposta }} </p>
-                <p class="opcaoResposta4"> {{ pergunta.opcoesResposta[3].opcaoResposta }} </p>
-            </mat-card>-->
         </mat-card>
-
     </mat-dialog-content>
     <mat-dialog-actions align="end">
         <div class="button-form mat-button-form">

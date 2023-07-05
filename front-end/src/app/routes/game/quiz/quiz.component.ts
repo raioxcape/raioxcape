@@ -76,11 +76,10 @@ export class QuizComponent implements OnInit {
       console.log(this.indiceAtual);
       this.indiceAtual++;
       console.log(this.indiceAtual);
-      this.perguntaAtual = this.enigmas[this.indiceAtual];
+      this.perguntaAtual = Object.assign(new Enigma(), this.enigmas[this.indiceAtual]);
       this.verificaDificuldade(this.perguntaAtual);
 
-      const numeroOpcoesRespostaCorretas = this.perguntaAtual.opcoesResposta.filter((opcaoResposta: OpcaoRespostaEnigma) => opcaoResposta.estaCorreta).length;
-      this.tipoInput = (numeroOpcoesRespostaCorretas == 1) ? 'radio' : 'checkbox';
+      this.tipoInput = (this.perguntaAtual.getNumeroOpcoesRespostaCorretas() == 1) ? 'radio' : 'checkbox';
     } else {
       this.openDialogEnd();
     }
@@ -117,10 +116,14 @@ export class QuizComponent implements OnInit {
   salvarResposta(index: number) {
     const idOpcaoSelecionada = this.perguntaAtual.opcoesResposta[index].id;
 
-    if (this.respostasSelecionadas.includes(idOpcaoSelecionada)) {
-      this.respostasSelecionadas = this.respostasSelecionadas.filter(id => id !== idOpcaoSelecionada);
+    if (this.tipoInput == 'radio') {
+      this.respostasSelecionadas = [idOpcaoSelecionada];
     } else {
-      this.respostasSelecionadas.push(idOpcaoSelecionada);
+      if (this.respostasSelecionadas.includes(idOpcaoSelecionada)) {
+        this.respostasSelecionadas = this.respostasSelecionadas.filter(id => id !== idOpcaoSelecionada);
+      } else {
+        this.respostasSelecionadas.push(idOpcaoSelecionada);
+      }
     }
   }
 
@@ -133,7 +136,6 @@ export class QuizComponent implements OnInit {
       this.dificuldade = 'Difícil';
     }
   }
-
 
   ngOnInit() {
     this.route.params.subscribe(param => {

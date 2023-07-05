@@ -1,6 +1,11 @@
 body {
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: 100vh;
+}
+
+html {
+    height: 100%;
 }
 
 .content {
@@ -124,20 +129,8 @@ mat-card-content.mat-mdc-card-content {
 }
 
 .material-icons.color_white {
-    color: #0b2447;
+    color: white;
     justify-content: right;
-}
-
-.bkg-img {
-    position: fixed;
-    width: 10%;
-    top: 1;
-    bottom: 0;
-    right: 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top right;
-    opacity: 0.8;
 }
 
 .link-back {
@@ -201,7 +194,7 @@ mat-checkbox {
 }
 
 .info-label {
-    color: #0b2447;
+    color: white;
     font-size: 12px;
     font-family: 'Helvetica';
     margin-top: -2px;

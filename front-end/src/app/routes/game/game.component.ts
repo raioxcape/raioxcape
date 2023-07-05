@@ -29,10 +29,6 @@ export class GameComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(RulesComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 
   escolhePortaCaminho(data : PortaCaminho) {

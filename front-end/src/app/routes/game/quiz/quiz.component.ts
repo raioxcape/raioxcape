@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EnigmaUpdateDTO } from 'src/app/classes/dto/EnigmaUpdateDTO';
 import { ApiResponse } from 'src/app/classes/dto/ApiResponse';
 import { ModalComponent } from './modal/modal.component';
+import { AlertComponent } from './modal/alert.component';
 
 @Component({
   selector: 'app-quiz',
@@ -41,6 +42,10 @@ export class QuizComponent implements OnInit {
     this.categoria = '';
     this.jogo = new Jogo();
     this.enigmas = [];
+  }
+
+  goToGame() {
+    this.dialog.open(AlertComponent);
   }
 
   openDialog() {
@@ -133,16 +138,16 @@ export class QuizComponent implements OnInit {
       if (body) {
         if (this.portaCaminhoEscolhida === Object.entries(PortaCaminho).find(([_, v]) => v === PortaCaminho.CABECA_E_PESCOCO)![0]) {
           this.categoria = PortaCaminho.CABECA_E_PESCOCO;
-          body.style.backgroundImage = "url('assets/img/bkg1.jpg')";
+          body.style.backgroundImage = "url('assets/img/cabecaepescoco.png')";
         } else if (this.portaCaminhoEscolhida === Object.entries(PortaCaminho).find(([_, v]) => v === PortaCaminho.TORAX)![0]) {
           this.categoria = PortaCaminho.TORAX;
-          body.style.backgroundImage = "url('assets/img/bkg12.jpg')";
+          body.style.backgroundImage = "url('assets/img/torax.png')";
         } else if (this.portaCaminhoEscolhida === Object.entries(PortaCaminho).find(([_, v]) => v === PortaCaminho.ABDOMEN)![0]) {
           this.categoria = PortaCaminho.ABDOMEN;
-          body.style.backgroundImage = "url('assets/img/bkg1.jpg')";
+          body.style.backgroundImage = "url('assets/img/abdomen.png')";
         } else if (this.portaCaminhoEscolhida === Object.entries(PortaCaminho).find(([_, v]) => v === PortaCaminho.MUSCULO_ESQUELETICO)![0]) {
           this.categoria = PortaCaminho.MUSCULO_ESQUELETICO;
-          body.style.backgroundImage = "url('assets/img/bkg1.jpg')";
+          body.style.backgroundImage = "url('assets/img/musculoesqueletico.png')";
         }
 
         this.jogoService.getJogo(this.jogoId).subscribe((response: any) => {

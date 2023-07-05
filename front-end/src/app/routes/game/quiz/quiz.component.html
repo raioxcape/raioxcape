@@ -33,7 +33,7 @@
                 <mat-card id="mat-title">
                     <div class="card-header">
                         <div class="question-label">
-                            <label>Questão {{ indiceAtual+1 }}</label>
+                            <label>Questão {{ indiceAtual + 1 }}</label>
                         </div>
                         <div class="level-card">
                             <mat-card id="nivel" [ngClass]="{
@@ -45,23 +45,34 @@
                         </div>
                     </div>
                 </mat-card>
-                <mat-card id="mat-enigma">
-                    <p id="pergunta">{{ this.perguntaAtual.pergunta }}</p>
-                    <section class="example-section">
-                        <p class="opcaoResposta"><mat-checkbox class="opcaoResposta" id="resposta1"
-                                (change)="salvarResposta(0)">{{ perguntaAtual.opcoesResposta[0].opcaoResposta
-                                }}</mat-checkbox></p>
-                        <p class="opcaoResposta"><mat-checkbox class="opcaoResposta" id="resposta2"
-                                (change)="salvarResposta(1)">{{ perguntaAtual.opcoesResposta[1].opcaoResposta
-                                }}</mat-checkbox></p>
-                        <p class="opcaoResposta"><mat-checkbox class="opcaoResposta" id="resposta3"
-                                (change)="salvarResposta(2)">{{ perguntaAtual.opcoesResposta[2].opcaoResposta
-                                }}</mat-checkbox></p>
-                        <p class="opcaoResposta"><mat-checkbox class="opcaoResposta" id="resposta4"
-                                (change)="salvarResposta(3)">{{ perguntaAtual.opcoesResposta[3].opcaoResposta
-                                }}</mat-checkbox></p>
-                    </section>
+
+                <mat-card *ngIf="this.tipoInput == 'radio'; else variasOpcoesResposta" id="mat-enigma">
+                    <mat-radio-group>
+                        <p id="pergunta">{{ this.perguntaAtual.pergunta }}</p>
+
+                        <div *ngFor="let opcaoResposta of this.perguntaAtual.opcoesResposta; index as i" class="example-section">
+                            <p class="opcaoResposta">
+                                <mat-radio-button class="opcaoResposta" [checked]="checked" name="opcaoResposta" attr.id="resposta{{ i + 1 }}" value="{{ i }}" (change)="salvarResposta(i)">
+                                    {{ opcaoResposta.opcaoResposta }}
+                                </mat-radio-button>
+                            </p>
+                        </div>
+                    </mat-radio-group>
                 </mat-card>
+
+                <ng-template #variasOpcoesResposta>
+                    <mat-card id="mat-enigma">
+                        <p id="pergunta">{{ this.perguntaAtual.pergunta }}</p>
+
+                        <div *ngFor="let opcaoResposta of this.perguntaAtual.opcoesResposta; index as i" class="example-section">
+                            <p class="opcaoResposta">
+                                <mat-checkbox class="opcaoResposta" attr.id="resposta{{ i + 1 }}" (change)="salvarResposta(i)">
+                                    {{ opcaoResposta.opcaoResposta }}
+                                </mat-checkbox>
+                            </p>
+                        </div>
+                    </mat-card>
+                </ng-template>
             </mat-card-content>
         </mat-card>
     </div>

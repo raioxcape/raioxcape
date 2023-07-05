@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Enigma } from 'src/app/classes/Enigma';
@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EnigmaUpdateDTO } from 'src/app/classes/dto/EnigmaUpdateDTO';
 import { ApiResponse } from 'src/app/classes/dto/ApiResponse';
 import { ModalComponent } from './modal/modal.component';
+import { OpcaoRespostaEnigma } from 'src/app/classes/OpcaoRespostasEnigma';
 
 @Component({
   selector: 'app-quiz',
@@ -33,10 +34,12 @@ export class QuizComponent implements OnInit {
   tempoInicial: number = 0;
   tempoResposta: number = 0;
   pontuacao: number = 0;
+  tipoInput: string = 'radio';
+  checked: boolean = false;
 
   constructor(
     private route: ActivatedRoute, private jogoService: JogoService, private router: Router,
-    private toastr: ToastrService, private _formBuilder: FormBuilder, public dialog: MatDialog
+    private toastr: ToastrService, private formBuilder: FormBuilder, public dialog: MatDialog
   ) {
     this.categoria = '';
     this.jogo = new Jogo();
@@ -70,10 +73,12 @@ export class QuizComponent implements OnInit {
       console.log(this.indiceAtual);
       this.perguntaAtual = this.enigmas[this.indiceAtual];
       this.verificaDificuldade(this.perguntaAtual);
+
+      const numeroOpcoesRespostaCorretas = this.perguntaAtual.opcoesResposta.filter((opcaoResposta: OpcaoRespostaEnigma) => opcaoResposta.estaCorreta).length;
+      this.tipoInput = (numeroOpcoesRespostaCorretas == 1) ? 'radio' : 'checkbox';
     } else {
       this.openDialogEnd();
     }
-
   }
 
   verificarResposta(respostas: number[]) {
@@ -92,6 +97,8 @@ export class QuizComponent implements OnInit {
 
     this.proximaPergunta();
     this.respostasSelecionadas = [];
+
+    this.checked = false;
 
     const checkboxes = document.querySelectorAll('.opcaoResposta input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
 

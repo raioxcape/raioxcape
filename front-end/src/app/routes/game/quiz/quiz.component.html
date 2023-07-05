@@ -1,8 +1,8 @@
-<body style="background-color: #F2FEFF;">
-    <a class="link-back" routerLink="/game/{{jogoId}}"><button mat-icon-button>
+<body id="body" style="background-color: #F2FEFF;">
+    <a class="material-icons color_white" class="link-back" (click)="goToGame();"><button mat-icon-button>
             <mat-icon class="material-icons color_white">arrow_back_ios</mat-icon>
-        </button></a>
-    <img class="bkg-img" src="assets/img/logoreduz1.png" />
+    </button></a>
+    
     <div class="header">
         <mat-card id="mat-header">
             <div class="cabecalho">
@@ -20,7 +20,7 @@
     <div class="info">
         <div class="info-container">
             <button mat-icon-button (click)="openDialog();">
-                <mat-icon class="material-icons color_blue">
+                <mat-icon class="material-icons color_white">
                     <span class="material-symbols-outlined">info</span>
                 </mat-icon>
             </button>

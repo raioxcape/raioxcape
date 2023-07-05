@@ -1,0 +1,18 @@
+<mat-dialog-content class="mat-typography">
+    <div class="content">
+        <h2 class="title">Atenção!</h2>
+        <p>
+            Ao sair dessa tela, seu progresso será descontinuado!
+            Tem certeza que deseja continuar?
+        </p>
+        
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <div class="example-button-row">
+        <button mat-raised-button id="btn-proximo" (click)="goToMenu();">Voltar</button>
+    </div>
+    <div class="example-button-row">
+        <button mat-raised-button mat-dialog-close color="primary">Cancelar</button>
+    </div>
+</mat-dialog-actions>

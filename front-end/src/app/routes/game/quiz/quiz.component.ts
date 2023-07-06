@@ -52,11 +52,11 @@ export class QuizComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(RulesComponent);
+    this.dialog.open(RulesComponent);
   }
 
   openDialogEnd() {
-    const dialogRef = this.dialog.open(ModalComponent);
+    this.dialog.open(ModalComponent);
   }
 
   iniciarTempoResposta() {

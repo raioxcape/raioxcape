@@ -22,7 +22,7 @@ export class EditComponent {
     this.nomeEquipeAntigo = data.nome;
     this.equipeDTO = new EquipeUpdateDTO;
    }
-  
+
 
   editTeam(novoNome: string) {
     console.log(novoNome);
@@ -35,18 +35,19 @@ export class EditComponent {
         next: (response) => {
           if (response.status === 'OK' && response.error === null) {
             this.toastr.success('A equipe foi atualizada com sucesso!');
-            
+
           }
           console.log(response);
-        }, 
+        },
         error: (error) => {
           this.toastr.error('Não foi possível editar a equipe.', error);
           console.error(error);
         }
       });
+
+      this.dialogRef.close();
     } else {
       this.toastr.warning("Equipe inalterada, nome igual ao antigo.", "Atenção!");
     }
   }
-
 }

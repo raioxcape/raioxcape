@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HistoryComponent } from 'src/app/routes/history/history.component';
-import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal',
@@ -13,13 +11,15 @@ export class ModalComponent implements OnInit {
 
   jogoId!: number;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, public dialogRef: MatDialogRef<ModalComponent>) { }
 
   goToHistory() {
+    this.dialogRef.close();
     this.router.navigate(['./../history']);
   }
 
   goToMenu() {
+    this.dialogRef.close();
     window.history.back();
   }
 

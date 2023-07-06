@@ -24,5 +24,4 @@ export class AlertComponent implements OnInit {
   goToMenu() {
     window.history.back();
   }
-
 }

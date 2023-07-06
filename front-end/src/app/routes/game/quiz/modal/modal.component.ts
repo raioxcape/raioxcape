@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HistoryComponent } from 'src/app/routes/history/history.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @Component({
@@ -29,5 +29,4 @@ export class ModalComponent implements OnInit {
       console.log(this.jogoId);
     });
   }
-
 }

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "serve dist/front-end -s -n -L -p $PORT",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -23,6 +23,7 @@
     "latest-version": "^7.0.0",
     "ngx-toastr": "^17.0.2",
     "rxjs": "~7.8.0",
+    "serve": "^14.2.0",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
